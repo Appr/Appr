@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 class LandingSlider extends Component {
@@ -16,7 +17,7 @@ class LandingSlider extends Component {
                         Appr lets you work more collaboratively and get more done.
                     </h2>
 
-                    <button className="register-btn">Sign Up - It's free</button>
+                    <Link to="register"> <button className="register-btn">Sign Up - It's free</button></Link>
                         
                 </div>
             </div>

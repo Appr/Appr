@@ -1,3 +1,6 @@
+.header-parent--hide {
+  display: none; }
+
 .header-container {
   display: block;
   width: 100%;
@@ -13,7 +16,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 40px; }
+  height: 40px;
+  z-index: 0; }
 
 .board-con {
   display: flex;
@@ -77,7 +81,8 @@
   width: 250px;
   height: 330px;
   background: white;
-  border: 1px solid black; }
+  border: 1px solid black;
+  z-index: 1; }
 
 .right-menu-inner {
   display: flex;
@@ -118,11 +123,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center; }
+  align-items: center;
+  z-index: 3; }
 
 .boards-main-container {
   margin-top: 100px;
-  width: 250px; }
+  width: 250px;
+  z-index: 3; }
 
 .recent-boards-con {
   display: flex;
@@ -245,6 +252,30 @@
 #bread-menu-toggle.active .bread-bottom {
   transform: rotate(-45deg); }
 
+.curtain--on {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+  z-index: 2;
+  animation: curtains-on 0.5s forwards; }
+
+.curtain--off {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 0;
+  opacity: 0;
+  animation: curtains-on 0.5s backwards; }
+
+@keyframes curtains-on {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }
 .login-parent {
   z-index: 2; }
 

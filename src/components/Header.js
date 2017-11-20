@@ -3,18 +3,24 @@ import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
 import AlertIcon from '../img/icons/Bell-02.svg';
 import BoardsIcon from '../img/icons/boards.svg';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
+
 
 
 
 class Header extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             rightMenuOpen: true,
             boardMenuOpen: true,
+            showHeader: false,
+            showCurtain: true
         }
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
+        this.handleHeader = this.handleHeader.bind(this);
+
     }
 
     handleRightMenuClick(){
@@ -26,15 +32,27 @@ class Header extends Component {
         }
     }
 
+
+
     handleBoardMenuClick(){
         if(this.state.boardMenuOpen){
             this.setState({boardMenuOpen: false})
+            this.setState({showCurtain: false})
         }
         else {
             this.setState({boardMenuOpen: true})
+            this.setState({showCurtain: true})
         }
     }
     
+    handleHeader(){
+        if(this.state.showHeader){
+            this.setState({showHeader: false})
+        }
+        else {
+            this.setState({showHeader: true})
+        }
+    }
     
   render(){
     let rightMenuClass = classnames({
@@ -42,16 +60,30 @@ class Header extends Component {
         "right-menu-container": true
     })
 
-    var boardMenuClass = classnames({
+    let boardMenuClass = classnames({
         "board-menu-container--hide": this.state.boardMenuOpen,
         "board-menu-container": true
     })
-  
+
+    let showHeaderClass = classnames({
+        "header-parent--hide": this.state.showHeader,
+        "header-parent": true
+    })
+
+    let handleCurtain= classnames({
+        "curtain--off": this.state.showCurtain,
+        "curtain--on": true
+    })
+
+   
+    
+
   
     return (
-      <div>
+      <div className="header-parent">
+      
           <div className={boardMenuClass}>
-          <a onClick={this.handleBoardMenuClick} href="#">close</a>
+          {/* <a onClick={this.handleBoardMenuClick} href="#">close</a> */}
             <div className="boards-main-container">
             
                 <div className="recent-boards-con">
@@ -118,11 +150,11 @@ class Header extends Component {
                 <ul>
                     <li>Profile</li>
                     <li>Cards</li>
-                    <li>Settings</li>
+                    <Link to="account-settings"><li>Settings</li></Link>
                     <li>Help</li>
                     <li>Shortcuts</li>
                     <li>Report Bugs</li>
-                    <li>Log Out</li>
+                    <Link to="/"><li>Log Out</li></Link>
                 </ul>
             </div>
             </div>
@@ -132,7 +164,8 @@ class Header extends Component {
         
         
 
-        
+        <div className={handleCurtain} onClick={this.handleBoardMenuClick}>
+        </div>
       </div>
     );
   }
