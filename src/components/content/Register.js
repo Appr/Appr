@@ -51,7 +51,7 @@ class Register extends Component {
                             </div>
                             <input 
                                 className="input-solo" 
-                                type="text" 
+                                type="password" 
                                 placeholder="e.g, •••••••••••••"
                             />
                             <div className="reg-btn-footer">
