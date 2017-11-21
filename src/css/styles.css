@@ -4,7 +4,7 @@
 .header-container {
   display: block;
   width: 100%;
-  height: 72px;
+  height: 50px;
   background: #4B4B4B;
   display: flex;
   justify-content: center;
@@ -25,12 +25,12 @@
   padding-left: 15px; }
 
 .logo {
-  font-size: 24px;
+  font-size: 20px;
   font-family: sans-serif; }
 
 .board-icon {
-  width: 36px;
-  height: 36px; }
+  width: 30px;
+  height: 30px; }
 
 .board-text {
   margin-top: auto;
@@ -48,11 +48,11 @@
 
 .avatar {
   background: lightgrey;
-  width: 36px;
-  height: 36px; }
+  width: 30px;
+  height: 30px; }
   .avatar img {
-    width: 36px;
-    height: 36px; }
+    width: 30px;
+    height: 30px; }
 
 .hello-user {
   margin-left: 10px;
@@ -69,7 +69,6 @@
 .right-menu-container {
   display: flex;
   width: 100%;
-  height: 330px;
   justify-content: flex-end;
   position: absolute;
   transition: 0.5s ease-in-out; }
@@ -79,7 +78,6 @@
 
 .right-menu-outter {
   width: 250px;
-  height: 330px;
   background: white;
   border: 1px solid black;
   z-index: 1; }
@@ -107,7 +105,7 @@
 .board-menu-container--hide {
   transform: translateX(-331px);
   position: absolute;
-  height: 100vh;
+  height: 100%;
   background-color: white 1;
   width: 330px;
   transition: 0.5s ease-in-out; }
@@ -115,7 +113,7 @@
 .board-menu-container {
   transform-origin: translateX(0px);
   width: 330px;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   border-right: 1px solid black;
   background-color: white;
@@ -194,14 +192,17 @@
   font-size: 18px;
   font-weight: bold; }
 
+.bread-container {
+  width: 50px;
+  height: 50px;
+  border-left: 1px black solid; }
+
 #bread-menu-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px black solid;
-  width: 50px;
-  height: 72px;
-  overflow: visible; }
+  height: 100%;
+  width: 100%; }
 
 .bread-menu {
   width: 24px;
@@ -255,11 +256,13 @@
 .curtain--on {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: black;
   opacity: 0.5;
   z-index: 2;
-  animation: curtains-on 0.5s forwards; }
+  top: 0px;
+  animation: curtains-on 0.5s forwards;
+  overflow: hidden; }
 
 .curtain--off {
   display: none;
@@ -276,7 +279,15 @@
     opacity: 0; }
   100% {
     opacity: 0.5; } }
+.home-container {
+  display: flex; }
+
+@media only screen and (max-width: 500px) {
+  .home-container {
+    flex-direction: column; } }
 .login-parent {
+  display: flex;
+  justify-content: center;
   z-index: 2; }
 
 .login-container {
@@ -377,7 +388,10 @@
   border-style: none;
   font-size: 18px;
   border-radius: 3px;
-  outline: none; }
+  outline: none;
+  height: 50px; }
+  .login-btn button {
+    height: 50px; }
   .login-btn:hover {
     background-color: #393939; }
   .login-btn:active {
@@ -389,6 +403,11 @@
   /*   border: 1px solid black; */
   display: flex;
   align-items: flex-end; }
+
+.register-container {
+  display: flex;
+  align-items: center;
+  height: 100vh; }
 
 .reg-header {
   display: block;
@@ -451,6 +470,10 @@
   margin-top: 0;
   text-align: left;
   margin-bottom: 10px; }
+
+.reg-btn-footer {
+  display: flex;
+  justify-content: flex-start; }
 
 .create-account-btn {
   font-size: 20px;
@@ -521,6 +544,7 @@ body {
 .text-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 400px;
   height: 260px; }
 
@@ -655,7 +679,7 @@ body {
   height: 28px;
   align-items: flex-start; }
 
-.edit-profile-btn {
+#editProfileBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -674,5 +698,230 @@ body {
   width: 17px;
   height: 17px;
   margin-right: 7px; }
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; }
+
+.personal-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  -webkit-box-direction: normal;
+  padding-top: 40px; }
+
+.dash-section-title {
+  display: block;
+  flex-direction: row;
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left; }
+
+.projects-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0px; }
+
+.project-thumb {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background: #444; }
+
+.project-thumb-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; }
+
+.project-thumb-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 100%;
+  color: white; }
+
+.create-project-thumb {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 150px;
+  background: #E2E4E6;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px; }
+
+.create-project-thumb-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid black; }
+
+.create-project-thumb-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 60%;
+  background: grey;
+  border-radius: 100px;
+  content: "+";
+  font-size: 40px;
+  color: white; }
+
+.create-project-thumb-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 100%;
+  color: #444;
+  font-weight: bold; }
+
+.modal-account-settings-content {
+  max-width: 390px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: #f4f4f4;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: 1s; }
+
+.modalStyle {
+  top: 0px;
+  position: absolute;
+  z-index: 900;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.modalStyle-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%; }
+
+.modal-title {
+  font-size: 18px;
+  font-weight: lighter;
+  color: #95989A; }
+
+.closeBtn {
+  display: flex;
+  justify-content: flex-end;
+  width: 33px;
+  color: grey;
+  font-size: 30px;
+  user-select: none; }
+
+.closeBtn:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer; }
+
+.closeBtn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer; }
+
+.modal-header-placeholder {
+  width: 33px;
+  height: 33px;
+  background: transparent; }
+
+.modal-header h2, .modal-footer h3 {
+  margin: 0; }
+
+.modal-header {
+  padding-top: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #95989A 1px solid;
+  color: white; }
+
+.modal-input-tag {
+  text-align: left;
+  color: #3C3C3C;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px; }
+
+.modal-body {
+  /*   border: 1px solid blue; */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; }
+
+.submitModal button {
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  height: 35px;
+  width: 100%;
+  background: blue;
+  outline: none;
+  border: none;
+  background: #7E7E7E;
+  color: white;
+  cursor: pointer; }
+
+.modal-form {
+  height: 35px;
+  width: 382px;
+  outline: none; }
+
+.modal-row {
+  margin-bottom: 18px; }
+
+@keyframes modalopen {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+.current-email {
+  color: #95989A; }
+
+/* Not modal css */
+#editProfileBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 120px;
+  background: #E2E4E6;
+  cursor: pointer;
+  margin-bottom: 20px; }
+
+.headline-20 {
+  font-size: 20px;
+  text-align: left;
+  color: #95989A;
+  text-decoration: underline slategrey;
+  cursor: pointer; }
+
+.account-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 115px;
+  width: 209px;
+  margin-left: 20px; }
 
 /*# sourceMappingURL=styles.css.map */

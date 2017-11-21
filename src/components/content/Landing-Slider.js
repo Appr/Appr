@@ -17,7 +17,7 @@ class LandingSlider extends Component {
                         Appr lets you work more collaboratively and get more done.
                     </h2>
 
-                    <Link to="register"> <button className="register-btn">Sign Up - It's free</button></Link>
+                    <Link to="/register"> <button className="register-btn">Sign Up - It's free</button></Link>
                         
                 </div>
             </div>

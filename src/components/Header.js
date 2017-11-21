@@ -3,7 +3,9 @@ import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
 import AlertIcon from '../img/icons/Bell-02.svg';
 import BoardsIcon from '../img/icons/boards.svg';
 import classnames from 'classnames';
-import { Link } from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+import AccountSettings from './content/AccountSettings';
+
 
 
 
@@ -20,6 +22,7 @@ class Header extends Component {
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
         this.handleHeader = this.handleHeader.bind(this);
+        this.closeMenus = this.closeMenus.bind(this);
 
     }
 
@@ -31,7 +34,6 @@ class Header extends Component {
             this.setState({rightMenuOpen: true})
         }
     }
-
 
 
     handleBoardMenuClick(){
@@ -52,6 +54,12 @@ class Header extends Component {
         else {
             this.setState({showHeader: true})
         }
+    }
+
+    closeMenus(){
+        this.setState({boardMenuOpen: true})
+        this.setState({showCurtain: true})
+        this.setState({rightMenuOpen: true})
     }
     
   render(){
@@ -134,27 +142,25 @@ class Header extends Component {
                         <div className="avatar"><img src={UserAvatar} /></div>
                         <div className="hello-user">Hello Landon!</div>
                         <div className="alert-icon"><img src={AlertIcon} /></div>
-                        <div id="bread-menu-toggle" href="#" onClick={this.handleRightMenuClick} >
-                            <div className="bread-menu">
-                                <div className="bread-top"> <span/> </div>
-                                <div className="bread-bottom"> <span/> </div>
-                            </div>
-                        </div> 
+                        <div className="bread-container">
+                            <div id="bread-menu-toggle" href="#" onClick={this.handleRightMenuClick} >
+                                <div className="bread-menu">
+                                    <div className="bread-top"> <span/> </div>
+                                    <div className="bread-bottom"> <span/> </div>
+                                </div>
+                            </div> 
+                        </div>    
                 </div>
-               
-                </div>    
+                </div>
+                
         </div>
         <div className={rightMenuClass}>
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <li>Profile</li>
-                    <li>Cards</li>
-                    <Link to="account-settings"><li>Settings</li></Link>
-                    <li>Help</li>
-                    <li>Shortcuts</li>
-                    <li>Report Bugs</li>
-                    <Link to="/"><li>Log Out</li></Link>
+                    <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
+                    <li>Feedback</li>
+                    <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
             </div>
             </div>
