@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
-import AlertIcon from '../img/icons/Bell-02.svg';
-import BoardsIcon from '../img/icons/boards.svg';
-import Header from './Header';
+import UserAvatar from '../../img/placeholders/Landon-Thumb-Grey.jpg';
+import AlertIcon from '../../img/icons/Bell-02.svg';
+import BoardsIcon from '../../img/icons/boards.svg';
+import {Link} from 'react-router-dom';
+
 
 class Register extends Component {
   render() {
     return (
+    
       <div className="register-container">
-          <div className="reg-header"> </div>
+      
+          {/* <div className="reg-header"> </div> */}
           <div className="option-container">
               <div className="option-container-inner">
                   <div className="placeholder-div">  </div>
@@ -48,10 +51,12 @@ class Register extends Component {
                             </div>
                             <input 
                                 className="input-solo" 
-                                type="text" 
+                                type="password" 
                                 placeholder="e.g, •••••••••••••"
                             />
-                            <button className="create-account-btn"> Create New Account </button>
+                            <div className="reg-btn-footer">
+                            <Link to="dashboard"><button className="create-account-btn"> Create New Account </button> </Link>
+                            </div>
                       </div>
                   </div>
               </div>

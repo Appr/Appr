@@ -1,5 +1,7 @@
 .login-parent{
-  z-index: 2;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
 }
   
   .login-container {
@@ -117,6 +119,10 @@
     font-size: 18px;
     border-radius: 3px;
     outline: none;
+    height: 50px;
+    button{
+      height: 50px;
+    }
 
     &:hover {
       background-color: #393939; 

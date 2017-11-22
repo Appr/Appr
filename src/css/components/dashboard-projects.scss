@@ -1,0 +1,119 @@
+.dashboard-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  // border: 1px solid black;
+}
+  
+
+  
+  .personal-list-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    // background: blue;
+    -webkit-box-direction: normal;
+    padding-top: 40px;
+    // border: 1px solid red;
+  }
+
+  .dash-section-title{
+    display: block;
+    flex-direction: row;
+    line-height: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    // border: 1px solid black;
+  }
+  
+  .projects-list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0px;
+    // border: 1px solid blue;
+  }
+  
+  
+  //EXISTING PROJECT
+  .project-thumb{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: #444;
+  }
+  
+  .project-thumb-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  
+  }
+  
+  
+  
+  .project-thumb-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 100%;
+    color: white;
+  }
+  
+  // CREATE PROJECT
+  
+  .create-project-thumb{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+    background: #E2E4E6;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .create-project-thumb-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  
+  .create-project-thumb-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 60%;
+    background: grey;
+    border-radius: 100px;
+    content: "+";
+    font-size: 40px;
+    color: white;
+  }
+  
+  
+  
+  .create-project-thumb-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 100%;
+    color: #444;
+    font-weight: bold;
+  }

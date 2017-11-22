@@ -3,18 +3,27 @@ import UserAvatar from '../img/placeholders/Landon-Thumb-Grey.jpg';
 import AlertIcon from '../img/icons/Bell-02.svg';
 import BoardsIcon from '../img/icons/boards.svg';
 import classnames from 'classnames';
+import {Link, Route} from 'react-router-dom';
+import AccountSettings from './content/AccountSettings';
+
+
 
 
 
 class Header extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             rightMenuOpen: true,
             boardMenuOpen: true,
+            showHeader: false,
+            showCurtain: true
         }
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
+        this.handleHeader = this.handleHeader.bind(this);
+        this.closeMenus = this.closeMenus.bind(this);
+
     }
 
     handleRightMenuClick(){
@@ -26,15 +35,32 @@ class Header extends Component {
         }
     }
 
+
     handleBoardMenuClick(){
         if(this.state.boardMenuOpen){
             this.setState({boardMenuOpen: false})
+            this.setState({showCurtain: false})
         }
         else {
             this.setState({boardMenuOpen: true})
+            this.setState({showCurtain: true})
         }
     }
     
+    handleHeader(){
+        if(this.state.showHeader){
+            this.setState({showHeader: false})
+        }
+        else {
+            this.setState({showHeader: true})
+        }
+    }
+
+    closeMenus(){
+        this.setState({boardMenuOpen: true})
+        this.setState({showCurtain: true})
+        this.setState({rightMenuOpen: true})
+    }
     
   render(){
     let rightMenuClass = classnames({
@@ -42,18 +68,39 @@ class Header extends Component {
         "right-menu-container": true
     })
 
-    var boardMenuClass = classnames({
+    let boardMenuClass = classnames({
         "board-menu-container--hide": this.state.boardMenuOpen,
         "board-menu-container": true
     })
-  
+
+    let showHeaderClass = classnames({
+        "header-parent--hide": this.state.showHeader,
+        "header-parent": true
+    })
+
+    let handleCurtain= classnames({
+        "curtain--off": this.state.showCurtain,
+        "curtain--on": true
+    })
+
+   
+    
+
   
     return (
-      <div>
+      <div className="header-parent">
+      
           <div className={boardMenuClass}>
-          <a onClick={this.handleBoardMenuClick} href="#">close</a>
+          
             <div className="boards-main-container">
-            
+            <div className="board-menu-header">
+            <div className="back-con" onClick={this.closeMenus}>
+                <div className="back-icon"> </div>
+                <div className="board-text">Hide</div>
+            </div>
+
+                  
+            </div>
                 <div className="recent-boards-con">
                     <div className="text-12">RECENT BOARDS</div>
                         <div className="board-menu-item">
@@ -102,27 +149,25 @@ class Header extends Component {
                         <div className="avatar"><img src={UserAvatar} /></div>
                         <div className="hello-user">Hello Landon!</div>
                         <div className="alert-icon"><img src={AlertIcon} /></div>
-                        <div id="bread-menu-toggle" href="#" onClick={this.handleRightMenuClick} >
-                            <div className="bread-menu">
-                                <div className="bread-top"> <span/> </div>
-                                <div className="bread-bottom"> <span/> </div>
-                            </div>
-                        </div> 
+                        <div className="bread-container">
+                            <div id="bread-menu-toggle" href="#" onClick={this.handleRightMenuClick} >
+                                <div className="bread-menu">
+                                    <div className="bread-top"> <span/> </div>
+                                    <div className="bread-bottom"> <span/> </div>
+                                </div>
+                            </div> 
+                        </div>    
                 </div>
-               
-                </div>    
+                </div>
+                
         </div>
         <div className={rightMenuClass}>
             <div className="right-menu-outter">
             <div className="right-menu-inner">
                 <ul>
-                    <li>Profile</li>
-                    <li>Cards</li>
-                    <li>Settings</li>
-                    <li>Help</li>
-                    <li>Shortcuts</li>
-                    <li>Report Bugs</li>
-                    <li>Log Out</li>
+                    <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
+                    <li>Feedback</li>
+                    <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
             </div>
             </div>
@@ -132,7 +177,8 @@ class Header extends Component {
         
         
 
-        
+        <div className={handleCurtain} onClick={this.handleBoardMenuClick}>
+        </div>
       </div>
     );
   }

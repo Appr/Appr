@@ -1,7 +1,15 @@
+.header-parent{
+  
+}
+
+.header-parent--hide{
+  display:none;
+}
+
 .header-container {
     display: block;
     width: 100%;
-    height: 72px;
+    height: 50px;
     background: #4B4B4B;
     display: flex;
     justify-content: center;
@@ -15,6 +23,7 @@
     align-items: center;
     width: 100%;
     height: 40px;
+    z-index: 0;
   }
   
   .board-con {
@@ -24,14 +33,14 @@
   }
   
   .logo {
-    font-size: 24px;
+    font-size: 20px;
     font-family: sans-serif;
     
   }
   
   .board-icon{
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
   }
   
   .board-text{
@@ -52,12 +61,12 @@
   
   .avatar{
     background: lightgrey;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
 
     img{
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
     }
   }
   
@@ -78,7 +87,6 @@
   .right-menu-container{
     display: flex;
     width:100%;
-    height: 330px;
     justify-content: flex-end;
     position: absolute; 
     transition: 0.5s ease-in-out;
@@ -90,9 +98,9 @@
 
   .right-menu-outter{
     width: 250px;
-    height: 330px;
     background: white;
     border: 1px solid black;
+    z-index: 1;
   }
   .right-menu-inner {
     display: flex;
@@ -120,119 +128,22 @@
     }
   }
 
-  .board-menu-container--hide{
-    transform: translateX(-331px); 
-    position: absolute;
-    height: 100vh;
-    background-color: white opacity($color: #000000);
-    width:330px;
-    transition: 0.5s ease-in-out;
-  } 
-
-  .board-menu-container{
-    transform-origin: translateX(0px);
-    width:330px;
-    height: 100vh;
-    position: absolute;
-    border-right: 1px solid black;
-    background-color: white ;
-    transition: 0.5s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .boards-main-container{
-    margin-top: 100px;
-    width: 250px;
-    // border: 1px solid black;
-  }
-
-  .recent-boards-con{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .text-12{
-    font-size: 12px;
-    color: #95989A;
-  }
-
-  .personal-boards-con{
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .board-menu-item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-  }
-
-  .create-board-item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-  }
-
-  .board-item-thumbnail {
-    width: 40px;
-    height: 40px;
-    background: #6F6F6F;
-    margin-right: 20px;
-  }
-
-  .create-board-thumbnail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 36px;
-    height: 36px;
-    border: 2px solid #C1C1C1;
-    margin-right: 20px;
-  }
-
-  .plus-symbol{
-    font-size: 35px;
-    margin: none;
-    padding: none;
-    font-weight: lighter;
-    color: #95989A;
-  }
-
-  .board-item-name{
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #6F6F6F;
-  }
-
-  .create-board-name{
-    display: flex;
-    color: #C1C1C1;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-  }
-
+  
  
 
+
+  .bread-container{
+    width: 50px;
+    height: 50px;
+    border-left: 1px black solid;
+  }
 
   #bread-menu-toggle{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px black solid;
-    width: 50px;
-    height:72px;
-    overflow: visible;
+    height: 100%;
+    width: 100%;
   }
   
   .bread-menu{
@@ -242,9 +153,6 @@
     flex-direction: column;
     justify-content: space-between;
   }
-   
-
-    
     .bread-top {
       width: 24px;
       height: 2px;
@@ -320,4 +228,8 @@
    
     transform: rotate(-45deg)
   }
+  
+
+
+
   

@@ -27,6 +27,7 @@
 .text-container{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 400px;
     height: 260px;
     // border: 1px black solid;
@@ -68,6 +69,8 @@
     &:active{
         background-color: rgb(167, 0, 69);
     }
+
+   
 }
 
 

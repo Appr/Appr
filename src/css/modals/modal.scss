@@ -1,0 +1,157 @@
+  
+    .modal-account-settings-content{
+      max-width: 390px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      background-color: #f4f4f4;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+      animation-name: modalopen;
+      animation-duration: 1s;
+     
+    }
+  
+  .modalStyle{
+      top: 0px;
+      position: absolute;
+      z-index: 900;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+  .modalStyle-inner{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+  }
+  
+  
+    .modal-title {
+    font-size: 18px;
+    font-weight: lighter;
+    color: #95989A;
+    }
+  
+    .closeBtn{
+      display: flex;
+      justify-content: flex-end;
+      width: 33px;
+      color: grey;
+      font-size: 30px;
+      user-select: none;
+    }
+  
+    .closeBtn:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+    .closeBtn:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+    .modal-header-placeholder{
+      width: 33px;
+      height: 33px;
+      background: transparent;
+  
+    }
+    .modal-header h2, .modal-footer h3{
+      margin: 0;
+    }
+  
+    .modal-header{
+      padding-top: 1px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: #95989A 1px solid;
+      color: white;
+    }
+  
+    .modal-input-tag {
+      text-align: left;
+      color: #3C3C3C;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  
+    .modal-body{
+    /*   border: 1px solid blue; */
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    
+    .submitModal{
+      button{
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        height: 35px;
+        width: 100%;
+        background: blue;
+        outline: none;
+        border: none;
+        background: #7E7E7E;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  
+    .modal-form {
+      height: 35px;
+      width: 382px;
+      outline: none;
+    }
+  
+    .modal-row{
+      margin-bottom: 18px
+    }
+  
+    @keyframes modalopen {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  
+    .current-email{
+      color: #95989A;
+    }
+  
+  /* Not modal css */
+  
+  
+  #editProfileBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      width: 120px;
+      background: #E2E4E6;
+      cursor: pointer;
+      margin-bottom: 20px;
+  }
+  
+  .headline-20{
+      font-size: 20px;
+      text-align: left;
+      color: #95989A;
+      text-decoration: underline slategrey;
+      cursor: pointer;
+  }
+  .account-options{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 115px;
+      width: 209px;
+      margin-left: 20px;
+  }

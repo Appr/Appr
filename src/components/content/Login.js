@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PasswordIcon from '../../img/icons/Key-Icon.svg';
 import UsernameIcon from '../../img/icons/Username-Icon.svg';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   render() {
@@ -33,7 +34,7 @@ class Login extends Component {
                     
                     
                     <div className="login-btn-con">
-                        <button className="login-btn"> LOGIN</button>
+                        <Link to="/dashboard"> <button className="login-btn"> LOGIN</button></Link>
                     </div>
                     </div>
                 </div>
