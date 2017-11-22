@@ -91,9 +91,16 @@ class Header extends Component {
       <div className="header-parent">
       
           <div className={boardMenuClass}>
-          {/* <a onClick={this.handleBoardMenuClick} href="#">close</a> */}
+          
             <div className="boards-main-container">
-            
+            <div className="board-menu-header">
+            <div className="back-con" onClick={this.closeMenus}>
+                <div className="back-icon"> </div>
+                <div className="board-text">Hide</div>
+            </div>
+
+                  
+            </div>
                 <div className="recent-boards-con">
                     <div className="text-12">RECENT BOARDS</div>
                         <div className="board-menu-item">
