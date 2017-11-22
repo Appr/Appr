@@ -9,20 +9,18 @@ authRouter.post('/register', (req, res) => {
     const db = getDb();
     db.find_user_by_email([ email ])
         .then( user => {
-            if (user) {
-                console.error('There is already another account using that email address.');
-                return res.send({message: 'There is already an existing account using that email address.'});
+            if (user[0]) {
+                return res.status(409).send({message: 'There is already an existing account using that email address.'});
             }
             else {
                 db.find_user_by_username([ username ])
                     .then( user => {
-                        if (user) {
-                            console.error('That username already exists.');
-                            return res.send({message: 'That username already exists.'});
+                        if (user[0]) {
+                            return res.status(409).send({message: 'That username already exists.'});
                         }
                         else {
                             db.register_user([ firstName, lastName, email, password, username ])
-                                .then( promise => res.send(promise))
+                                .then( promise => res.status(200).send())
                                 .catch( err => res.send(err));
                         }
                     })

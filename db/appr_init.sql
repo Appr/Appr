@@ -59,26 +59,26 @@ CREATE TABLE tracker (
 );
 
 
--- INSERT INTO users ( username, password, email, first_name, last_name )
--- VALUES ('username1234', 'password123', 'a@a.com', 'Testy', 'McTesterson');
+INSERT INTO users ( username, password, email, first_name, last_name )
+VALUES ('username1234', 'password123', 'a@a.com', 'Testy', 'McTesterson');
 
--- INSERT INTO groups ( group_name )
--- VALUES ('Test Group');
+INSERT INTO groups ( group_name )
+VALUES ('Test Group');
 
--- INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
--- VALUES ('1', 'idea field', 'user field', 'features field', 'view field', 'controller field', 'endpoint field', 'schema field');
+INSERT INTO project ( group_id, idea_field, user_field, features_field, view_field, controller_field, endpoint_field, schema_field )
+VALUES ('1', 'idea field', 'user field', 'features field', 'view field', 'controller field', 'endpoint field', 'schema field');
 
--- INSERT INTO user_group ( user_id, group_id )
--- VALUES ('1', '1');
+INSERT INTO user_group ( user_id, group_id )
+VALUES ('1', '1');
 
--- INSERT INTO roles ( roles )
--- VALUES ('admin');
+INSERT INTO roles ( roles )
+VALUES ('admin');
 
--- INSERT INTO group_project (group_id, project_id, roles_id)
--- VALUES ('1','1','1');
+INSERT INTO group_project (group_id, project_id, roles_id)
+VALUES ('1','1','1');
 
--- INSERT INTO user_project ( user_id, project_id, roles_id )
--- VALUES ('1','1','1');
+INSERT INTO user_project ( user_id, project_id, roles_id )
+VALUES ('1','1','1');
 
--- INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
--- VALUES ('1','1', '1', 'test tracker name', 'test tracker data');
+INSERT INTO tracker ( group_id, user_id, tracker_order, tracker_name, tracker_data ) 
+VALUES ('1','1', '1', 'test tracker name', 'test tracker data');

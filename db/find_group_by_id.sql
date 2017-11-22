@@ -1,3 +1,3 @@
-SELECT * FROM group
+SELECT * FROM groups
     WHERE id = $1
 ;

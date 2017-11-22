@@ -1,4 +1,4 @@
-UPDATE group 
-SET group_name = $2
-WHERE user_id $1
+UPDATE groups
+    SET group_name = $2
+    WHERE id = $1
 ;

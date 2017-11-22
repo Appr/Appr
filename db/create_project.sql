@@ -1,5 +1,5 @@
-INSERT INTO
-    project (author_id)
-    VALUES ($2)
-    WHERE id = $1
+INSERT INTO project
+    (group_id)
+    VALUES
+        ($1)
 ;
