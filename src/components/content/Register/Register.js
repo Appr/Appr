@@ -53,7 +53,7 @@ class Register extends Component {
                                 placeholder="e.g, •••••••••••••"
                             />
                             <div className="reg-btn-footer">
-                            <Link to="dashboard"><button className="create-account-btn"> Create New Account </button> </Link>
+                            <Link to="dashboard"><button className="create-account-btn not-enough-info-btn"> Create New Account </button> </Link>
                             </div>
                       </div>
                   </div>

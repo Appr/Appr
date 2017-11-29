@@ -1,38 +1,46 @@
 .project-sidebar-container {
-    min-width: 240px;
+    width: 240px;
     height: 100vh;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border-right: 1px solid #DCDCDC;
+    overflow: hidden;
+
+   
 }
 
 .project-sidebar-inner{
-    margin-left: 40px;
-    width: 150px;
+    align-items: center;
+    width: 100%;
     display: flex;
     text-align: left;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 50px;
-    height: 335px;
+    max-height: 100%;
+    padding-left: 0px;
+    
 }
 
 .psb-item {
-    
+    padding-left: 30px;
+    width: 100%;
+    line-height: 40px;
     font-size: 16px;
     list-style: none;
     color: #8C8984;
     text-decoration: none;
+    background: transparent;
+    
+
+    &:hover{
+        
+        
+        background: rgba(66, 133, 244, 0.25);
+    }
 
 }
-.psb-item:active{
-    border-left: 3px green solid;
-     
- }
 
-.psb-item:active{
-    border-left-color: #4285f4;
-    color: #4285f4;
-}
+

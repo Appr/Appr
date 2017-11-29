@@ -1,0 +1,132 @@
+
+
+.project-item{
+   
+    display: inline-block;
+    width: 270px;
+    margin: 10px;
+    max-height: 100%;
+    white-space: nowrap;
+   
+    // height: 80vh;
+    // margin-bottom: auto;
+    
+
+}
+.project-item-block{
+    position: relative;
+    width: 270px;
+    border-radius: 4px;
+    background: #E2E4E6;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    white-space: nowrap;
+    z-index: 0;
+    
+   
+    
+}
+
+.prjt-item-inner{
+    
+    // padding: 10px;
+    
+}
+
+.prjt-item-header{
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    max-width: 100%;
+    position: relative;
+    // border: 1px solid black;
+   
+
+    label{
+        font-size: 20px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    span{
+        background-image: url("../../../../../img/icons/dot-menu.svg");
+        cursor: pointer;
+        background-position-x: 50%;
+        background-position-y: 50%;
+        width: 20px;
+        height: 20px;
+    }
+
+   
+}
+
+.prjt-item-body{
+    padding-right: 10px;
+    padding-left: 10px;
+
+    ul{
+        overflow-y: auto;
+        max-height: 70vh;
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+    }
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;  
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+        max-width: 245px;
+        min-height: 32px;
+        background: white;
+        border-radius: 4px;
+        
+        
+        img{
+            display: none;
+        }
+
+        label{
+            padding-left: 10px;
+            line-height: 18px;
+        }
+
+        &:hover{
+            img{
+                display: block;
+                height: 15px;
+                width: 15px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    
+}
+
+
+
+.prjt-item-footer {
+    width: 100%;
+
+    button{
+        height: 30px;
+        width: 100%;
+        text-align: left;
+        padding-left: 10px;
+        font-size: 15px;
+        background-color: transparent;
+        border: none;
+        border-radius: 0px 0px 4px 4px;
+        outline: none;
+        color: #838c91;
+
+        &:hover{
+            background-color: #CDD2D4;
+        }
+    }
+}

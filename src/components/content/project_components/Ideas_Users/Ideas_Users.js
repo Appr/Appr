@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
+import AddIcon from '../../../../img/icons/add-icon.svg';
 import './idea_users.scss';
 
 class Ideas_Users extends Component {
@@ -9,55 +10,59 @@ class Ideas_Users extends Component {
     return (
       <div>
       <Header />
-      <div className="ideas-users-body">
-       
+      <div className="main-fix">
+       <ProjectSetupSidebar />
 
-          <div className="ideas-users-wrapper">
+          <div className="ideasUsers-container">
+            <div className="ideasUsers-wrapper">
+             <div className="project-section-header">Ideas & Users</div>
+              
 
-              <ProjectSetupSidebar />
-
-              <div className="ideas-users-input-area">
-
-                    <div className="ideas-area">
-                          <h1>Ideas</h1>
-                          <div className="ideas-input-one">
-                              <h3>1.</h3>
-                              <input placeholder="Idea"></input>
-                              <button>Save</button>
+              
+                    <div className="ideas-users-area drop-shadow">
+                        <div className="ideas-users-wrapper">
+                          <div className="area-title">Ideas</div>
+                          <div className="ideas-list">
+                            <div className="ideas-item">
+                                <section>
+                                    <label>1.</label>
+                                    <input placeholder="Idea"></input>
+                                </section>
+                                <button className="not-enough-info-btn">Save</button>
+                                <span className="delete-x">&times;</span>
+                            </div>
                           </div>
-                          <div className="ideas-input-two">
-                              <h3>2.</h3>
-                              <input placeholder="Idea"></input>
-                              <button>Save</button>
+                          <div className="ideas-users-footer">
+                              <button className="add-button"> <img src={AddIcon}/> Add Idea </button>
                           </div>
-                          <div className="ideas-add-wrap">
-                              <a href="" className="ideas-add">+Add</a>
-                          </div>
-                    </div>
-
-                    <div className="users-area">
-                          <h1>Users</h1>
-                          <div className="users-input-one">
-                              <input placeholder="Target Demographic"></input>
-                              <input placeholder="Technology Skill"></input>
-                              <input placeholder="Description"></input>
-                              <button>Save</button>
-                          </div>
-                          <div className="users-input-two">
-                              <input placeholder="Target Demographic"></input>
-                              <input placeholder="Technology Skill"></input>
-                              <input placeholder="Description"></input>
-                              <button>Save</button>
-                          </div>
-                          <div className="users-add-wrap">
-                              <a href="" className="users-add">+Add</a>
                           </div>
                     </div>
 
-              </div>
+                    <div className="ideas-users-area drop-shadow">
+                        <div className="ideas-users-wrapper">
+                        <div className="area-title">Users</div>
+                        <div className="users-list">
+                            <div className="users-item">
+                                <section>
+                                <label>1.</label>
+                                    <input placeholder="Target Demographic"></input>
+                                    <input placeholder="Technology Skill"></input>
+                                    <input placeholder="Description"></input>
+                                </section>
+                                <button className="not-enough-info-btn">Save</button>
+                                <span className="delete-x">&times;</span>
+                            </div>
+                          </div>
+                          <div className="ideas-users-footer">
+                              <button className="add-button"> <img src={AddIcon}/> Add User </button>
+                          </div>
+                        </div>
+                    </div>
 
-          </div>
+             
 
+            </div>
+        </div>
       </div>
       </div>
     );

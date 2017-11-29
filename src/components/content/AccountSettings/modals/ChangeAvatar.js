@@ -14,11 +14,6 @@ class ChangeAvatar extends Component {
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
                 <div className="modal-body">
-                    <label class="modal-input-tag">Initials</label>
-                    <section class="modal-row">
-                        <input class="modal-form" />
-                    </section>
-                        
                     <label class="modal-input-tag">Change Image URL</label>
                     <section class="modal-row">
                         <input class="modal-form" />

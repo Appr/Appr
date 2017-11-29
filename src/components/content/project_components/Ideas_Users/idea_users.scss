@@ -1,131 +1,138 @@
-.idea-users-body {
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
+
+
+.ideasUsers-container{
+    width: 100%;
 }
 
-.ideas-users-wrapper {
+.ideasUsers-wrapper {
     display: flex;
-    flex-direction: row;
-    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .ideas-users-input-area {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    width: 100vw;
+    
+   
 }
 
-.ideas-area{
-    width: 900px;
-    height: 300px;
+.ideas-users-area{
+    width: 700px;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+   
+   
+    margin: 20px;
+
+    .area-title{
+        text-align: left;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .ideas-users-wrapper{
+        padding: 20px;
+    }
+
+    .ideas-item {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+        section{
+            display: flex;
+            width: 580px;
+        }
+        label{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            max-width: 100%;
+            text-align: left;
+            margin-right: 10px;
+        }
+        
+        input{
+            width: 100%;
+            height: 24px;
+            outline: none;
+        }
+
+        button{
+            margin-left: 10px;
+            margin-right: 10px;
+            border-radius: 0px;
+            height: 30px;
+            font-size: 15px;
+        }
+    }
+
+    .users-item{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+
+        label{
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            max-width: 100%;
+            text-align: left;
+            margin-right: 10px;
+        }
+        section{
+            display: flex;
+            width: 580px;
+        }
+        input{
+            width: 100%;
+            margin-right: 10px;
+        }
+        button{
+            
+            margin-right: 10px;
+            border-radius: 0px;
+            height: 30px;
+            font-size: 15px;
+        }
+    }
 }
 
-.ideas-area input {
-    width: 800px;
-    height: 30px;
-}
 
-.ideas-area button {
-    width: 50px;
-    height: 30px;
-}
 
-.ideas-input-one {
-    width: 900px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.ideas-input-two {
-    width: 900px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.ideas-add-wrap {
-    width: 800px;
+.ideas-users-footer{
     display: flex;
     justify-content: flex-start;
+    width: 100%;
+    // border: 1px solid black;
+
+    button{
+        margin-left: 26.5px;
+    }
 }
 
-.ideas-add {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14pt;
-}
 
 
-.users-area {
-    width: 900px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
 
-.users-area input {
-    width: 255px;
-    height: 30px;
-}
 
-.users-area button {
-    width: 50px;
-    height: 30px;
-}
 
-.users-input-one {
-    width: 900px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
 
-.users-input-two {
-    width: 900px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
 
-.users-add-wrap {
-    width: 800px;
-    display: flex;
-    justify-content: flex-start;
-}
 
-.users-add {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14pt;
-}
 
-.ideas-and-users {
-    text-decoration: none;
-    color: blue;
-}
-
-.features {
-    text-decoration: none;
-    color: black;
-}
-
-.view {
-    text-decoration: none;
-    color: black;
-}

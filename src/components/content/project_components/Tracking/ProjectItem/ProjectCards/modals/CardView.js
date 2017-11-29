@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './cardview.scss'
 import PropTypes from 'prop-types';
+import DueDateIcon from '../../../../../../../img/icons/due-date-icon.svg';
+import LabelIcon from '../../../../../../../img/icons/label-icon.svg';
+import CopyIcon from '../../../../../../../img/icons/copy-icon.svg';
+import MoveIcon from '../../../../../../../img/icons/move-icon.svg';
+import MembersIcon from '../../../../../../../img/icons/member-icon.svg';
 
 class CardView extends Component {
   render() {
@@ -22,7 +27,7 @@ class CardView extends Component {
               <section className="cardview-body">
                     <label> Add Comment</label>
                     <textarea />
-                    <button> Save </button>
+                    <button className="not-enough-info-btn"> Save </button>
               </section>
               <div className="cardview-footer">
               </div>
@@ -37,8 +42,18 @@ class CardView extends Component {
                         Actions
                     </div>
                     <div className="side-options">
-                        <button> Move </button>
-                        <button> Copy </button>
+                        <button className="btn-and-icon">
+                            <div className="label-icon-con">
+                                <img src={MoveIcon} />
+                                <label> Move </label> 
+                            </div>
+                        </button>
+                        <button className="btn-and-icon">
+                            <div className="label-icon-con">
+                                <img src={CopyIcon} />
+                                <label> Copy </label> 
+                            </div>
+                        </button>
                     </div>
                 </section>
 
@@ -47,9 +62,24 @@ class CardView extends Component {
                         Add
                     </div>
                     <div className="side-options">
-                        <button> Members </button>
-                        <button> Due Date </button>
-                        <button> Labels </button>
+                        <button className="btn-and-icon">
+                            <div className="label-icon-con">
+                                <img src={MembersIcon} />
+                                <label> Members </label> 
+                            </div>
+                        </button>
+                        <button className="btn-and-icon">
+                            <div className="label-icon-con">
+                                <img src={DueDateIcon} />
+                                <label> Due Date </label> 
+                                </div>
+                        </button>
+                        <button className="btn-and-icon">
+                            <div className="label-icon-con">
+                                <img src={LabelIcon} />
+                                <label> Labels </label> 
+                            </div>
+                        </button>
                     </div>
                 </section>
 
