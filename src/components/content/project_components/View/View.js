@@ -10,30 +10,29 @@ class View extends Component {
       <Header />
         <div className="main-fix">
           <ProjectSetupSidebar />
-          <div className="view-inner-con">
-          <div className="view-top-label">
-            <h1 className="project-label-name">View</h1>
-              <div className="view-input-con">
-                <div className="view-input-individual">
-                  <label className="view-num-individual">1.</label>
-                    <input className="view-input-name" placeholder="Name" type="text" />
-                    <input className="view-input-imgurl" placeholder="Image URL" type="text" />
-                    <button className="button">Save</button>
-                </div>
-                <div className="view-input-individual">
-                  <label className="view-num-individual">2.</label>
-                    <input className="view-input-name" placeholder="Name" type="text" />
-                    <input className="view-input-imgurl" placeholder="Image URL" type="text" />
-                    <button className="button">Save</button>
-                </div>
-                <div className="view-input-individual">
-                  <label className="view-num-individual">3.</label>
-                    <input className="view-input-name" placeholder="Name" type="text" />
-                    <input className="view-input-imgurl" placeholder="Image URL" type="text" />
-                    <button className="button">Save</button>
-                </div>
-                <div className="view-add">
-                  <a href="">+Add</a>
+          
+          <div className="view-container">
+            <div className="view-inner-con">
+              <div className="project-section-header">
+                  <label>View </label>
+              </div>
+           
+              <div className="view-area drop-shadow">
+                <div className="view-wrapper">
+                  <div className="view-item">
+                    <section>
+                      <label>1.</label>
+                      <input className="view-input-name" placeholder="Name" type="text" />
+                      <input className="view-input-imgurl" placeholder="Image URL" type="text" />
+                    </section>
+                      <button className="not-enough-info-btn">Save</button>
+                      <span className="delete-x">&times;</span> 
+
+                  </div>
+              
+                  <div className="view-footer">
+                  <button className="add-button"> <span /> Add View </button>
+                  </div>
                 </div>
               </div>
           </div>

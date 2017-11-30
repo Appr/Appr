@@ -61,9 +61,13 @@
   }
   
   .avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: lightgrey;
     width: 30px;
     height: 30px;
+    border-radius: 100px;
 
     img{
       width: 30px;
@@ -93,81 +97,214 @@
     width:100%;
     justify-content: flex-end;
     position: absolute; 
-    transition: 0.5s ease-in-out;
+    transition: 0.1s ease-in-out;
+    opacity: 1;
+
+    .right-menu-outter{
+      width: 250px;
+      background: white;
+      border-left: 0.8px solid black;
+      border-right: 0.8px solid black;
+      border-bottom: 0.8px solid black;
+      border-top: 0px solid transparent;
+      z-index: 1;
+      
+      transition: 0.1s ease-in-out;
+
+      .right-menu-inner {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        // border: 1px solid black;
+        height: 100%;
+       
+        
+        transition: 0.1s ease-in-out;
+    
+        ul {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+          padding: 0;
+          transition: 0.1s ease-in-out;
+        }
+    
+        li {
+          padding-left: 10px;
+          line-height: 47px;
+          list-style: none;
+          font-size: 18px;
+          text-align: left;
+          font-weight: 600;
+          transition: 0.1s ease-in-out;
+        }
+      }
+    }
   }
+
+  // .right-menu-container--hide{
+  //   display: none;
+  // }
+
 
   .right-menu-container--hide{
-    display: none;
-  }
+    opacity: 0;
+    height: 0%;
+    width:100%;
+    justify-content: flex-end;
+    position: absolute; 
+   
+    transition: 0.1s ease-in-out;
 
-  .right-menu-outter{
-    width: 250px;
-    background: white;
-    border: 1px solid black;
-    z-index: 1;
-  }
-  .right-menu-inner {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    width: 230px;
-    // border: 1px solid black;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    .right-menu-outter{
+      height: 0px;
+      opacity: 0;
+      width: 250px;
+      background: transparent;
+      border-top: 0px solid transparent;
+      border-left: 0px solid transparent;
+      border-right: 0px solid transparent;
+      border-bottom: 0px solid transparent;
+      z-index: 1;
+      transition: 0.1s ease-in-out;
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
+      .right-menu-inner {
+        opacity: 0;
+        position: relative;
+        background: transparent;
+        width: 100%;
+        margin-right: auto;
+        transition: 0.1s ease-in-out;
+        z-index: -1;
+    
+        ul {
+          opacity: 0;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+          padding: 0;
+          transition: 0.1s ease-in-out;
+          
+          z-index: 0;
+          
+        }
+    
+        li {
+          opacity: 0;
+          position: relative;
+          color: transparent;
+          line-height: 0px;
+          padding-left: 10px;
+          list-style: none;
+          font-size: 0px;
+          text-align: left;
+          font-weight: 600;
+          transition: 0.1s ease-in-out;
+        }
+      }
     }
-
-    li {
-      line-height: 47px;
-      list-style: none;
-      font-size: 18px;
-      text-align: left;
-      font-weight: 600;
-    }
   }
+  
+  
 
   
  
 
 
   .bread-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border-left: 1px black solid;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+
+    .bread-menu-toggle-before{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 100%;
+      width: 100%;
+      // border: 1px solid black;
+      transition: 0.1s ease-in-out;
+
+      .bread-menu{
+        position: relative;
+        transition: 0.1s ease-in-out;
+
+        .bread-top {
+          position: relative;
+          transform: rotate(0deg);
+          width: 24px;
+          height: 2px;
+          background-color: white;
+          margin-bottom: 10px;
+          transition: 0.1s ease-in-out;
+        }
+    
+        .bread-bottom{
+          position: relative;
+          transform: rotate(0deg);
+          width: 24px;
+          height: 2px;
+          background-color: white;
+          transition: 0.1s ease-in-out;
+        }
+      }
+    }
+
+
+    .bread-menu-toggle-after{
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 100%;
+      width: 100%;
+      // border: 1px solid black;
+      transition: 0.1s ease-in-out;
+
+      .bread-menu{
+        
+        position: relative;
+        transition: 0.1s ease-in-out;
+        
+        
+
+        .bread-top {
+          position: relative;
+          transform: rotate(45deg);
+          width: 24px;
+          height: 2px;
+          background-color: #ACACAC;
+          z-index: 0;
+          margin-bottom: 0px;
+          top: 2px;
+          transition: 0.1s ease-in-out;
+        }
+    
+        .bread-bottom{
+          
+          position: relative;
+          transform: rotate(-45deg);
+          width: 24px;
+          height: 2px;
+          background-color: #ACACAC;
+          z-index: 1;
+          transition: 0.1s ease-in-out;
+        }
+      }
+    }
   }
 
-  #bread-menu-toggle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
   
-  .bread-menu{
-    width: 24px;
-    height: 17px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-    .bread-top {
-      width: 24px;
-      height: 2px;
-      background-color: white;
-    }
-
-    .bread-bottom{
-      width: 24px;
-      height: 2px;
-      background-color: white;
-    }
+  
+  
+   
 
 
   
@@ -191,47 +328,47 @@
 
   // animated x
 
-  #bread-menu-toggle, #bread-menu-toggle .bread-top, #bread-menu-toggle .bread-bottom {
-    transition: all 0.5s ease-in-out;
-  } 
+  // #bread-menu-toggle, #bread-menu-toggle .bread-top, #bread-menu-toggle .bread-bottom {
+  //   transition: all 0.5s ease-in-out;
+  // } 
 
-  #bread-menu-toggle .bread-bottom {
-    display: block;
-    bottom: 3px;
-    width: 24px;
-    height: 2px;
-    background-color: #fff;
-    position: relative;
-    z-index: 8;
-  }
+  // #bread-menu-toggle .bread-bottom {
+  //   display: block;
+  //   bottom: 3px;
+  //   width: 24px;
+  //   height: 2px;
+  //   background-color: #fff;
+  //   position: relative;
+  //   z-index: 8;
+  // }
 
-  #bread-menu-toggle .bread-top {
-    display: block;
+  // #bread-menu-toggle .bread-top {
+  //   display: block;
     
-     width: 24px;
-     height: 2px;
-     background-color: #fff;
-     position: relative;
-     z-index: 9;
-   }
+  //    width: 24px;
+  //    height: 2px;
+  //    background-color: #fff;
+  //    position: relative;
+  //    z-index: 9;
+  //  }
   
-  #bread-menu-toggle.active .bread-top  {
-    position: relative;
-  }
+  // #bread-menu-toggle.active .bread-top  {
+  //   position: relative;
+  // }
   
-  #bread-menu-toggle.active .bread-bottom {
-    top: 0;
-  }
+  // #bread-menu-toggle.active .bread-bottom {
+  //   top: 0;
+  // }
   
-  #bread-menu-toggle.active .bread-top {
+  // #bread-menu-toggle.active .bread-top {
     
-    transform: rotate(45deg);
-  }
+  //   transform: rotate(45deg);
+  // }
   
-  #bread-menu-toggle.active .bread-bottom {
+  // #bread-menu-toggle.active .bread-bottom {
    
-    transform: rotate(-45deg)
-  }
+  //   transform: rotate(-45deg)
+  // }
   
 
 

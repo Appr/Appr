@@ -68,9 +68,10 @@ class Schema extends Component {
                         </div>
                         
                     <div className="column-item-footer">
-                      <button className="add-button"> <img src={addIcon} /> Add Column </button>
+                      <button className="add-button"> <img src={addIcon} alt="Add Column"/> Add Column </button>
                     </div>
                   </div>
+                  
                   <div className="schema-item">
                     <div className="project-item-header">
                       <span> </span>
@@ -122,6 +123,7 @@ class Schema extends Component {
                               <span className="delete-x">&times;</span> 
                             </div>
                         </div>
+                        <span className="schema-divider"></span>
                         <div className="column-item">
                           <div className="column-fields-wrapper">
                             <input className="column-input-text md-input" type ="text" placeholder="column name" />

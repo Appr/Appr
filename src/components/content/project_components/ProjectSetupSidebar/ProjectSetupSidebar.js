@@ -7,7 +7,7 @@ export default class ProjectSetupSidebar extends Component {
         return (
             <div className="project-sidebar-container">
             <div className="project-sidebar-header">
-                <input type="text" placeholder="Project Name" /> 
+                <input type="text" placeholder="Project Name" autoFocus/> 
             </div>
             <ul className="project-sidebar-inner">
                 <Link to="ideas" className="psb-item"><li>Ideas & Users</li></Link>

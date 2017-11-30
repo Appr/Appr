@@ -1,3 +1,5 @@
+$item-box: #FFFFFF;
+
 body {
   height: 100vh;
   width: 100%;
@@ -133,7 +135,14 @@ body {
       padding-right: 5px;
       height: 20px;
       width: 20px;
-      
+  }
+
+  span{
+    padding-right: 5px;
+    height: 20px;
+    width: 20px;
+    background-image: url('./img/icons/add-icon.svg');
+    background-repeat: no-repeat;
   }
 }
 
@@ -154,20 +163,25 @@ body {
 
 
 .project-item-header{
-  height: 20px;
+  max-height: 100%;
   display: flex;
   justify-content: flex-end;
   width: 100%;
 
   span{
+      top: 4px;
+      right: 4px;
+      position: relative;
       padding-right: 10px;
-      height: 20px;
-      width: 20px;
-      background-image: url('../src/img/icons/dot-menu.svg');
+      background-image: url('./img/icons/trashcan-closed-icon.svg');
+      width: 25px;
+      height: 25px;
       background-repeat: no-repeat;
       opacity: 0.5;
+      cursor: pointer;
 
       &:hover{
+          background-image: url('./img/icons/trashcan-open-icon.svg');
           opacity: 0.8;
       }
   }
@@ -200,3 +214,16 @@ body {
 //     margin-top: 10px;
 //   }
 // }
+
+
+.v2 {
+  display: none !important;
+}
+
+.v2-placeholder {
+  opacity: 0;
+  
+  img{
+    opacity: 0;
+  }
+}
