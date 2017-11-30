@@ -8,7 +8,8 @@
         background-color: #f4f4f4;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
         animation-name: modalopen;
-        animation-duration: 1s;
+        animation-duration: 0.3s;
+        transition: 0.2s ease-in-out;
         z-index: 4;
        
       }
@@ -21,6 +22,7 @@
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 0;
+        transition: 0.2s ease-in-out;
       }
   
     .modalStyle-inner{
@@ -31,6 +33,7 @@
         width: 100%;
         height: 100%;
         z-index: 0;
+        transition: 0.2s ease-in-out;
     }
     
     
@@ -38,6 +41,7 @@
       font-size: 18px;
       font-weight: lighter;
       color: #95989A;
+      transition: 0.2s ease-in-out;
       }
     
       .closeBtn{
@@ -47,6 +51,7 @@
         color: grey;
         font-size: 30px;
         user-select: none;
+        transition: 0.2s ease-in-out;
         
       }
     
@@ -54,22 +59,26 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+        transition: 0.2s ease-in-out;
       }
     
       .closeBtn:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
+        transition: 0.2s ease-in-out;
       }
     
       .modal-header-placeholder{
         width: 33px;
         height: 33px;
         background: transparent;
+        transition: 0.2s ease-in-out;
     
       }
       .modal-header h2, .modal-footer h3{
         margin: 0;
+        transition: 0.2s ease-in-out;
       }
     
       .modal-header{
@@ -79,6 +88,7 @@
         align-items: center;
         border-bottom: #95989A 1px solid;
         color: white;
+        transition: 0.2s ease-in-out;
       }
     
       .modal-input-tag {
@@ -87,6 +97,7 @@
         font-weight: bold;
         font-size: 20px;
         margin-bottom: 10px;
+        transition: 0.2s ease-in-out;
       }
     
       .modal-body{
@@ -94,6 +105,7 @@
         margin-top: 20px;
         display: flex;
         flex-direction: column;
+        transition: 0.2s ease-in-out;
       }
       
       
@@ -111,6 +123,7 @@
           background: #7E7E7E;
           color: white;
           cursor: pointer;
+          transition: 0.2s ease-in-out;
         }
       }
     
@@ -118,10 +131,12 @@
         height: 33px;
         width: 382px;
         outline: none;
+        transition: 0.2s ease-in-out;
       }
     
       .modal-row{
-        margin-bottom: 18px
+        margin-bottom: 18px;
+        transition: 0.2s ease-in-out;
       }
     
       @keyframes modalopen {

@@ -21,7 +21,7 @@ class Controllers extends Component {
                         <div className="contro-item">
                             <div className="contro-item-inner">
                             <div className="project-item-header">
-                                <span> </span>
+                                <span className="delete-item"> </span>
                             </div>
                                 <div className="contro-item-title">
                                     <input type="text" placeholder="View 1" />
