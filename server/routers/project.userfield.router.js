@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database.js');
 
 const projectUserFieldRouter = express.Router();
 
-projectUserFieldRouter.post('/:project/create/userfield', (req, res) => {
+projectUserFieldRouter.post('/:projectid/create/userfield', (req, res) => {
     const projectid = req.params.projectid;
     const { targetDemoData, skillData, descriptionData } = req.body;
     const db = getDB();
@@ -12,7 +12,7 @@ projectUserFieldRouter.post('/:project/create/userfield', (req, res) => {
         .catch( err => res.send(err));
 })
 
-projectUserFieldRouter.get('/:project/userfield/:userfieldid', (req, res) => {
+projectUserFieldRouter.get('/:projectid/userfield/:userfieldid', (req, res) => {
     const projectid = req.params.projectid;
     const userfieldid = req.params.userfieldid;
     const db = getDB();
@@ -21,7 +21,7 @@ projectUserFieldRouter.get('/:project/userfield/:userfieldid', (req, res) => {
         .catch( err => res.send(err) );
 })
 
-projectUserFieldRouter.put('/:project/update/userfield/:userfieldid', (req, res) => {
+projectUserFieldRouter.put('/:projectid/update/userfield/:userfieldid', (req, res) => {
     const projectid = req.params.projectid;
     const userfieldid = req.params.userfieldid;
     const { targetDemoData, skillData, descriptionData } = req.body;
@@ -31,7 +31,7 @@ projectUserFieldRouter.put('/:project/update/userfield/:userfieldid', (req, res)
         .catch( err => res.send(err) );
 })
 
-projectUserFieldRouter.delete('/:project/delete/userfield/:userfieldid', (req, res) => {
+projectUserFieldRouter.delete('/:projectid/delete/userfield/:userfieldid', (req, res) => {
     const projectid = req.params.projectid;
     const userfieldid = req.params.userfieldid;
     const db = getDB();

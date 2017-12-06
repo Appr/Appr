@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database.js');
 
 const projectControllerRouter = express.Router();
 
-projectControllerRouter.post('/:project/create/controller', (req, res) => {
+projectControllerRouter.post('/:projectid/create/controller', (req, res) => {
     const projectid = req.params.projectid;
     const { whenData, doData, requireData } = req.body;
     const db = getDB();
@@ -12,7 +12,7 @@ projectControllerRouter.post('/:project/create/controller', (req, res) => {
         .catch( err = res.send(err) );
 })
 
-projectControllerRouter.get('/:project/controller/:controllerid', (req, res) => {
+projectControllerRouter.get('/:projectid/controller/:controllerid', (req, res) => {
     const projectid = req.params.projectid;
     const controller = req.params.controllerid;
     const db = getDB();
@@ -21,7 +21,7 @@ projectControllerRouter.get('/:project/controller/:controllerid', (req, res) => 
         .catch( err => res.send(err) );
 })
 
-projectControllerRouter.put('/:project/update/controller/:controllerid', (req, res) => {
+projectControllerRouter.put('/:projectid/update/controller/:controllerid', (req, res) => {
     const projectid = req.params.projectid;
     const controller = req.params.controllerid;
     const { whenData, doData, requireData } = req.body;
@@ -31,7 +31,7 @@ projectControllerRouter.put('/:project/update/controller/:controllerid', (req, r
         .catch( err => res.send(err) );
 })
 
-projectControllerRouter.delete('/:project/delete/controller/:controllerid', (req. res) => {
+projectControllerRouter.delete('/:projectid/delete/controller/:controllerid', (req. res) => {
     const projectid = req.params.projectid;
     const controller = req.params.controllerid;
     const db = getDB;

@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database');
 
 const projectEndpointRouter = express.Router();
 
-projectEndpointRouter.post('/:project/create/endpoint', (req, res) => {
+projectEndpointRouter.post('/:projectid/create/endpoint', (req, res) => {
     const projectid = req.params.projectid;
     const {urlData, isGet, isPost, isUpdate, isDelete} = req.body;
     const db = getDB;
@@ -12,7 +12,7 @@ projectEndpointRouter.post('/:project/create/endpoint', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectEndpointRouter.get('/:project/endpoint/:endpointid', (req, res) => {
+projectEndpointRouter.get('/:projectid/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const db = getDB;
@@ -21,7 +21,7 @@ projectEndpointRouter.get('/:project/endpoint/:endpointid', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectEndpointRouter.put('/:project/update/endpoint/:endpointid', (req, res) => {
+projectEndpointRouter.put('/:projectid/update/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const {urlData, isGet, isPost, isUpdate, isDelete} = req.body;
@@ -31,7 +31,7 @@ projectEndpointRouter.put('/:project/update/endpoint/:endpointid', (req, res) =>
         .catch(err => res.send(err));
 })
 
-projectEndpointRouter.delete('/:project/delete/endpoint/:endpointid', (req, res) => {
+projectEndpointRouter.delete('/:projectid/delete/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const db = getDB;

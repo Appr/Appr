@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database');
 
 const projectSchemaRouter = express.Router();
 
-projectSchemaRouter.post('/:project/create/schema', (req, res) => {
+projectSchemaRouter.post('/:projectid/create/schema', (req, res) => {
     const projectid = req.params.projectid;
     const {tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
     const db = getDB;
@@ -12,7 +12,7 @@ projectSchemaRouter.post('/:project/create/schema', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectSchemaRouter.get('/:project/schema/:schemaid', (req, res) => {
+projectSchemaRouter.get('/:projectid/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
     const db = getDB;
@@ -21,7 +21,7 @@ projectSchemaRouter.get('/:project/schema/:schemaid', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectSchemaRouter.put('/:project/update/schema/:schemaid', (req, res) => {
+projectSchemaRouter.put('/:projectid/update/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
     const {tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
@@ -31,7 +31,7 @@ projectSchemaRouter.put('/:project/update/schema/:schemaid', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectSchemaRouter.delete('/:project/delete/schema/:schemaid', (req, res) => {
+projectSchemaRouter.delete('/:projectid/delete/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
     const db = getDB;

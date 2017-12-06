@@ -3,7 +3,7 @@ const getDB = require('../database/bootstrap.database');
 
 const projectViewRouter = express.Router();
 
-projectViewRouter.post('/:project/create/view', (req, res) => {
+projectViewRouter.post('/:projectid/create/view', (req, res) => {
     const projectid = req.params.projectid;
     const { name, imageUrl } = req.body;
     const db = getDB;
@@ -12,7 +12,7 @@ projectViewRouter.post('/:project/create/view', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectViewRouter.get('/:project/view/:viewid', (req, res) => {
+projectViewRouter.get('/:projectid/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const db = getDB;
@@ -21,7 +21,7 @@ projectViewRouter.get('/:project/view/:viewid', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectViewRouter.put('/:project/update/view/:viewid', (req, res) => {
+projectViewRouter.put('/:projectid/update/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const { name, imageUrl } = req.body;
@@ -31,7 +31,7 @@ projectViewRouter.put('/:project/update/view/:viewid', (req, res) => {
         .catch(err => res.send(err));
 })
 
-projectViewRouter.delete('/:project/delete/view/:viewid', (req, res) => {
+projectViewRouter.delete('/:projectid/delete/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const db = getDB;

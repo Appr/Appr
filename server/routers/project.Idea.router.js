@@ -3,7 +3,7 @@ const getDb = require('../database/bootstrap.database');
 
 const projectIdeaRouter = express.Router();
 
-projectIdeaRouter.post('/:project/create/idea', (req, res) => {
+projectIdeaRouter.post('/:projectid/create/idea', (req, res) => {
     const { projectId, ideaData } = req.body;
     const db = getDb();
     db.read_project_idea([ ideaData ])
@@ -11,7 +11,7 @@ projectIdeaRouter.post('/:project/create/idea', (req, res) => {
         .catch( err => res.send(err));
 });
 
-projectIdeaRouter.get('/:project/idea/:ideaid', (req, res) => {
+projectIdeaRouter.get('/:projectid/idea/:ideaid', (req, res) => {
     const ideaid = req.params.ideaid;
     const db = getDb();
     db.read_project_idea([ ideaid ])
@@ -19,7 +19,7 @@ projectIdeaRouter.get('/:project/idea/:ideaid', (req, res) => {
         .catch( err => res.send(err));
 });
 
-projectIdeaRouter.put('/:project/update/idea/:ideaid', (req, res) => {
+projectIdeaRouter.put('/:projectid/update/idea/:ideaid', (req, res) => {
     const ideaid = req.params.ideaid;
     const { projectId, ideaData } = req.body;
     const db = getDb();
@@ -28,7 +28,7 @@ projectIdeaRouter.put('/:project/update/idea/:ideaid', (req, res) => {
         .catch( err => res.send(err));
 });
 
-projectIdeaRouter.delete('/:project/delete/idea/:ideaid', (req, res) => {
+projectIdeaRouter.delete('/:projectid/delete/idea/:ideaid', (req, res) => {
     const ideaid = req.params.ideaid;
     const db = getDb();
     db.delete_project_idea([ ideaid ])
