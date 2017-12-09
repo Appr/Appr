@@ -69,7 +69,6 @@ CREATE TABLE project_user_field (
     description_data TEXT
 );
 
-
 CREATE TABLE project_feature (
     id SERIAL PRIMARY KEY,
     project_id int references project(id),
@@ -190,64 +189,76 @@ VALUES ('deleted');
 
 --User Table
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('RealChosenOne', 'Reyismydaughter', 'a@a.com', 'Luke', 'Skywalker', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('DarthVader', 'deathstar4eva', 'b@b.com', 'Anekin', 'Skywalker', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('beepbeepboop', 'boopboopbop', 'c@c.com', 'R2', 'D2', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('HansPrincess', 'sololove', 'd@d.com', 'Leia', 'Organa', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('YoDaMan', 'thereisnotry', 'e@e.com', 'Minch', 'Yoda', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('EmperorsNewGroove', 'password123', 'f@f.com', 'Sheev', 'Palpatine', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('iShotfirst', '12parsecs', 'g@g.com', 'Han', 'Solo', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('HumanCyborgRelations', 'beepboopsbuddy', 'h@h.com', 'C3', 'PO', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('KenobiTheWan', 'password123', 'i@i.com', 'Obi-Wan', 'Kenobi', '1');
 
-INSERT INTO users ( username, password, email, first_name, last_name )
-VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett');
+INSERT INTO users ( username, password, email, first_name, last_name, status_id )
+VALUES ('badassbountyhunter', 'iDiedTooSoon', 'j@j.com', 'Boba', 'Fett', '1');
 
 --Groups
 
-INSERT INTO groups ( name, created_by )
-VALUES ('Good Guys', '1');
+INSERT INTO groups ( name, created_by, status_id )
+VALUES ('Good Guys', '1', '1');
 
-INSERT INTO groups (  name, created_by )
-VALUES ('Dark Side', '6');
+INSERT INTO groups (  name, created_by, status_id )
+VALUES ('Dark Side', '6', '1');
 
-INSERT INTO groups ( name, created_by )
-VALUES ('Droids', '3');
+INSERT INTO groups ( name, created_by, status_id )
+VALUES ('Droids', '3', '1');
 
 --Projects
 
-INSERT INTO project ( name, author_id )
-VALUES ('Save the Galaxy', '1');
+INSERT INTO project ( name, author_id, status_id )
+VALUES ('Save the Galaxy', '1', '1');
 
-INSERT INTO project ( name, author_id )
-VALUES ('DeathStar', '2');
+INSERT INTO project ( name, author_id, status_id )
+VALUES ('DeathStar', '2', '1');
 
 ---------------------------------Test Project Fields
 
     --Ideas
 
 INSERT INTO project_idea ( project_id, idea_data )
-VALUES ('1', 'idea feild test data');
-
-INSERT INTO project_idea ( project_id, idea_data )
-VALUES ('2', 'Group 2s idea feild test data');
+VALUES
+    ('1', 'Enslave the Galaxy'),
+    ('1', 'Construct Bigger Death Star'),
+    ('1', 'Construct Death Star'),
+    ('1', 'Execute Order 66'),
+    ('1', 'Turn Anakin Skywalker to the Dark Side'),
+    ('1', 'Commission a Grand Army of the Republic'),
+    ('1', 'Become Supreme Chancellor of the Republic'),
+    ('2', 'Save the Galaxy'),
+    ('2', 'Blow up Bigger Death Star'),
+    ('2', 'Have Bothans get clearance codes'),
+    ('2', 'Rescue Han Solo'),
+    ('2', 'Complete Jedi Training'),
+    ('2', 'Blow up Death Star'),
+    ('2', 'Get off this Rock')
+;
 
     --User Field
 

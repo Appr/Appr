@@ -3,6 +3,7 @@ import './projectcard.scss'
 import editIcon from '../../../../../../img/icons/Pencil-Icon.svg';
 import CardView from './modals/CardView';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 
 const CardViewModalBox = {
@@ -55,7 +56,7 @@ class ProjectCard extends Component {
 
      
       <div >
-            <li onClick={this.openCardView}><label>{this.props.cardTitle}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
+            <li onClick={this.openCardView}><label>{this.props.taskName}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
             
             <Modal 
@@ -64,7 +65,7 @@ class ProjectCard extends Component {
               className="cardview-container"
               style={CardViewModalBox}
             >
-              <CardView listName={this.props.listName} cardTitle={this.props.cardTitle} onCloseBtnClick={this.closeCardView} />
+              <CardView listName={this.props.listName} taskName={this.props.taskName}   onCloseBtnClick={this.closeCardView} onDeleteTaskClick={this.props.onDeleteTaskClick} />
             </Modal>
             
 
@@ -79,5 +80,8 @@ class ProjectCard extends Component {
     );
   }
 }
+
+ProjectCard.propTypes = {onDeleteTaskClick: PropTypes.func }
+ProjectCard.defaultProps = { onDeleteTaskClick: () => {}}
 
 export default ProjectCard;

@@ -21,7 +21,7 @@ class Login extends Component {
                     <div className="usr-pswd-row">
                         <div className="lgn-icon-con">
                         <div className="lgn-icon"> 
-                            <img src={UsernameIcon}/> 
+                            <img src={UsernameIcon} alt="username icon"/> 
                         </div>
                         </div>
                         <input className="usr-pswd-input" placeholder="Username" type="text" />
@@ -29,7 +29,7 @@ class Login extends Component {
                     <div className="usr-pswd-row">
                         <div className="lgn-icon-con">
                         <div className="lgn-icon">
-                            <img src={PasswordIcon}/> 
+                            <img src={PasswordIcon} alt="password icon"/> 
                         </div>
                         </div>
                         <input className="usr-pswd-input" placeholder="Password" type="password" />

@@ -17,16 +17,15 @@ class CardView extends Component {
           <div className="cardview-left">
               <section className="cardview-header">
                   <div className="cardview-title">
-                      {this.props.cardTitle}
+                      {this.props.taskName}
                   </div>
                   <div className="cardview-fromlist">
                       In list <b>{this.props.listName}</b>
-
                   </div>
               </section>
               <section className="cardview-body">
                     <label> Add Comment</label>
-                    <textarea />
+                    <textarea  />
                     <button className="not-enough-info-btn"> Save </button>
               </section>
               <div className="cardview-footer">
@@ -80,6 +79,11 @@ class CardView extends Component {
                                 <label> Labels </label> 
                             </div>
                         </button>
+                        <button className="btn-and-icon delete-task-btn" onClick={this.props.onDeleteTaskClick} >
+                            <div className="label-icon-con">
+                                <label > Delete </label> 
+                            </div>
+                        </button>
                     </div>
                 </section>
 
@@ -98,6 +102,15 @@ class CardView extends Component {
   }
 }
 
-CardView.propTypes = { onCloseBtnClick: PropTypes.func }
-CardView.defaultProps = { onCloseBtnClick: () => {} }
+CardView.propTypes = {
+     onCloseBtnClick: PropTypes.func, 
+     onDeleteTaskClick: PropTypes.func 
+    }
+CardView.defaultProps = {
+     onCloseBtnClick: () => {} , 
+     onDeleteTaskClick: () => {
+         console.log('defaultTaskClick')
+     }
+    }
+
 export default CardView;

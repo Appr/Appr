@@ -3,150 +3,215 @@ import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
+import { getUId, getAltUId } from '../../../../utils/uid.utils';
+import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
         super(props);
         this.state={
-            ideas: {
-                arr: [{
-                     key: 1,
-                     label: 1,
-                     name: "What problem(s) does your app solve?"
-                    },
-                    {
-                     key: 2,
-                     label: 2,
-                     name: "How does it solve those problems?"
-                    }]
-            },
-            users: {
-                arr: [{
-                     key: 1,
-                     label: 1,
-                     targetDemographic: 'Target Demographic',
-                     techSkill: 'Technology Skill',
-                     description: 'Description'
-                    }]
-            }
+            input: '',
+            ideas: [],
+            users: []
         }
-        this.addIdeaItemHandler = this.addIdeaItemHandler.bind(this);
-        this.removeIdeaItemHandler = this.removeIdeaItemHandler.bind(this);
-        this.addUserItemHandler = this.addUserItemHandler.bind(this);
-        this.removeUserItemHandler = this.removeUserItemHandler.bind(this);
+        this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
+        this.handleChangeIdea = this.handleChangeIdea.bind(this);
+        this.submitChangeIdea = this.submitChangeIdea.bind(this);
+        this.handleDeleteIdeaButton = this.handleDeleteIdeaButton.bind(this);
     }
 
-    addIdeaItemHandler(){
-        let IdeaList = this.state.ideas.arr;
-        IdeaList.push({
-            key: 2,
-            label: 2,
-            name: 'Type here'
+    componentDidMount() {
+        // const projectid = this.props.match.params.projectid
+        // when testing is over, delete the next line and uncomment the line above.
+        const projectid = 1;
+
+        const ideaExamples = [
+            { idea_data: 'example: Rule the Galaxy.' },
+            { idea_data: 'example: Get Baby out of the corner.'}
+        ];
+
+        findProjectIdeas(projectid)
+            .then( res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+                else {
+                    if(res.data.length > 0) {
+                        this.setState({ ideas: res.data });
+                    }
+                    else {
+                        this.setState({ ideas: ideaExamples });
+                    }
+                }
+            })
+            .catch(err => {throw err});
+    }
+
+    handleAddIdeaButton() {
+        // const projectid = this.props.match.params.projectid
+        // the line above should work, below is just a temporary solution
+        const projectid = 1;
+
+        const body = {ideaData: ''};
+        const newState = this.state.ideas;
+        newState.push(body);
+        this.setState({ ideas: newState });
+
+        createProjectIdea( projectid, body)
+            .then(res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err})
+    }
+
+    handleChangeIdea(e) {
+        // the next line should work, but it returns undefined.
+        // const index = Number(e.target.index);
+
+        const newState = this.state.ideas;
+
+        // newState[index].idea_data = e.target.value;
+        // the line above should work, below is just a temporary solution
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                idea.idea_data = e.target.value;
+            }
         });
-        this.setState({ arr: IdeaList})
 
+        this.setState({ ideas: newState });
     }
 
-    removeIdeaItemHandler(){
-        let IdeaList = this.state.ideas.arr;
-        IdeaList.splice(1,1);
-        this.setState({ arr: IdeaList})
+    submitChangeIdea(e) {
+        // the next line should work, but it returns undefined.
+        // const index = Number(e.target.index);
+
+        // const projectid = this.props.match.params.projectid
+        // the line above should work, below is just a temporary solution
+        const projectid = 1;
+
+        const ideaid = Number(e.target.id);
+
+        // const body = this.state.ideas[index].idea_data;
+        // the line above should work, below is just a temporary solution
+        let body;
+        const newState = this.state.ideas;
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                body = idea.idea_data;
+            }
+        });
+
+        updateProjectIdea(projectid, ideaid, body)
+            .then(res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err});
     }
 
-    addUserItemHandler(){
-        let UserList = this.state.users.arr;
-        UserList.push({
-            key: 2,
-            label: 2,
-            targetDemographic: '15-30',
-            techSkill: 'Intermediate',
-            description: 'DevMountain Student'
-        })
-        this.setState({ arr: UserList})
+    handleDeleteIdeaButton(e) {
+        // the next line should work, but it returns undefined.
+        // const index = Number(e.target.index);
+
+        // const projectid = this.props.match.params.projectid
+        // the line above should work, below is just a temporary solution
+        const projectid = 1;
+
+        const ideaid = Number(e.target.id);
+        const newState = this.state.ideas;
+
+        // newState.splice(index, 1);
+        // the line above should work, below is just a temporary solution
+        newState.find( idea => {
+            if (idea.id == e.target.id) {
+                newState.splice(newState.indexOf(idea), 1);
+            }
+        }); 
+
+        this.setState({ ideas: newState });
+
+        deleteProjectIdea(projectid, ideaid)
+            .then(res => {
+                if(res.status !== 200) {
+                    console.log(res);
+                }
+            })
+            .catch(err => {throw err});
     }
 
-    removeUserItemHandler(){
-        let UserList = this.state.users.arr;
-        UserList.splice(1,1);
-        this.setState({ arr: UserList})
-    }
+    render() {
+        const ideas = this.state.ideas;
+        const users = this.state.users;
+        const displayIdeas = ideas.map( idea => {
+            const i = ideas.indexOf(idea);
+            return(
+                <div className="ideas-item" key={getUId()}>
+                    <section>
+                        <label>{(i + 1) + '.'}</label>
+                        <input index={i} id={idea.id} value={idea.idea_data} onChange={this.handleChangeIdea}></input>
+                    </section>
+                    <button className="not-enough-info-btn" index={i} id={idea.id} onClick={this.submitChangeIdea}> Save </button>
+                    <span className="delete-x" index={i} id={idea.id} onClick={this.handleDeleteIdeaButton}> &times; </span>
+                </div>
+            )
+        });
 
-  render() {
-      const displayIdeas = this.state.ideas.arr.map( idea => {
-        return(
-            <div className="ideas-item">
-            <section>
-                <label>{idea.label + '.'}</label>
-                <input placeholder={idea.name}></input>
-            </section>
-            <button className="not-enough-info-btn">Save</button>
-            <span className="delete-x" onClick={this.removeIdeaItemHandler}>&times;</span>
-            </div>
-        )
-      })
+        const displayUsers = users.map( user => {
+            return(
+                <div className="users-item" key={getAltUId()}>
+                    <section>
+                        <label>{(users[user] + 1) + '.'}</label>
+                        <input></input>
+                        <input></input>
+                        <input></input>
+                    </section>
+                    <button className="not-enough-info-btn"> Save </button>
+                    <span className="delete-x"> &times; </span>
+                </div>
+            )
+        });
 
-      const displayUsers = this.state.users.arr.map( user => {
-          return(
-            <div className="users-item">
-            <section>
-            <label>{user.label + '.'}</label>
-                <input placeholder={user.targetDemographic}></input>
-                <input placeholder={user.techSkill}></input>
-                <input placeholder={user.description}></input>
-            </section>
-            <button className="not-enough-info-btn">Save</button>
-            <span className="delete-x" onClick={this.removeUserItemHandler}>&times;</span>
-        </div>
-              
-          )
-      })
-    return (
-      <div>
-      <Header />
-      <div className="main-fix">
-       <ProjectSetupSidebar />
-
-          <div className="ideasUsers-container">
-            <div className="ideasUsers-wrapper">
-             <div className="project-section-header">
-                <label>Ideas & Users</label>
-            </div>
-                    <div className="ideas-users-area drop-shadow">
-                        <div className="ideas-users-wrapper">
-                          <div className="area-title">Ideas</div>
-                          <div className="ideas-list">
-
-                           {displayIdeas}
-
-                          </div>
-                          <div className="ideas-users-footer">
-                              <button className="add-button" onClick={this.addIdeaItemHandler}> <span/> Add Idea </button>
-                          </div>
-                          </div>
-                    </div>
-
-                    <div className="ideas-users-area drop-shadow">
-                        <div className="ideas-users-wrapper">
-                        <div className="area-title">Users</div>
-                        <div className="users-list">
-
-                            {displayUsers}
-
-                          </div>
-                          <div className="ideas-users-footer">
-                              <button className="add-button" onClick={this.addUserItemHandler}> <span/> Add User </button>
-                          </div>
+        return (
+            <div>
+                <Header />
+                <div className="main-fix">
+                    <ProjectSetupSidebar />
+                    <div className="ideasUsers-container">
+                        <div className="ideasUsers-wrapper">
+                            <div className="project-section-header">
+                                <label> Ideas & Users </label>
+                            </div>
+                            <div className="ideas-users-area drop-shadow">
+                                <div className="ideas-users-wrapper">
+                                    <div className="area-title"> Ideas </div>
+                                    <div className="ideas-list">
+                                        {displayIdeas}
+                                    </div>
+                                    <div className="ideas-users-footer">
+                                        <button className="add-button" id="ideas" onClick={this.handleAddIdeaButton}> <span/> Add Idea </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="ideas-users-area drop-shadow">
+                                <div className="ideas-users-wrapper">
+                                    <div className="area-title">Users</div>
+                                    <div className="users-list">
+                                        {displayUsers}
+                                    </div>
+                                    <div className="ideas-users-footer">
+                                        <button className="add-button"> <span/> Add User </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-             
-
+                </div>
             </div>
-        </div>
-      </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Ideas_Users;

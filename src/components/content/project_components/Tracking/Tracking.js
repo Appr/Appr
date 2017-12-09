@@ -12,7 +12,8 @@ class Tracking extends Component {
             super(props);
             this.state ={
                 isAddListInputOpen: false,
-                trackerLists: [],
+                lists: [],
+                listName: ''
             }
             this.openListToggle = this.openListToggle.bind(this); 
             this.closeListToggle = this.closeListToggle.bind(this); 
@@ -37,13 +38,14 @@ class Tracking extends Component {
 
   //Trackerlist add remove methods
   addTrackerListHandle(){
-    let TrackingList = this.state.trackerLists;
+    let TrackingList = this.state.lists;
     TrackingList.push({
-      name: ''
+      name: this.state.listName
     })
     this.setState({
       isAddListInputOpen: false,
-      trackerLists: TrackingList
+      trackerLists: TrackingList,
+      listName: '',
     })
   }
 
@@ -55,10 +57,11 @@ class Tracking extends Component {
   }
   
   render() {
+    console.log(this.state.listName)
 
-    const displayTrackerLists= this.state.trackerLists.map( list => {
+    const displayTrackerLists= this.state.lists.map( (list, index) => {
       return(
-        <ProjectItem listName="To Do" PutInTrashClick={this.removeTrackerListHandle} />
+        <ProjectItem key={`tracker-list-${index}`} PutInTrashClick={this.removeTrackerListHandle} listName={list.name} />
       )
     })
    
@@ -86,16 +89,16 @@ class Tracking extends Component {
                     <div className="add-list-wrapper" >
                           <div className={addListToggleClass} onFocus={this.openListToggle}>
                             <div className="add-list-content">
-                              <input placeholder="Add a list..." /> 
+                              <input placeholder="Add a list..." value={this.state.listName} onChange={ (e) => this.setState({
+                                listName: e.target.value
+                              })} /> 
                               <div className="add-list-btn-set">
-                                <button onClick={this.addTrackerListHandle}> Save </button>
-                                <button onClick={this.closeListToggle}> Close </button>
+                                <button className="saveTBtn" onClick={this.addTrackerListHandle}> Save </button>
+                                <button className="closeTBtn" onClick={this.closeListToggle}> <span />  </button>
                               </div>
                             </div>
                           </div>
                       </div>
-                    
-                    
                 </div>
 
             
@@ -110,6 +113,8 @@ class Tracking extends Component {
     );
   }
 }
+
+
 
 export default Tracking;
 

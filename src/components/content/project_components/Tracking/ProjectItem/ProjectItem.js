@@ -9,12 +9,14 @@ class ProjectItem extends Component {
     super(props);
     this.state ={
         name: '',
-        taskList: [],
+        tasks: [],
+        taskName: '',
         isTaskInputOpen: true,
         showText: false
     }
     this.addTaskToggle = this.addTaskToggle.bind(this); 
     this.addTaskItemHandler = this.addTaskItemHandler.bind(this);
+    this.removeTaskItemHandler = this.removeTaskItemHandler.bind(this);
 }
 
 
@@ -35,18 +37,27 @@ addTaskToggle(){
 }
 
 addTaskItemHandler(){
-  let NewTaskList = this.state.taskList;
-  NewTaskList.push({
-      cardTitle: '',
-      listName: ''
+  let NewTask = this.state.tasks;
+  NewTask.push({
+      taskName: this.state.taskName,
+      listName: `${this.props.listName}`
   })
   this.setState({
-      taskList: NewTaskList
+      tasks: NewTask,
+      taskName: ''
   })
   this.addTaskToggle();
 }
 
+removeTaskItemHandler(){
+  let NewTask = this.state.tasks;
+  NewTask.pop();
+  console.log('remove task')
+  this.setState({taskName: NewTask})
+}
+
   render() {
+    console.log(this.state.taskName)
 
     let addTaskInput = classnames({
       "add-task-show": true,
@@ -58,9 +69,9 @@ addTaskItemHandler(){
       "hide": this.state.showText
     })
 
-    const displayTasks = this.state.taskList.map(task =>{
+    const displayTasks = this.state.tasks.map((task, index ) =>{
       return(
-        <ProjectCard  cardTitle="" listName={this.props.listName} />
+        <ProjectCard key={`tracker-list-${index}`} listName={this.props.listName} taskName={task.taskName} onDeleteTaskClick={this.removeTaskItemHandler}  />
       )
     })
     return (
@@ -82,10 +93,12 @@ addTaskItemHandler(){
                   <div className="prjt-item-footer" >
                   <div className={showText} onClick={this.addTaskToggle}><label> Add a task... </label></div>
                     <div className={addTaskInput} >
-                      <textarea type="text"/>
+                      <textarea type="text" value={this.state.taskName} onChange={ (e) => this.setState({
+                        taskName: e.target.value
+                      })}/>
                       <div className="list-btn-set">
-                        <button onClick={this.addTaskItemHandler}> Save </button>
-                        <button className="prjt-close-btn" onClick={this.addTaskToggle}> Close </button>
+                        <button className="saveTBtn" onClick={this.addTaskItemHandler}> Add </button>
+                        <button className="closeTBtn" onClick={this.addTaskToggle}> <span /> </button>
                       </div>
                     </div>
                       
@@ -93,13 +106,6 @@ addTaskItemHandler(){
                   </div>
             </div>
             </div>
-
-    
-
-                      
-                  
-
-   
     );
   }
 }

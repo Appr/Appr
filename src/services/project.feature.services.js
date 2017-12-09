@@ -1,39 +1,46 @@
-import 'axios'
+import axios from 'axios';
 
-const baseURL = '/api/project/';
+const baseURL = '/api/project';
 
 function createProjectFeature(body) {
     return axios
-        .post(`${baseURL + projectid}/create`, body)
-        .then( res => res )
-        .catch( err => {throw err});
+        .post(`${baseURL}/${projectid}/create`, body)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function findProjectFeature(featureid) {
+function findProjectFeatures(projectid) {
     return axios
-        .get(`${baseURL + projectid}/feature/:${featureid}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .get(`${baseURL}/${projectid}/feature`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function updateProjectFeature(featureid, body){
+function findProjectFeature(projectid, featureid) {
     return axios
-        .put(`${baseURL + projectid}/update/feature/:${featureid}`)
-        .then( res => req )
-        .catch( err => {throw err})
+        .get(`${baseURL}/${projectid}/feature/:${featureid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function deleteProjectFeature(featureid){
+function updateProjectFeature(projectid, featureid, body){
     return axios
-        .delete(`${baseURL + projectid}/delete/feature/:${featureid}`)
-        .then( res => req )
-        .catch( err => {throw err} )
+        .put(`${baseURL}/${projectid}/update/feature/:${featureid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
+function deleteProjectFeature(projectid, featureid){
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/feature/:${featureid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
 
 export {
     createProjectFeature,
-    findGroup,
-    updateGroup,
-    deleteGroup
-}
+    findProjectFeatures,
+    findProjectFeature,
+    updateProjectFeature,
+    deleteProjectFeature
+};

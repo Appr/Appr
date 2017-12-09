@@ -244,3 +244,52 @@ body {
     opacity: 0;
   }
 }
+
+
+
+//Tracker
+  .saveTBtn{
+    background: #5aac44;
+    font-weight: bolder;
+    line-height: 22px;
+    border: none;
+    border-radius: 3px;
+    display: none;
+    width: 60px;
+    line-height: 22px;
+    height: 30px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    
+  }
+
+  .closeTBtn{
+    margin-right: 0px;
+    background: transparent;
+    border: 1px solid red;
+    border: none;
+    border-radius: 3px;
+    display: none;
+    color: #999;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+  
+
+    span{
+      display: block;
+      margin-right: 0px;
+      background-image: url('./img/icons/tracker-close-x-icon.svg');
+      background-repeat: no-repeat;
+      width: 18px;
+      height: 18px;
+      fill: red;
+
+      :hover{
+        fill: blue;
+      }
+    }
+   
+  }

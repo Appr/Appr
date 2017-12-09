@@ -1,33 +1,33 @@
-import 'axios'
+import axios from 'axios';
 
 const baseURL = '/api/group';
 
 function createGroup(body) {
     return axios
         .post(`${baseURL}/create`, body)
-        .then( res => res )
-        .catch( err => {throw err});
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function findGroup(groupId) {
+function findGroup(groupid) {
     return axios
-        .get(`${baseURL + '/' + groupId}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .get(`${baseURL}/${groupid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function updateGroup(groupId, body) {
+function updateGroup(groupid, body) {
     return axios
-        .put(`${baseURL + '/update' + groupId}`, body)
-        .then( res => res )
-        .catch( err => {throw err});
+        .put(`${baseURL}/update/${groupid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function deleteGroup(groupId) {
+function deleteGroup(groupid) {
     return axios
-        .delete(`${baseURL + '/delete' + groupId}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .delete(`${baseURL}/delete/${groupid}}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
 export {
@@ -35,4 +35,4 @@ export {
     findGroup,
     updateGroup,
     deleteGroup
-}
+};

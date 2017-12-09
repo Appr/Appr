@@ -1,33 +1,33 @@
-import 'axios'
+import axios from 'axios';
 
-const baseURL = '/api/project/:projectid';
+const baseURL = '/api/project';
 
 function createProject(projectid, body) {
     return axios
-        .post(`${baseURL}/create`, body)
-        .then( res => res )
-        .catch( err => {throw err});
+        .post(`${baseURL}/${projectid}/create`, body)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function findProject(projectid, projectId) {
+function findProject(projectid) {
     return axios
-        .get(`${baseURL + '/' + projectId}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .get(`${baseURL}/${projectid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function updateProject(projectId, body) {
+function updateProject(projectid, body) {
     return axios
-        .put(`${baseURL + '/update' + projectId}`, body)
-        .then( res => res )
-        .catch( err => {throw err});
+        .put(`${baseURL}/update/${projectid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function deleteProject(projectId) {
+function deleteProject(projectid) {
     return axios
-        .delete(`${baseURL + '/delete' + projectId}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .delete(`${baseURL}/delete/${projectid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
 export {
@@ -35,4 +35,4 @@ export {
     findProject,
     updateProject,
     deleteProject
-}
+};

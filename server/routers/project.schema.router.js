@@ -1,43 +1,53 @@
 const express = require('express');
-const getDB = require('../database/bootstrap.database');
+const getDb = require('../database/bootstrap.database');
 
 const projectSchemaRouter = express.Router();
 
 projectSchemaRouter.post('/:projectid/create/schema', (req, res) => {
     const projectid = req.params.projectid;
-    const {tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
-    const db = getDB;
-    db.create_project_schema([projectid, tableName, columnName, schemaTyoeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique])
+    const {tableNameId, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
+    const db = getDb();
+    db.create_project_schema([ projectid, tableNameId, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique ])
         .then(promise => res.send())
         .catch(err => res.send(err));
-})
+});
 
+//get all
+projectSchemaRouter.get('/:projectid/schema', (req, res) => {
+    const projectid = req.params.projectid;
+    const db = getDb();
+    db.find_project_schemas([ projectid ])
+        .then(schemas => res.send(schemas))
+        .catch(err => res.send(err));
+});
+
+//get one
 projectSchemaRouter.get('/:projectid/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
-    const db = getDB;
-    db.find_project_schema([projectid, schemaid])
-        .then(schema => res.send(schemaid))
+    const db = getDb();
+    db.find_project_schema([ projectid, schemaid ])
+        .then(schema => res.send(schema))
         .catch(err => res.send(err));
-})
+});
 
 projectSchemaRouter.put('/:projectid/update/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
     const {tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique} = req.body;
-    const db = getDB;
-    db.update_project_schema([projectid, schemaid, tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique])
+    const db = getDb();
+    db.update_project_schema([ projectid, schemaid, tableName, columnName, schemaTypeId, sizeData, isPrimaryKey, isForeignKey, isSerial, isNotNull, isUnique ])
         .then(promise => res.send())
         .catch(err => res.send(err));
-})
+});
 
 projectSchemaRouter.delete('/:projectid/delete/schema/:schemaid', (req, res) => {
     const projectid = req.params.projectid;
     const schemaid = req.params.schemaid;
-    const db = getDB;
-    db.delete_project_schema([projectid, schemaid])
+    const db = getDb();
+    db.delete_project_schema([ projectid, schemaid ])
         .then(promise => res.send())
         .catch(err => res.send(err));
-})
+});
 
 module.exports = projectSchemaRouter;

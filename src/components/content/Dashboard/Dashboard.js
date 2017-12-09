@@ -26,7 +26,7 @@ class Dashboard extends Component {
               <Link to="/ideas">
                   <li className="create-project-thumb">
                       <div className="create-project-thumb-body">
-                          <img src={addIcon} />
+                          <img src={addIcon} alt="add icon"/>
                       </div>
                       <div className="create-project-thumb-footer">
                           <label>Create New Project</label>

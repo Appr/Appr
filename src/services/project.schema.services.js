@@ -1,38 +1,46 @@
-import 'axios'
+import axios from 'axios';
 
-const baseURL = '/api/project/';
+const baseURL = '/api/project';
 
-function createProjectSchema(body) {
+function createProjectSchema(projectid, body) {
     return axios
-        .post( `${baseURL + projectid}/create/schema`, body )
-        .then( res => res )
-        .catch( err => {throw err} );
+        .post( `${baseURL}/${projectid}/create/schema`, body)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function findProjectSchema(schemaid) {
+function findProjectSchemas(projectid) {
     return axios
-        .get( `${baseURL + projectid}/schema/:${schemaid}`)
-        .then( res => res )
-        .catch( err => {throw err} );
+        .get(`${baseURL}/${projectid}/schema`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function updateProjectSchema(schemaid, body) {
+function findProjectSchema(projectid, schemaid) {
     return axios
-        .put( `${baseURL + projectid}/update/schema/:${schemaid}`, body )
-        .then( res => res )
-        .catch( err => {throw err});
+        .get(`${baseURL}/${projectid}/schema/:${schemaid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
-function deleteProjectSchema(schemaid) {
+function updateProjectSchema(projectid, schemaid, body) {
     return axios
-        .delete( `${baseURL + projectid}/delete/schema/:${schemaid}`)
-        .then( res => res )
-        .catch( err => {throw err});
+        .put(`${baseURL}/${projectid}/update/schema/:${schemaid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function deleteProjectSchema(projectid, schemaid) {
+    return axios
+        .delete(`${baseURL}/${projectid}/delete/schema/:${schemaid}`)
+        .then(res => res)
+        .catch(err => {throw err});
 }
 
 export {
     createProjectSchema,
+    findProjectSchemas,
     findProjectSchema,
     updateProjectSchema,
     deleteProjectSchema
-}
+};

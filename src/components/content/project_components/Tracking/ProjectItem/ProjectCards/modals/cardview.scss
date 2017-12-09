@@ -157,3 +157,15 @@
         }
     }
 }
+
+.delete-task-btn{
+    cursor: pointer;
+    background: #cf513d;
+    border-bottom-color: #b04632;
+
+    :hover{
+        background: #cf513d;
+        border-color: #cf513d;
+        border-bottom-color: #933b27;
+    }
+}
