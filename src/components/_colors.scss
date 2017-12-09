@@ -1,0 +1,27 @@
+
+$primary: #A894CD;
+
+$secondary: #F48BA1;
+
+$dark-color: #F6AACA;
+
+$medium-color: #EFD6E5;
+
+$light-color: #FCEEF5;
+
+@mixin darken-background($color, $factor: 20%) {
+    background-color: darken($color, $factor);
+}
+
+@mixin darken-left-border($color, $factor: 20%){
+    border-left: darken($color, $factor) 1px solid;
+}
+
+$border-radius: 5px;
+
+// %some-thing {
+//     text-transform: initial;
+//     line-height: 1;
+//     min-height: 1em;
+//     min-width: 1em;
+// }

@@ -1,3 +1,5 @@
+@import '../../../_colors.scss';
+
 .view-container {
     width: 100%;
     // border: 1.5px solid black;
@@ -16,12 +18,13 @@
 }
 
 .view-area {
-    background: white;
+    background: $light-color;
     width: 700px;
     max-height: 100%;
     display: flex;
     flex-direction: column;
     margin: 20px;
+    border-radius: 5px;
 
     .view-wrapper {
         padding: 20px;
@@ -72,17 +75,23 @@
     button{
         margin-left: 10px;
         margin-right: 10px;
-        border-radius: 0px;
+        border-radius: 4px;
         height: 30px;
-       
+        font-size: 14px;
+        background-color: $medium-color;
+        color: white;
     }
 
     .view-footer{
         
           width: 100%;
-          .add-button{
+
+          button{
               margin-left: 26.5px;
               max-width: 100%;
+              background-color: $secondary;
+              color: white;
+              border-radius: 4px;
           }
       }
 }

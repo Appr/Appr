@@ -1,4 +1,4 @@
-
+@import '../../../_colors.scss';
 
 .ideasUsers-container{
     width: 100%;
@@ -22,12 +22,13 @@
 }
 
 .ideas-users-area{
-    background: white;
+    background: $light-color;
     width: 700px;
     max-height: 100%;
     display: flex;
     flex-direction: column;
     transition: 1s ease-in-out;
+    border-radius: $border-radius;
    
    
     margin: 20px;
@@ -36,6 +37,7 @@
         text-align: left;
         font-size: 20px;
         margin-bottom: 10px;
+        color: $dark-color;
     }
 
     .ideas-users-wrapper{
@@ -64,6 +66,7 @@
             max-width: 100%;
             text-align: left;
             margin-right: 10px;
+            color: $dark-color;
         }
         
         input{
@@ -75,9 +78,11 @@
         button{
             margin-left: 10px;
             margin-right: 10px;
-            border-radius: 0px;
+            border-radius: 5px;
             height: 30px;
             font-size: 15px;
+            background-color:grey;
+            color: white;
         }
     }
 
@@ -98,6 +103,7 @@
             max-width: 100%;
             text-align: left;
             margin-right: 10px;
+            color: $dark-color;
         }
         section{
             display: flex;
@@ -109,11 +115,12 @@
             height: 24px;
         }
         button{
-            
             margin-right: 10px;
-            border-radius: 0px;
+            border-radius: 5px;
             height: 30px;
             font-size: 15px;
+            background-color:grey;
+            color: white;
         }
     }
 }
@@ -130,6 +137,8 @@
     button{
         margin-left: 26.5px;
         max-width: 100%;
+        background-color:$secondary;
+            color: white;
     }
 }
 
