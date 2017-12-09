@@ -2,6 +2,7 @@
 
 .ideasUsers-container{
     width: 100%;
+
 }
 
 .ideasUsers-wrapper {
@@ -26,6 +27,7 @@
     max-height: 100%;
     display: flex;
     flex-direction: column;
+    transition: 1s ease-in-out;
    
    
     margin: 20px;
@@ -41,6 +43,7 @@
     }
 
     .ideas-item {
+        
         padding-top: 10px;
         padding-bottom: 10px;
         width: 100%;
@@ -87,7 +90,7 @@
 
 
         label{
-            opacity: 0;
+            
             display: flex;
             align-items: center;
             font-weight: bold;

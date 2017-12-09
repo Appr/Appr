@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import './projectitem.scss'
 import ProjectCard from './ProjectCards/ProjectCard';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 class ProjectItem extends Component {
   constructor(props){
     super(props);
     this.state ={
+        name: '',
+        taskList: [],
         isTaskInputOpen: true,
         showText: false
     }
     this.addTaskToggle = this.addTaskToggle.bind(this); 
-    // this.showTextToggle = this.showTextToggle.bind(this);
+    this.addTaskItemHandler = this.addTaskItemHandler.bind(this);
 }
 
 
 addTaskToggle(){
-  
     if(this.state.isTaskInputOpen){
-        
         this.setState({
           isTaskInputOpen: false,
           showText: true
@@ -29,9 +30,20 @@ addTaskToggle(){
         this.setState({
           isTaskInputOpen: true,
           showText: false
-        })
-        
+        })  
     }
+}
+
+addTaskItemHandler(){
+  let NewTaskList = this.state.taskList;
+  NewTaskList.push({
+      cardTitle: '',
+      listName: ''
+  })
+  this.setState({
+      taskList: NewTaskList
+  })
+  this.addTaskToggle();
 }
 
   render() {
@@ -45,6 +57,12 @@ addTaskToggle(){
       "show-text": true,
       "hide": this.state.showText
     })
+
+    const displayTasks = this.state.taskList.map(task =>{
+      return(
+        <ProjectCard  cardTitle="" listName={this.props.listName} />
+      )
+    })
     return (
     
       <div className="project-item">
@@ -52,37 +70,13 @@ addTaskToggle(){
               <div className="prjt-item-inner">
                   <div className="prjt-item-header"> 
                     <input type="text" placeholder={this.props.listName}/>
-                    <span> </span>
+                    <span onClick={this.props.PutInTrashClick}> </span>
                   </div>
                   <div className="prjt-item-body">
                     <ul>
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="header V1" listName={this.props.listName} />
-                    <ProjectCard  cardTitle="Group View" listName={this.props.listName} />
-                    
-                  
-                   
                       
-                     
+                        {displayTasks}
+
                     </ul>
                   </div>
                   <div className="prjt-item-footer" >
@@ -90,7 +84,7 @@ addTaskToggle(){
                     <div className={addTaskInput} >
                       <textarea type="text"/>
                       <div className="list-btn-set">
-                        <button> Save </button>
+                        <button onClick={this.addTaskItemHandler}> Save </button>
                         <button className="prjt-close-btn" onClick={this.addTaskToggle}> Close </button>
                       </div>
                     </div>
@@ -110,7 +104,13 @@ addTaskToggle(){
   }
 }
 
+ProjectItem.propTypes = { PutInTrashClick: PropTypes.func }
+ProjectItem.defaultProps = { PutInTrashClick: () => {} }
 export default ProjectItem;
+
+
+
+
 
 {/* <div className="dotmenu--open">
                     <div className="pop-over-menu">
