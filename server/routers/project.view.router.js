@@ -4,13 +4,15 @@ const getDB = require('../database/bootstrap.database');
 const projectViewRouter = express.Router();
 
 projectViewRouter.post('/:projectid/create/view', (req, res) => {
-    const projectid = req.params.projectid;
+    const projectId = req.params.projectid;
     const { name, imageUrl } = req.body;
     const db = getDB;
-    db.create_project_view( [projectid, name, imageUrl] )
+    db.create_project_view([ projectId, name, imageUrl ])
         .then(promise => res.send())
+        console.log("works")
         .catch(err => res.send(err));
-})
+        console.log("didnt work")
+})      
 
 projectViewRouter.get('/:projectid/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
