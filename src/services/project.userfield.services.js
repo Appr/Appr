@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = '/api/project';
+const baseURL = 'http://localhost:8080/api/project';
 
 function createProjectUserField(projectid, body) {
     return axios
@@ -30,7 +30,7 @@ function updateProjectUserField(projectid, userfieldid, body) {
         .catch(err => {throw err});
 }
 
-function deleteProjectUserField(projectid, userfield) {
+function deleteProjectUserField(projectid, userfieldid) {
     return axios    
         .delete(`${baseURL}/${projectid}/delete/userfield/:${userfieldid}`)
         .then(res => res)

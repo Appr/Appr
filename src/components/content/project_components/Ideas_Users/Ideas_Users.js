@@ -3,40 +3,40 @@ import { Link } from 'react-router-dom';
 import ProjectSetupSidebar from '../ProjectSetupSidebar/ProjectSetupSidebar';
 import Header from '../../../Header/Header';
 import './idea_users.scss';
-import { getUId, getAltUId } from '../../../../utils/uid.utils';
 import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectIdea } from '../../../../services/project.idea.services';
+import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
 
 class Ideas_Users extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            input: '',
+        this.state = {
             ideas: [],
-            users: []
+            userfields: []
         }
-        this.handleAddIdeaButton = this.handleAddIdeaButton.bind(this);
-        this.handleChangeIdea = this.handleChangeIdea.bind(this);
-        this.submitChangeIdea = this.submitChangeIdea.bind(this);
-        this.handleDeleteIdeaButton = this.handleDeleteIdeaButton.bind(this);
+        this.handleAddField = this.handleAddField.bind(this);
+        this.handleChangeField = this.handleChangeField.bind(this);
+        this.submitChangeField = this.submitChangeField.bind(this);
+        this.handleDeleteField = this.handleDeleteField.bind(this);
     }
 
-    componentDidMount() {
-        // const projectid = this.props.match.params.projectid
-        // when testing is over, delete the next line and uncomment the line above.
-        const projectid = 1;
-
+    componentWillMount() {
+        const projectid = this.props.match.params.projectid
         const ideaExamples = [
-            { idea_data: 'example: Rule the Galaxy.' },
-            { idea_data: 'example: Get Baby out of the corner.'}
+            { idea_data: 'e.g. Rule the Galaxy.' },
+            { idea_data: 'e.g. Get Baby out of the corner.'}
+        ];
+        const userfieldExamples = [
+            { target_demo_data: 'e.g. Jedi', skill_data: 'diplomacy', description_data: 'what a bunch of squares'},
+            { target_demo_data: 'e.g. Sith', skill_data: 'violence', description_data: 'the cool kids table'}
         ];
 
         findProjectIdeas(projectid)
             .then( res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
                 else {
-                    if(res.data.length > 0) {
+                    if (res.data.length > 0) {
                         this.setState({ ideas: res.data });
                     }
                     else {
@@ -45,131 +45,151 @@ class Ideas_Users extends Component {
                 }
             })
             .catch(err => {throw err});
-    }
 
-    handleAddIdeaButton() {
-        // const projectid = this.props.match.params.projectid
-        // the line above should work, below is just a temporary solution
-        const projectid = 1;
-
-        const body = {ideaData: ''};
-        const newState = this.state.ideas;
-        newState.push(body);
-        this.setState({ ideas: newState });
-
-        createProjectIdea( projectid, body)
+        findProjectUserFields(projectid)
             .then(res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
+                else {
+                    if (res.data.length > 0) {
+                        this.setState({ userfields: res.data });
+                    }
+                    else {
+                        this.setState({ userfields: userfieldExamples });
+                    }
+                }
             })
-            .catch(err => {throw err})
+            .catch(err => {throw err});
     }
 
-    handleChangeIdea(e) {
-        // the next line should work, but it returns undefined.
-        // const index = Number(e.target.index);
-
-        const newState = this.state.ideas;
-
-        // newState[index].idea_data = e.target.value;
-        // the line above should work, below is just a temporary solution
-        newState.find( idea => {
-            if (idea.id == e.target.id) {
-                idea.idea_data = e.target.value;
-            }
-        });
-
-        this.setState({ ideas: newState });
-    }
-
-    submitChangeIdea(e) {
-        // the next line should work, but it returns undefined.
-        // const index = Number(e.target.index);
-
-        // const projectid = this.props.match.params.projectid
-        // the line above should work, below is just a temporary solution
-        const projectid = 1;
-
-        const ideaid = Number(e.target.id);
-
-        // const body = this.state.ideas[index].idea_data;
-        // the line above should work, below is just a temporary solution
+    handleAddField(field) {
+        const projectid = this.props.match.params.projectid
         let body;
-        const newState = this.state.ideas;
-        newState.find( idea => {
-            if (idea.id == e.target.id) {
-                body = idea.idea_data;
-            }
-        });
+        const newState = this.state[field];
 
-        updateProjectIdea(projectid, ideaid, body)
-            .then(res => {
-                if(res.status !== 200) {
-                    console.log(res);
-                }
-            })
-            .catch(err => {throw err});
+        if (field === 'ideas') {
+            body = {ideaData: ''};
+            newState.push(body);
+            this.setState({ ideas: newState });
+
+            createProjectIdea(projectid, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            body = { target_demo_data: '', skill_data: '', description_data: '' };
+            newState.push(body);
+            this.setState({ userfields: newState });
+
+            createProjectUserField(projectid, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
     }
 
-    handleDeleteIdeaButton(e) {
-        // the next line should work, but it returns undefined.
-        // const index = Number(e.target.index);
+    handleChangeField(e, field, index) {
+        const key = e.target.name;
+        const value = e.target.value;
+        const newState = this.state[field];
+        newState[index][key] = value;
+        this.setState({ [field]: newState });
+    }
 
-        // const projectid = this.props.match.params.projectid
-        // the line above should work, below is just a temporary solution
-        const projectid = 1;
+    submitChangeField(e, field, index) {
+        const key = e.target.name;
+        const projectid = this.props.match.params.projectid
+        const id = Number(e.target.id);
+        const body = this.state[field][index];
 
-        const ideaid = Number(e.target.id);
-        const newState = this.state.ideas;
-
-        // newState.splice(index, 1);
-        // the line above should work, below is just a temporary solution
-        newState.find( idea => {
-            if (idea.id == e.target.id) {
-                newState.splice(newState.indexOf(idea), 1);
-            }
-        }); 
-
-        this.setState({ ideas: newState });
-
-        deleteProjectIdea(projectid, ideaid)
+        if (field === 'ideas') {
+            updateProjectIdea(projectid, id, body)
             .then(res => {
-                if(res.status !== 200) {
+                if (res.status !== 200) {
                     console.log(res);
                 }
             })
             .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            updateProjectUserField(projectid, id, body)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        
+    }
+
+    handleDeleteField(e, field, index) {
+        const projectid = this.props.match.params.projectid
+        const id = Number(e.target.id);
+        const newState = this.state[field];
+        newState.splice(index, 1);
+        this.setState({ [field]: newState });
+
+        if (field === 'ideas') {
+            deleteProjectIdea(projectid, id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
+        else if (field === 'userfields') {
+            deleteProjectUserField(projectid, id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        console.log(res);
+                    }
+                })
+                .catch(err => {throw err});
+        }
     }
 
     render() {
         const ideas = this.state.ideas;
-        const users = this.state.users;
+        const userfields = this.state.userfields;
+
         const displayIdeas = ideas.map( idea => {
-            const i = ideas.indexOf(idea);
-            return(
-                <div className="ideas-item" key={getUId()}>
+            const field = 'ideas';
+            const index = ideas.indexOf(idea);
+            return (
+                <div className="ideas-item" key={`idea-${index}`}>
                     <section>
-                        <label>{(i + 1) + '.'}</label>
-                        <input index={i} id={idea.id} value={idea.idea_data} onChange={this.handleChangeIdea}></input>
+                        <label>{(index + 1) + '.'}</label>
+                        <input id={idea.id} name="idea_data" value={idea.idea_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
-                    <button className="not-enough-info-btn" index={i} id={idea.id} onClick={this.submitChangeIdea}> Save </button>
-                    <span className="delete-x" index={i} id={idea.id} onClick={this.handleDeleteIdeaButton}> &times; </span>
+                    <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
+                    <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
             )
         });
 
-        const displayUsers = users.map( user => {
-            return(
-                <div className="users-item" key={getAltUId()}>
+        const displayUsers = userfields.map( userfield => {
+            const field = 'userfields';
+            const index = userfields.indexOf(userfield);
+            return (
+                <div className="users-item" key={`userfield-${index}`}>
                     <section>
-                        <label>{(users[user] + 1) + '.'}</label>
-                        <input></input>
-                        <input></input>
-                        <input></input>
+                        <label>{(index + 1) + '.'}</label>
+                        <input id={userfield.id} name="target_demo_data" value={userfield.target_demo_data} onChange={e => this.handleChangeField(e, field, index)}/>
+                        <input id={userfield.id} name="skill_data" value={userfield.skill_data} onChange={e => this.handleChangeField(e, field, index)}/>
+                        <input id={userfield.id} name="description_data" value={userfield.description_data} onChange={e => this.handleChangeField(e, field, index)}/>
                     </section>
-                    <button className="not-enough-info-btn"> Save </button>
-                    <span className="delete-x"> &times; </span>
+                    <button className="not-enough-info-btn" id={userfield.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
+                    <span className="delete-x" id={userfield.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
             )
         });
@@ -191,7 +211,7 @@ class Ideas_Users extends Component {
                                         {displayIdeas}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button" id="ideas" onClick={this.handleAddIdeaButton}> <span/> Add Idea </button>
+                                        <button className="add-button" id="ideas" onClick={() => this.handleAddField('ideas')}> <span/> Add Idea </button>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +222,7 @@ class Ideas_Users extends Component {
                                         {displayUsers}
                                     </div>
                                     <div className="ideas-users-footer">
-                                        <button className="add-button"> <span/> Add User </button>
+                                        <button className="add-button"  onClick={() => this.handleAddField('userfields')}> <span/> Add User </button>
                                     </div>
                                 </div>
                             </div>
