@@ -1,13 +1,13 @@
 
-$primary: #A894CD;
+$primary: rgb(32, 109, 243);
 
-$secondary: #F48BA1;
+$secondary: rgb(22, 107, 181);
 
-$dark-color: #F6AACA;
+$dark-color: #3a3a3a;
 
-$medium-color: #EFD6E5;
+$medium-color: #808080;
 
-$light-color: #FCEEF5;
+$light-color: #E2E4E6;
 
 @mixin darken-background($color, $factor: 20%) {
     background-color: darken($color, $factor);

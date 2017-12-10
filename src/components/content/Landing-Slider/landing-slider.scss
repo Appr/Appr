@@ -1,3 +1,5 @@
+@import '../../_colors.scss';
+
 .slider-container{
     width: 100%;
     display: flex;
@@ -55,16 +57,16 @@
     width: 260px;
     height: 50px;
     font-size: 20px;
-    background-color: #FF066B ;
+    background-color: $primary;
     border-style: none;
     color: white;
     outline: none;
     &:hover {
-        background-color: rgb(192, 0, 80); 
+        background-color: $secondary; 
     }
 
     &:active{
-        background-color: rgb(167, 0, 69);
+        background-color: $medium-color;
     }
 
    
