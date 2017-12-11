@@ -73,11 +73,7 @@ class View extends Component {
                   {displayViews}
               
                   <div className="view-footer">
-<<<<<<< HEAD
                   <button className="add-button" onClick={this.addViewItemHandler}> <span/> Add View </button>
-=======
-                  <button className="add-button" onClick={this.handleAddViewButton}> <span/> Add View </button>
->>>>>>> 253c30a77110759fdf8281f75b75c97ff6a39c53
                   </div>
                 </div>
               </div>
