@@ -12,19 +12,6 @@ projectEndpointRouter.post('/:projectid/create/endpoint', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
-<<<<<<< HEAD
-=======
-// get all
-projectEndpointRouter.get('/:projectid/endpoints', (req, res) => {
-    const projectid = req.params.projectid;
-    const db = getDb();
-    db.find_project_endpoints([ projectid ])
-        .then(endpoints => res.send(endpoints))
-        .catch(err => res.status(500).send(err));
-});
-
-// get one
->>>>>>> 253c30a77110759fdf8281f75b75c97ff6a39c53
 projectEndpointRouter.get('/:projectid/endpoint/:endpointid', (req, res) => {
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
