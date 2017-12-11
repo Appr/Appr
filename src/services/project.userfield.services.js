@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/api/project';
+const baseURL = '/api/project';
 
 function createProjectUserField(projectid, body) {
     return axios
@@ -11,28 +11,28 @@ function createProjectUserField(projectid, body) {
 
 function findProjectUserFields(projectid) {
     return axios
-        .get(`${baseURL}/${projectid}/userfield`)
+        .get(`${baseURL}/${projectid}/userfields`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function findProjectUserField(projectid, userfieldid) {
     return axios
-        .get(`${baseURL}/${projectid}/userfield/:${userfieldid}`)
+        .get(`${baseURL}/${projectid}/userfield/${userfieldid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function updateProjectUserField(projectid, userfieldid, body) {
     return axios    
-        .put(`${baseURL}/${projectid}/update/userfield/:${userfieldid}`, body)
+        .put(`${baseURL}/${projectid}/update/userfield/${userfieldid}`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function deleteProjectUserField(projectid, userfieldid) {
     return axios    
-        .delete(`${baseURL}/${projectid}/delete/userfield/:${userfieldid}`)
+        .delete(`${baseURL}/${projectid}/delete/userfield/${userfieldid}`)
         .then(res => res)
         .catch(err => {throw err});
 }

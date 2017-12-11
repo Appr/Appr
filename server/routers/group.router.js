@@ -13,19 +13,19 @@ groupRouter.post('/create', (req, res) => {
             }
             else {
                 db.create_group([ createdByUserId, ownerId, name ])
-                .then( promise => res.send())
-                .catch( err => res.send(err));
+                .then(promise => res.send())
+                .catch(err => res.status(500).send(err));
             }
         })
-        .catch( err => res.send(err));
+        .catch( err => res.status(500).send(err));
 });
 
 groupRouter.get('/:groupid', (req, res) => {
     const groupId = req.params.groupid;
     const db = getDb();
     db.find_group_by_id([ groupId ])
-        .then( group => res.send(group))
-        .catch( err => res.send(err));
+        .then(group => res.send(group))
+        .catch(err => res.status(500).send(err));
 });
 
 groupRouter.put('/update/:groupid', (req, res) => {
@@ -39,19 +39,19 @@ groupRouter.put('/update/:groupid', (req, res) => {
             }
             else {
                 db.update_group([ groupId, name, ownerId ])
-                    .then( promise => res.status(200).send())
-                    .catch( err => res.send(err));
+                    .then(promise => res.status(200).send())
+                    .catch(err => res.status(500).send(err));
             }
         })
-        .catch( err => res.send(err));
+        .catch(err => res.status(500).send(err));
 });
 
 groupRouter.delete('/delete/:groupid', (req, res) => {
     const groupId = req.params.groupid;
     const db = getDb();
     db.delete_group([ groupId ])
-        .then( promise => res.send())
-        .catch( err => res.send(err));
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
 });
 
 module.exports = groupRouter;

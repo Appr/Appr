@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = '/api/dashboard';
 
-function findUserGroupsAndUserProjects(userid) {
+function findDashboardInfo(userid) {
     return axios
         .get(`${baseURL}/${userid}`)
         .then(res => res)
@@ -10,5 +10,5 @@ function findUserGroupsAndUserProjects(userid) {
 }
 
 export {
-    findUserGroupsAndUserProjects
+    findDashboardInfo
 };

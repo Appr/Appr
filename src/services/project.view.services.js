@@ -11,28 +11,28 @@ function createProjectView(projectid, body) {
 
 function findProjectViews(projectid) {
     return axios
-        .get(`${baseURL}/${projectid}/view`)
+        .get(`${baseURL}/${projectid}/views`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function findProjectView(projectid, viewid) {
     return axios
-        .get(`${baseURL}/${projectid}/view/:${viewid}`)
+        .get(`${baseURL}/${projectid}/view/${viewid}`)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function updateProjectView(projectid, viewid, body) {
     return axios
-        .put(`${baseURL}/${projectid}/update/view/:${viewid}`, body)
+        .put(`${baseURL}/${projectid}/update/view/${viewid}`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
 
 function deleteProjectView(projectid, viewid) {
     return axios   
-        .delete(`${baseURL}/${projectid}/delete/view/:${viewid}`)
+        .delete(`${baseURL}/${projectid}/delete/view/${viewid}`)
         .then(res => res)
         .catch(err => {throw err});
 }

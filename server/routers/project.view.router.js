@@ -6,6 +6,7 @@ const projectViewRouter = express.Router();
 projectViewRouter.post('/:projectid/create/view', (req, res) => {
     const projectId = req.params.projectid;
     const { name, imageUrl } = req.body;
+<<<<<<< HEAD
     const db = getDB;
     db.create_project_view([ projectId, name, imageUrl ])
         .then(promise => res.send())
@@ -13,41 +14,50 @@ projectViewRouter.post('/:projectid/create/view', (req, res) => {
         .catch(err => res.send(err));
         console.log("didnt work")
 })      
+=======
+    const db = getDb();
+    db.create_project_view([ projectid, name, imageUrl ])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err));
+});
+>>>>>>> 253c30a77110759fdf8281f75b75c97ff6a39c53
 
+// get all
 projectViewRouter.get('/:projectid/views', (req, res) => {
     const projectid = req.params.projectid;
     const db = getDb();
     db.find_project_views([ projectid ])
-        .then( projectViews => res.send(projectViews))
-        .catch( err => res.send(err));
+        .then(views => res.send(views))
+        .catch(err => res.status(500).send(err));
 });
 
+// get one
 projectViewRouter.get('/:projectid/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const db = getDb();
-    db.find_project_view( [projectid, viewid] )
+    db.find_project_view([ projectid, viewid ])
         .then(view => res.send(view))
-        .catch(err => res.send(err));
-})
+        .catch(err => res.status(500).send(err));
+});
 
 projectViewRouter.put('/:projectid/update/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const { name, imageUrl } = req.body;
     const db = getDb();
-    db.update_project_view( [projectid, viewid, name, imageUrl])
+    db.update_project_view([ projectid, viewid, name, imageUrl ])
         .then(promise => res.send())
-        .catch(err => res.send(err));
-})
+        .catch(err => res.status(500).send(err));
+});
 
 projectViewRouter.delete('/:projectid/delete/view/:viewid', (req, res) => {
     const projectid = req.params.projectid;
     const viewid = req.params.viewid;
     const db = getDb();
-    db.delete_project_view( [projectid, viewid] )
+    db.delete_project_view([ projectid, viewid ])
         .then(promise => res.send())
-        .catch(err => res.send(err));
-})
+        .catch(err => res.status(500).send(err));
+});
 
 module.exports = projectViewRouter;

@@ -25,7 +25,7 @@ function updateGroup(groupid, body) {
 
 function deleteGroup(groupid) {
     return axios
-        .delete(`${baseURL}/delete/${groupid}}`)
+        .delete(`${baseURL}/delete/${groupid}`)
         .then(res => res)
         .catch(err => {throw err});
 }

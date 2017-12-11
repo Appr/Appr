@@ -20,14 +20,14 @@ authRouter.post('/register', (req, res) => {
                         }
                         else {
                             db.register_user([ firstName, lastName, email, password, username ])
-                                .then( promise => res.status(200).send())
-                                .catch( err => res.send(err));
+                                .then(promise => res.send())
+                                .catch(err => res.status(500).send(err));
                         }
                     })
-                    .catch(err => res.send(err));
+                    .catch(err => res.status(500).send(err));
             }
         })
-        .catch( err => res.send(err));
+        .catch(err => res.status(500).send(err));
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {

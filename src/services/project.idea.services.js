@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/api/project';
+const baseURL = '/api/project';
 
 function createProjectIdea(projectid, body) {
     return axios
@@ -11,7 +11,7 @@ function createProjectIdea(projectid, body) {
 
 function findProjectIdeas(projectid) {
     return axios
-        .get(`${baseURL}/${projectid}/idea`)
+        .get(`${baseURL}/${projectid}/ideas`)
         .then(res => res)
         .catch(err => {throw err});
 }

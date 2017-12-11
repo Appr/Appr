@@ -7,8 +7,8 @@ accountRouter.get('/:userid', (req, res) => {
     const userId = req.params.userid;
     const db = getDb();
     db.find_user_by_id([ userId ])
-        .then( user => res.send(user))
-        .catch( err => res.send(err));
+        .then(user => res.send(user))
+        .catch(err => res.status(500).send(err));
 });
 
 accountRouter.put('/update/:userid', (req, res) => {
@@ -28,14 +28,14 @@ accountRouter.put('/update/:userid', (req, res) => {
                         }
                         else {
                             db.update_user([ userId, firstName, lastName, email, password, username ])
-                                .then( promise => res.status(200).send())
-                                .catch( err => res.send(err));
+                                .then(promise => res.send())
+                                .catch(err => res.status(500).send(err));
                         }
                     })
-                    .catch(err => res.send(err));
+                    .catch(err => res.status(500).send(err));
             }
         })
-        .catch(err => res.send(err));
+        .catch(err => res.status(500).send(err));
 });
 
 accountRouter.put('/delete/:userid', (req, res) => {
@@ -43,7 +43,7 @@ accountRouter.put('/delete/:userid', (req, res) => {
     const db = getDb();
     db.delete_user([ userId ])
         .then(promise => res.send())
-        .catch( err => res.send(err));
-})
+        .catch(err => res.status(500).send(err));
+});
 
 module.exports = accountRouter;
