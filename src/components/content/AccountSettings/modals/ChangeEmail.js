@@ -16,11 +16,11 @@ class ChangeEmail extends Component {
                 <div className="modal-body">
                     <label className="modal-input-tag">Current Email</label>
                     <section className="modal-row">
-                        <label className="current-email">landonjohnson@xtreox.com</label>
+                        <label className="current-email">{this.props.userInfo.email}</label>
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">
-                        <input className="modal-form" />
+                        <input className="modal-form" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30}/>
                     </section>
                 </div>
                 <div className="submitModal">

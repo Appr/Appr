@@ -14,27 +14,30 @@ class EditProfile extends Component {
                 <h2 className="modal-title">Edit Profile</h2>
                 <span onClick={this.props.onCloseBtnClick} className="closeBtn">&times;</span>
               </div>
-              <div className="modal-body">
-                <label className="modal-input-tag">First Name</label>
-                  <section className="modal-row">
-                    <input className="modal-form" />
-                  </section>
-                
-                <label className="modal-input-tag">Last Name</label>
-                  <section className="modal-row">
-                    <input className="modal-form" />
-                  </section>
-                
-                <label className="modal-input-tag">Email</label>
-                  <section className="modal-row">
-                    <input className="modal-form" />
-                  </section>
-              </div>
+              <form>
+                <div className="modal-body">
+                  
+                  <label className="modal-input-tag">First Name</label>
+                    <section className="modal-row">
+                      <input className="modal-form" placeholder={this.props.userInfo.firstName} onChange={ (e) => {this.props.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                    </section>
+                  
+                  <label className="modal-input-tag">Last Name</label>
+                    <section className="modal-row">
+                      <input className="modal-form" placeholder={this.props.userInfo.lastName} onChange={ (e) => {this.props.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                    </section>
+                  
+                  {/* <label className="modal-input-tag">Username</label>
+                    <section className="modal-row">
+                      <input className="modal-form" placeholder={this.props.userInfo.username} onChange={ (e) => {this.props.handleUserNameChange(e.target.value)}} maxLength="18"/>
+                    </section> */}
+                </div>
               <div className="submitModal">
                 <button id="updateProfile">
                   Update Profile
                 </button>
               </div>
+              </form>
             </div>
            </div>
         

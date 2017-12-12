@@ -13,10 +13,11 @@ class ChangeAvatar extends Component {
                     <h2 className="modal-title">Change Avatar</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
+                <form>
                 <div className="modal-body">
                     <label class="modal-input-tag">Change Image URL</label>
                     <section class="modal-row">
-                        <input class="modal-form" />
+                        <input class="modal-form" type="url" autoFocus placeholder={this.props.userInfo.avatar} onChange={(e) => {this.props.handleAvatarChange(e.target.value)}}  required />
                     </section>
                         
                 </div>
@@ -25,6 +26,7 @@ class ChangeAvatar extends Component {
                     Update Avatar
                     </button>
                 </div>
+                </form>
             </div>
         </div>
       );

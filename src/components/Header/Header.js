@@ -6,10 +6,34 @@ import AlertIcon from '../../img/icons/Bell-02.svg';
 import BoardsIcon from '../../img/icons/boards.svg';
 import classnames from 'classnames';
 import {Link, Route} from 'react-router-dom';
+import Modal from 'react-modal';
+import Feedback from '../content/Feedback/Feedback'
 import './header.scss';
 import './board-menu.scss';
 
 
+const ModalBox = {
+    
+      overlay : {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        right: "0",
+        bottom: "0",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        overflow: "hidden",
+        width: "100%"
+      },
+      content : {
+        borderRadius: "4px",
+        outline: "none",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        right: "50%",
+        bottom: "50%",
+      }
+    };
 
 
 
@@ -22,28 +46,50 @@ class Header extends Component {
             breadToX: false,
             boardMenuOpen: true,
             showHeader: false,
-            showCurtain: true
+            showCurtain: true,
+            feedbackModalOpen: false,
+            
+            userInfo: {
+                name: 'Landon',
+                username: 'landonwjohnson',
+                email: 'landonwjohnson@gmail.com'
+            }
+         
+            
         }
         this.handleRightMenuClick = this.handleRightMenuClick.bind(this); 
         this.handleBoardMenuClick = this.handleBoardMenuClick.bind(this);
         this.handleHeader = this.handleHeader.bind(this);
         this.closeMenus = this.closeMenus.bind(this);
-        // this.breadTransform = this.breadTransform.bind(this);
+        this.openFeedbackModal = this.openFeedbackModal.bind(this);
+        this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
+    }
 
+    openFeedbackModal(){
+        this.setState({breadToX: false})
+        this.setState({boardMenuOpen: true})
+        this.setState({showCurtain: true})
+        this.setState({rightMenuOpen: true})
+        this.setState({feedbackModalOpen: true})
+        
+    }
+      
+      
+    closeFeedbackModal(){
+        this.setState({feedbackModalOpen: false})
     }
 
     handleRightMenuClick(){
         if(this.state.rightMenuOpen){
             this.setState({
                 rightMenuOpen: false,
-                breadToX: true
+                breadToX: true,
             })
         }
         else {
             this.setState({
                 rightMenuOpen: true,
                 breadToX: false
-
             })
         }
     }
@@ -77,6 +123,8 @@ class Header extends Component {
     }
     
   render(){
+
+    const userInitials = this.state.userInfo.name.charAt(0);
     let rightMenuClass = classnames({
         "right-menu-container--hide": this.state.rightMenuOpen,
         "right-menu-container": true
@@ -167,8 +215,8 @@ class Header extends Component {
                     </div>
                 <div className="user-con">
                  
-                        <div className="avatar"> <label>L</label> </div>
-                        <div className="hello-user">Hello Landon!</div>
+                        <div className="avatar"> <label>{userInitials}</label> </div>
+                        <div className="hello-user">Hello {this.state.userInfo.name}!</div>
                         <div className="alert-icon v2-placeholder"><img src={AlertIcon} /></div>
                         <div className="bread-container" onClick={this.handleRightMenuClick}>
                             <div className={breadMenuTransform} href="#" >
@@ -187,7 +235,7 @@ class Header extends Component {
             <div className="right-menu-inner">
                 <ul>
                     <Link to="/account-settings" onClick={this.closeMenus}><li>Settings</li></Link>
-                    <li className="v2">Feedback</li>
+                    <li onClick={this.openFeedbackModal}>Report Bug</li>
                     <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
                 </ul>
             </div>
@@ -200,6 +248,15 @@ class Header extends Component {
 
         <div className={handleCurtain} onClick={this.handleBoardMenuClick}>
         </div>
+
+        <Modal 
+              isOpen ={this.state.feedbackModalOpen} 
+              onRequestClose={this.closeFeedbackModal}
+              className="modal-account-settings-content"
+              style={ModalBox}
+        >
+              <Feedback onCloseBtnClick={this.closeFeedbackModal} />
+        </Modal>
       </div>
     );
   }

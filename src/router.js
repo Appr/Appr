@@ -1,6 +1,8 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import AccountSettings from './components/content/AccountSettings/AccountSettings';
+// import GroupDashboard from 'UNDEFINED PATH';
+// import GroupSettings from 'UNDEFINED PATH';
 import Home from './components/content/Home/Home';
 import Register from './components/content/Register/Register';
 import Dashboard from './components/content/Dashboard/Dashboard';
@@ -23,8 +25,10 @@ export default  (
             <Route component={ Login } path="/login" exact/>
 
             {/* Future Sub Routes */}
-                <Route component={ Dashboard } path="/dashboard" exact/>
-                <Route component={ AccountSettings } path="/account-settings" exact/>
+                <Route component={ Dashboard } path="/dashboard/:userid" exact/>
+                <Route component={ AccountSettings } path="/account-settings/:userid" exact/>
+                {/* <Route component={ GroupDashboard } path="/group-dashboard/:groupid" exact/> */}
+                {/* <Route component={ GroupSettings } path="/group-settings/:groupid" exact/> */}
 
             {/* Future Sub Routes In Wizard */}
                 <Route component={ IdeasUsers } path="/project/:projectid/ideas" exact/>

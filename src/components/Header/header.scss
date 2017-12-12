@@ -135,13 +135,23 @@
         }
     
         li {
-          padding-left: 10px;
-          line-height: 47px;
+          
+          line-height: 18px;
+          padding: 10px;
           list-style: none;
           font-size: 18px;
           text-align: left;
           font-weight: 600;
           transition: 0.1s ease-in-out;
+          cursor: pointer;
+          color: #111111;
+          background: transparent;
+          
+        }
+
+        li:hover{
+          background: #0366d6;
+          color: white;
         }
       }
     }

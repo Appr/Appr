@@ -13,22 +13,24 @@ class ChangePassword extends Component {
                     <h2 className="modal-title">Change Password</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
+                <form>
                 <div className="modal-body">
                 <label className="modal-input-tag">New Password</label>
                 <section className="modal-row">
-                    <input className="modal-form" />
+                    <input type="password" className="modal-form" autoFocus required/>
                 </section>
                 <label className="modal-input-tag">Confirm Password</label>
                 <section className="modal-row">
-                    <input className="modal-form" />
+                    <input type="password" className="modal-form" required />
                 </section>
                 
                 </div>
                 <div className="submitModal">
-                    <button id="updatePassword">
+                    <button type="submit" id="updatePassword">
                     Update Password
                     </button>
                 </div>
+                </form>
             </div>
         
         </div>

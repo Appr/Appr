@@ -174,7 +174,7 @@ class Ideas_Users extends Component {
                     <button className="not-enough-info-btn" id={idea.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
                     <span className="delete-x" id={idea.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
-            )
+            );
         });
 
         const displayUsers = userfields.map( userfield => {
@@ -191,7 +191,7 @@ class Ideas_Users extends Component {
                     <button className="not-enough-info-btn" id={userfield.id} onClick={e => this.submitChangeField(e, field, index)}> Save </button>
                     <span className="delete-x" id={userfield.id} onClick={e => this.handleDeleteField(e, field, index)}> &times; </span>
                 </div>
-            )
+            );
         });
 
         return (

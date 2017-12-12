@@ -9,24 +9,23 @@ class Controllers extends Component {
   constructor(props){
       super(props);
       this.state={
-          controllers: {
-                    arr: [
-                        {
-                          key: 1,
-                          name: 'View 1',
-                          when: '',
-                          do: '',
-                          require: ''
-                        }
-                    ]
-          }
+          controllers: []
       }
       this.addControllerItemHandler = this.addControllerItemHandler.bind(this);
       this.removeControllerItemHandler = this.removeControllerItemHandler.bind(this);
+
+  }
+
+  componentWillMount(){
+
+  }
+
+  findControllers(){
+
   }
 
   addControllerItemHandler(){
-      let ControllerList = this.state.controllers.arr;
+      let ControllerList = this.state.controllers;
       ControllerList.push({
           key: 2,
           name: 'View 2',
@@ -38,13 +37,13 @@ class Controllers extends Component {
   }
 
   removeControllerItemHandler(){
-      let ControllerList = this.state.controllers.arr;
+      let ControllerList = this.state.controllers;
       ControllerList.splice(1, 1);
       this.setState({ arr: ControllerList})
   }
 
   render() {
-    const displayControllers = this.state.controllers.arr.map(controller => {
+    const displayControllers = this.state.controllers.map(controller => {
         return(
             <div className="contro-item">
             <div className="contro-item-inner">
