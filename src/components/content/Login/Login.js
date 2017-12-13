@@ -39,7 +39,7 @@ class Login extends Component {
 							login(creds)
 								.then( res => {
 									if (res.status === 200) {
-										this.props.history.push(`/dashboard/${res.data.id}`)
+										this.props.history.push(`/user/${res.data.id}/dashboard`);
 									}
 								})
 								.catch(err => {throw err});

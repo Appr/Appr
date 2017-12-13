@@ -23,13 +23,13 @@ export default (
         <Route component={ Login } path="/login"/>
 
         {/* Future Sub Routes */}
-            <Route component={ Dashboard } path="/dashboard/:userid"/>
+            <Route component={ Dashboard } path="/user/:userid/dashboard"/>
             <Route component={ AccountSettings } path="/account-settings/:userid"/>
-            {/* <Route component={ GroupDashboard } path="/group-dashboard/:groupid"/> */}
-            {/* <Route component={ GroupSettings } path="/group-settings/:groupid"/> */}
+            {/* <Route component={ GroupDashboard } path="/user/:userid/group/:groupid/dashboard"/> */}
+            {/* <Route component={ GroupSettings } path="/user/:userid/group/:groupid/settings"/> */}
 
         {/* Future Sub Routes In Wizard */}
-            <Route component={ IdeasUsers } path="/project/:projectid/ideas"/>
+            <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas"/>
             <Route component={ Features } path="/project/:projectid/features"/>
             <Route component={ View } path="/project/:projectid/views"/>
             <Route component={ Controllers } path="/project/:projectid/controllers"/>

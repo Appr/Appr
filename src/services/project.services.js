@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const baseURL = '/api/project';
 
-function createProject(projectid, body) {
+function createProject( body) {
     return axios
-        .post(`${baseURL}/${projectid}/create`, body)
+        .post(`${baseURL}/create`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
