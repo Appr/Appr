@@ -9,6 +9,13 @@ function register(body) {
         .catch(err => {throw err});
 }
 
+function loginTest(body) {
+    return axios
+        .post(`${baseURL}/login-test`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
 function login(body) {
     return axios
         .post(`${baseURL}/login`, body)
@@ -16,7 +23,7 @@ function login(body) {
         .catch(err => {throw err});
 }
 
-function logout() {
+function logout(body) {
     return axios
         .post(`${baseURL}/logout`, body)
         .then(res => res)
@@ -25,6 +32,7 @@ function logout() {
 
 export {
     register,
+    loginTest,
     login,
     logout
 };

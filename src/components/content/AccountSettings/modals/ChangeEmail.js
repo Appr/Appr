@@ -13,14 +13,16 @@ class ChangeEmail extends Component {
                     <h2 className="modal-title">Change Email</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
+                <form>
                 <div className="modal-body">
+                    
                     <label className="modal-input-tag">Current Email</label>
                     <section className="modal-row">
                         <label className="current-email">{this.props.userInfo.email}</label>
                     </section>
                     <label className="modal-input-tag">New Email</label>
                     <section className="modal-row">
-                        <input className="modal-form" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30}/>
+                        <input className="modal-form" type="email" autoFocus onChange={(e) => {this.props.handleEmailChange(e.target.value)}} maxLength={30}/>
                     </section>
                 </div>
                 <div className="submitModal">
@@ -28,6 +30,7 @@ class ChangeEmail extends Component {
                     Update Email
                     </button>
                 </div>
+                </form>
             </div>
         </div>
         

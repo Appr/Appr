@@ -4,7 +4,7 @@ const getDb = require('../database/bootstrap.database');
 
 passport.use('login', new Strategy(
     (username, password, done) => {
-        let message;
+        let message = '';
         const db = getDb();
 
         // We will ask the user to login using their email,

@@ -8,6 +8,7 @@ import ChangeAvatar from './modals/ChangeAvatar';
 import Header from '../../Header/Header';
 import Modal from 'react-modal';
 
+
 // const editProfileStyles = {
 //   content : {
 //     top: '50%',
@@ -75,17 +76,11 @@ class AccountSettings extends Component {
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
     
-    //Edit Profile Changes
+    //Handle Inputs
       this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
       this.handleLastNameChange = this.handleLastNameChange.bind(this);
       this.handleUserNameChange = this.handleUserNameChange.bind(this);
-     
-
-    //Change Email
       this.handleEmailChange = this.handleEmailChange.bind(this);
-    //Change Password
-
-    //Change Avatar
       this.handleAvatarChange = this.handleAvatarChange.bind(this);
   }
 
@@ -124,7 +119,7 @@ class AccountSettings extends Component {
   
   //Handling Changes Methods
     handleFirstNameChange(e){
-      let newFirstName = e;
+      let newFirstName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
       this.setState({
           userInfo: {
             firstName: newFirstName,
@@ -137,7 +132,7 @@ class AccountSettings extends Component {
     }
 
     handleLastNameChange(e){
-      let newLastName = e;
+      let newLastName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();;
       this.setState({
           userInfo: {
             firstName: this.state.userInfo.firstName,
@@ -163,7 +158,7 @@ class AccountSettings extends Component {
     }
 
     handleEmailChange(e){
-      let newEmail = e;
+      let newEmail = e.toLowerCase();
       this.setState({
           userInfo: {
             firstName: this.state.userInfo.firstName,
@@ -175,12 +170,8 @@ class AccountSettings extends Component {
         })
     }
 
-
     handleAvatarChange(e){
-      
-      
       let newAvatar = e.trim();
-
       this.setState({
           userInfo: {
             firstName: this.state.userInfo.firstName,
@@ -190,6 +181,7 @@ class AccountSettings extends Component {
             avatar: newAvatar
           }
         })
+    
     }
 
     handleInitials(e){
@@ -208,8 +200,12 @@ class AccountSettings extends Component {
       var getPosition = this.state.userInfo.email.indexOf("@");
       return userName.slice(0, getPosition);
     }
+
+
+
   
   render() {
+
     
     
     return (
@@ -220,12 +216,12 @@ class AccountSettings extends Component {
           <div className="profile-section-outter">
               <div className="profile-section-inner">
               <div className="wrapper">
-                  <div className="avatar-initial" style={{backgroundImage: `url(${this.state.userInfo.avatar})`}}>
+                  <div className="avatar-initial" onClick={this.openAvatarModal} style={{backgroundImage: `url(${this.state.userInfo.avatar})`}} >
                   <label>{this.handleInitials()}</label>
                   </div>
                   <div className="name-username-edit-con">
                     <div className="name-and-username">
-                        <div className="headline-22">{this.state.userInfo.firstName} {this.state.userInfo.lastName} </div>
+                        <div className="headline-22" onClick={this.openModal}>{this.state.userInfo.firstName} {this.state.userInfo.lastName} </div>
                         <div className="text-9">@{this.handleUserName()}</div>
                     </div>
                     <div className="edit-profile-btn" onClick={this.openModal}>
@@ -285,7 +281,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar userInfo={this.state.userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={this.handleAvatarChange}/>
+              <ChangeAvatar userInfo={this.state.userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarChange={this.handleAvatarChange} showAvatarFail={this.showAvatarFail}/>
           </Modal>
       </div>
       </div>
