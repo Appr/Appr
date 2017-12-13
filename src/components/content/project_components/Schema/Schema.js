@@ -71,7 +71,7 @@ class Schema extends Component {
             </div>
                 <div className="column-item">
                   <div className="column-fields-wrapper">
-                    <input className="column-input-text md-input" type ="text" placeholder="column name" />
+                    <input className="column-input-text md-input" type ="text" placeholder="Column Name" />
                     <select className="column-input-select sm-input" required placeholder="type">
                       <option value="">type </option>
                       <option value="">DATE</option>
@@ -81,7 +81,7 @@ class Schema extends Component {
                       <option value="">CHAR</option>
                     </select>
                               
-                    <input className="schema-column-text sm-input" type ="text" placeholder="size" />
+                    <input className="schema-column-text sm-input" type ="text" placeholder="Size" />
                   </div>
                     <div className="column-checkbox-wrapper">
                           <div className="column-checkbox">

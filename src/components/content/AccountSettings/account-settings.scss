@@ -1,3 +1,5 @@
+@import '../../_colors.scss';
+
 .account-settings-container{
     display: flex;
     flex-direction: column;
@@ -6,7 +8,7 @@
 
 .profile-section-outter {
     height: 185px;
-    background: #EAEAEA;
+    background-color: $light-color;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -36,13 +38,11 @@
     justify-content: center;
     align-items: center;
     font-size: 40px;
-    min-width: 85px;
-    min-height: 85px;
+    color: white;
+    width: 85px;
+    height: 85px;
     border-radius: 100px;
-    background: #D6DADC;
-    background-size: cover;
-    mix-blend-mode: multiply;
-    background-position: 50%;
+    background: $medium-color;
 }
 
 .account-section{
@@ -54,13 +54,13 @@
 .headline-30{
     font-size: 30px;
     text-align: left;
-    color: #95989A
+    color: $medium-color;
 }
 
 .headline-20{
     font-size: 20px;
     text-align: left;
-    color: #95989A;
+    color: $medium-color;
 }
 
 .headline-22{

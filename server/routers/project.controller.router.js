@@ -41,7 +41,7 @@ projectControllerRouter.put('/:projectid/update/controller/:controllerid', (req,
         .catch(err => res.status(500).send(err));
 });
 
-projectControllerRouter.delete('/:projectid/delete/controller/:controllerid', (req, res) => {
+projectControllerRouter.delete('/:projectid/delete/controller/:controllerid', (req. res) => {
     const projectid = req.params.projectid;
     const controllerid = req.params.controllerid;
     const db = getDb();
