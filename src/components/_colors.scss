@@ -1,15 +1,15 @@
 
-$primary: #616161;
+$primary: #005B9A;
 
-$secondary: #F48BA1;
+$secondary: #0191C8;
 
-$dark-color: #F6AACA;
+$dark-color: #474643;
 
 
 
-$medium-color: #EFD6E5;
+$medium-color: #8C8984;
 
-$light-color: #E2E4E6;
+$light-color: #E8E8E8;
 
 
 
@@ -76,8 +76,8 @@ $border-radius: 5px;
 @mixin addBtn (){
     border-radius: $addBtn-radius;
     border: none;
-    background: $addBtn-color1;
-    box-shadow: 0 1px 0 #539A40;
+    background: $secondary;
+    box-shadow: 0 1px 0 $secondary;
     // background: linear-gradient(to bottom, $addBtn-color2 0, $addBtn-color1 100%);
     // box-shadow: 0 2px 0 #3f6f21;
     font-weight: bold;

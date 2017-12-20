@@ -47,7 +47,6 @@ class Tracker extends Component {
               
           </div>
         </div>
-        <div className="blur-overlay"></div>
       </div>
     );
   }

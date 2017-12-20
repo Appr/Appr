@@ -31,7 +31,7 @@ a{
 }
 
 .main-fix{
-  @include lighten-background($primary, 30%);
+  // @include lighten-background($primary, 30%);
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -47,7 +47,7 @@ a{
   filter: blur(8px);
   background-image: url('./img/landing-slider/conferenceRoom.jpg');
   background-size: 200%;
-  background-position: 40%, 30%;
+  background-position: 41%, 30%;
   background-repeat: no-repeat;
   z-index: 0; 
   position: absolute;
