@@ -71,7 +71,6 @@ class View extends Component {
     }
 
     submitChangeView(e, index) {
-      debugger;
         const projectid = this.props.match.params.projectid;
         const viewid = Number(e.target.id);
         const {name, image_url} = this.state.views[index];

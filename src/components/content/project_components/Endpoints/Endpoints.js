@@ -50,7 +50,7 @@ class Endpoints extends Component {
 //       .catch(err => {throw err});
 // }
 
-  endpoint ITEM add and remove methods
+  // endpoint ITEM add and remove methods
   addEndpointItemHandler(){
     let EndpointList = this.state.endpoints;
     EndpointList.push({
@@ -87,7 +87,7 @@ class Endpoints extends Component {
   removeEndpointResponseHandler(){
 
   }
-}
+
 
   render() {
     const { userid, projectid } = this.props.match.params;
