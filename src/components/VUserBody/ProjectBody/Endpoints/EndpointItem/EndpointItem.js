@@ -32,6 +32,7 @@ class EndpointItem extends Component {
 
 
   render() {
+      
     const {httpVerb, endpointid, endpointName, projectid, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
 
     let responseText = responseData.toString();
