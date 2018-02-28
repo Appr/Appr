@@ -7,6 +7,7 @@ import Feedback from './Feedback/Feedback';
 import './header.scss';
 import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
+import { connect } from 'react-redux';
 
 
 class Header extends Component {
@@ -133,7 +134,7 @@ class Header extends Component {
                     </div>
                     <div className="user-con">
                             <div className="avatar" style={{backgroundImage: `url(${userInfo.avatar})`}} > <label>{handleInitials(userInfo.avatar)}</label> </div>
-                            <div className="hello-user">Hello {userInfo.firstName}!</div>
+                            <div className="hello-user">Hello {userInfo.first_name}!</div>
                             <div className="bread-container" onClick={this.handleRightMenuClick}>
                                 <div className={breadMenuTransform} href="#" >
                                     <div className="bread-menu">
@@ -179,4 +180,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state){
+    const { userInfo } = state;
+    return {
+        userInfo
+    }
+}
+export default connect(mapStateToProps)(Header);

@@ -6,6 +6,7 @@ import Register from './components/AuthBody/Register/Register';
 import Login from './components/AuthBody/Login/Login';
 import VUserBody from './components/VUserBody/VUserBody';
 import Home from './components/AuthBody/Home/Home';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(){
@@ -26,4 +27,8 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+function mapStateToProps(state){
+  return state;
+}
+
+export default withRouter(connect( mapStateToProps ) (App))

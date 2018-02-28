@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import ProjectSidebar from './ProjectSidebar/ProjectSidebar';
 import IdeasUsers from './Ideas_Users/Ideas_Users';
 import Features from './Features/Features';
@@ -10,6 +10,9 @@ import Endpoints from './Endpoints/Endpoints';
 import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
 import { findProject, updateProject } from '../../../services/project.services';
+import { connect } from 'react-redux';
+import { updateProjectRedux, updateDashboard } from '../../../actions/actionCreators';
+import { findDashboardInfo } from '../../../services/dashboard.services';
 
 class ProjectBody extends Component {
   constructor(props){
@@ -27,7 +30,7 @@ class ProjectBody extends Component {
   }
 
 
-  componentDidMount() {
+  componentWillMount() {
     const projectid = this.props.match.params.projectid;
     findProject(projectid)
         .then( res => {
@@ -35,25 +38,15 @@ class ProjectBody extends Component {
                 console.log(res);
             }
             else {
-                this.setState({ project: res.data[0] });
+                this.props.updateProjectRedux(res.data[0]);
             }
         })
         .catch(err => {throw err});
 }
 
-componentWillReceiveProps(nextProps){
-  const projectid = nextProps;
-  findProject(projectid)
-      .then( res => {
-          if (res.status !== 200) {
-              console.log(res);
-          }
-          else {
-              this.setState({ project: res.data[0] });
-          }
-      })
-      .catch(err => {throw err});
-}
+
+
+
 
 
 
@@ -78,25 +71,39 @@ componentWillReceiveProps(nextProps){
   }
 
   changeProjectBackground(){
+    let userid = this.props.userInfo.id;
+    console.log(userid)
+    
     const projectid = this.props.match.params.projectid;
     let newBackground = this.state.UI.backgroundPreview;
-    const { author_id, background, id, name, status_id } = this.state.project;
+    const { author_id, background, id, name, status_id } = this.props.projectInfo;
     const reqBody = {author_id: author_id, background: newBackground, id: id, name: name, status_id: status_id };
     updateProject(projectid, reqBody)
       .then( res => {
-        if (res.status !== 200) {
-          alert(res)
-        }
+        findProject(projectid)
+        .then( res => {
+                this.props.updateProjectRedux(res.data[0]);
+                this.setState({
+                  UI: {
+                    backgroundPreview: ''
+                  }
+                })                
+        })
       })
       .catch(err => {throw err});
+
+      findDashboardInfo(userid)
+          .then(res => {
+            this.props.updateDashboard(res.data)
+          })
   }
 
 
 
   render() {
-    const { userid } = this.props.match.params;
-    const projectid = this.state.project.id;
-    const projectName = this.state.project.name;
+    const userid = this.props.userInfo.id;
+    const projectid = this.props.projectInfo.id;
+    const projectBackground = this.props.projectInfo.background;
     const { colorTheme, backgroundPreview } = this.state.UI;
 
     return (
@@ -107,18 +114,17 @@ componentWillReceiveProps(nextProps){
                 projectid={projectid}
                 userid={userid}
                 colorTheme={colorTheme}
-                projectName={projectName}
                 changeProjectBackground={this.changeProjectBackground}
                 clearProjectBackgroundPreview={this.clearProjectBackgroundPreview}
               />
-              <Frame> <BlurOverlay backgroundImage={backgroundPreview || this.state.project.background || null} colorTheme={colorTheme} /> </Frame>
-              <Route component={ IdeasUsers } path="/user/:userid/project/:projectid/ideas" />
+              <Frame> <BlurOverlay backgroundImage={backgroundPreview || projectBackground || null} colorTheme={colorTheme} /> </Frame>
+              <Route path="/user/:userid/project/:projectid/ideas" render={(props) => (
+                <IdeasUsers projectid={projectid} {...props}/> )} />
               <Route component={ Features }path="/user/:userid/project/:projectid/features"/>
               <Route component={ View } path="/user/:userid/project/:projectid/views" />
               <Route component={ Controllers } path="/user/:userid/project/:projectid/controllers" />
               <Route component={ Schema } path="/user/:userid/project/:projectid/schema" />
               <Route component={ Endpoints } path="/user/:userid/project/:projectid/endpoints" />
-              {/* <Route component={ Tracking } path="/user/:userid/project/:projectid/tracker"/>   */}
               <Route path="/user/:userid/project/:projectid/tracker" render={(props) => (
                 <Tracking projectid={projectid} {...props}/> )} />
       </ProjectBodyContainer>
@@ -126,4 +132,9 @@ componentWillReceiveProps(nextProps){
   }
 }
 
-export default ProjectBody;
+function mapStateToProps(state){
+  return state;
+}
+
+export default withRouter(connect( mapStateToProps, { updateProjectRedux, updateDashboard } ) (ProjectBody));
+

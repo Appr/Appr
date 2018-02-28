@@ -35,6 +35,7 @@ projectRouter.put('/update/:projectid', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
+
 projectRouter.delete('/delete/:projectid', (req, res) => {
     const projectId = req.params.projectid;
     const db = getDb();
@@ -42,5 +43,7 @@ projectRouter.delete('/delete/:projectid', (req, res) => {
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
+
+
 
 module.exports = projectRouter;

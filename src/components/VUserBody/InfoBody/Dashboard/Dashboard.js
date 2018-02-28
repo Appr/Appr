@@ -6,25 +6,18 @@ import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
+import { connect } from 'react-redux';
+import { updateDashboard } from '../../../../actions/actionCreators';
 
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			groups: [],
-			projects: []
+			
 		};
 		this.handleCreateButton = this.handleCreateButton.bind(this);
 	}
 
-	componentWillMount() {
-		const userid = this.props.match.params.userid;
-		findDashboardInfo(userid)
-			.then( res => {
-				res.status !== 200 ? console.log(res) : this.setState(res.data);
-			})
-			.catch(err => {throw err});
-	}
 
 	handleCreateButton(buttonPressed) {
 		const userid = this.props.match.params.userid;
@@ -63,18 +56,19 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const userid = this.props.match.params.userid;
-		const { groups, projects } = this.state;
+		const userid = this.props.userInfo.id;
 
-		const displayProjects = projects.map( project => {
-			const index = projects.indexOf(project);
-			return <DashProject key={`project-${index}`} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+		let displayProjects = this.props.dashboardInfo.projects.map( (project, index) => {
+			console.table(this.props.dashboardInfo.projects)
+			if(project !== null){
+				return <DashProject key={`project-${index}`} index={index} userid={userid} projectid={project.id} projectName={project.name} backgroundSource={project.background}/>
+			}
 		});
 		
-		const displayGroups = groups.map( group => {
-			const index = groups.indexOf(group);
-			return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
-		});
+		// const displayGroups = groups.map( group => {
+		// 	const index = groups.indexOf(group);
+		// 	return <DashGroup key={`group-${index}`} userid={userid} groupid={group.id} groupName={group.name}/>
+		// });
 
 
 		return (
@@ -96,7 +90,7 @@ class Dashboard extends Component {
 							</ul>
 						</div>
 					
-						<div className="group-list-container">
+						{/* <div className="group-list-container">
 							<label className="dash-section-title"> Groups </label>
 							<ul className="projects-list">
 
@@ -108,7 +102,7 @@ class Dashboard extends Component {
 									</div>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
@@ -116,4 +110,12 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+
+
+
+
+function mapStateToProps(state){
+	return state;
+  }
+  
+export default connect( mapStateToProps, {updateDashboard} ) (Dashboard);

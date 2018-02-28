@@ -8,6 +8,8 @@ import ChangeAvatar from './modals/ChangeAvatar/ChangeAvatar';
 import Modal from 'react-modal';
 import { ModalBox } from './accountsettingsStyled';
 import { findUserInfo } from '../../../../services/account.services';
+import { updateUser } from '../../../../actions/actionCreators';
+import { connect } from 'react-redux';
 
 class AccountSettings extends Component {
   constructor(props){
@@ -28,10 +30,10 @@ class AccountSettings extends Component {
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
+      this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
-  componentWillMount(){
-    const userid = this.props.match.params.userid;
+  pullFromBackend(userid){
     findUserInfo(userid)
     .then( res => {
         if (res.status !== 200) {
@@ -48,9 +50,15 @@ class AccountSettings extends Component {
                     email: res.data[0].email
                   }
               });
+              this.props.updateUser(res.data[0])
         }
     })
     .catch(err => {throw err});
+  }
+
+  componentWillMount(){
+    const userid = this.props.match.params.userid;
+    this.pullFromBackend(userid)
   }
 
   //UI Modals
@@ -136,7 +144,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <EditProfile userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} />
+              <EditProfile pullFromBackend={this.pullFromBackend} userInfo={userInfo} handleNameSubmit={handleNameSubmit} onCloseBtnClick={this.closeProfileModal} />
           </Modal>
 
           <Modal 
@@ -145,7 +153,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeEmail userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailSubmit={handleEmailSubmit}/>
+              <ChangeEmail pullFromBackend={this.pullFromBackend} userInfo={userInfo}  onCloseBtnClick={this.closeEmailModal} handleEmailSubmit={handleEmailSubmit}/>
           </Modal>
 
           <Modal 
@@ -154,7 +162,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangePassword userInfo={userInfo} onCloseBtnClick={this.closePasswordModal} />
+              <ChangePassword pullFromBackend={this.pullFromBackend} userInfo={userInfo} onCloseBtnClick={this.closePasswordModal} />
           </Modal>
 
           <Modal 
@@ -163,11 +171,15 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ChangeAvatar userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarSubmit={handleAvatarSubmit} showAvatarFail={this.showAvatarFail}/>
+              <ChangeAvatar pullFromBackend={this.pullFromBackend} userInfo={userInfo} onCloseBtnClick={this.closeAvatarModal} handleAvatarSubmit={handleAvatarSubmit} showAvatarFail={this.showAvatarFail}/>
           </Modal>
       </div>
     );
   }
 }
 
-export default AccountSettings;
+function mapStateToProps(state){
+  return state
+}
+
+export default connect(mapStateToProps, {updateUser}) (AccountSettings);

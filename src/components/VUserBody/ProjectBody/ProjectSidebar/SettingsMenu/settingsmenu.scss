@@ -1,0 +1,89 @@
+//CHANGE BACKGROUND MENU UI
+
+@import '../../../../_colors.scss';
+
+.project-settings-header{
+    display: flex;
+    width: 240px;
+    height: 50px;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    line-height: 56px;
+    
+
+    .rename-project{
+        display: none;
+    }
+
+    button {
+        width: 14px;
+        height: 12px;
+        border: none;
+        background-image: url('../../../../../img/icons/back-arrow-icon.svg');
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+
+
+
+    
+
+    .change-settings-title{
+
+        display: block;
+        text-align: left;
+        max-height: 100%;
+        outline: none;
+        background: transparent;
+        border: none;
+        overflow: hidden;
+        text-align: left;
+        color: #595959;
+        font-size: 22px;
+        line-height: 22px;
+        overflow: visible;
+        padding-left: 19px;
+
+        
+    }
+}
+
+
+
+.settings-list{
+    align-items: center;
+    width: 240px;
+    display: flex;
+    text-align: left;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 16px;
+    height: calc(90% - 50px);
+    padding-left: 0px;
+
+    .settings-list-item{
+        border-left: 5px solid transparent;
+        padding-left: 19px;
+        width: 216px;
+        line-height: 40px;
+        font-size: 16px;
+        list-style: none;
+        color: #8C8984;
+        text-decoration: none;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover{
+            @include lighten-background($secondary, 61%);
+        }
+
+
+    }
+}
+
+
+
+

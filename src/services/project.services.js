@@ -34,5 +34,5 @@ export {
     createProject,
     findProject,
     updateProject,
-    deleteProject
+    deleteProject,
 };

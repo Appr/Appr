@@ -30,7 +30,8 @@ class EditProfile extends Component {
           alert(res);
         }
         else{
-          window.location.reload();
+          this.props.pullFromBackend(userid);
+          this.props.onCloseBtnClick();
         }
       })
       .catch(err => {throw err});

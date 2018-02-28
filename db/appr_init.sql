@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS
     project_controller,
     project_endpoint,
     project_schema,
-    -- schema_type,
     project_schema_table,
     user_group,
     group_project,

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link, Redirect, BrowserRouter } from 'react-router-dom';
+import history from '../../../../history';
 import './board-menu.scss'
 import { findDashboardInfo } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
 import { createProject } from '../../../../services/project.services';
+import { findProject } from '../../../../services/project.services';
+import { updateProjectRedux } from '../../../../actions/actionCreators';
+import { connect } from 'react-redux';
 
 class BoardMenu extends Component {
     constructor(props){
@@ -13,15 +17,6 @@ class BoardMenu extends Component {
             projects: []
         }
         this.handleCreateButton = this.handleCreateButton.bind(this);
-    }
-
-    componentWillReceiveProps(){
-        const userid = this.props.userid;
-		findDashboardInfo(userid)
-			.then( res => {
-				res.status !== 200 ? console.log(res) : this.setState(res.data);
-			})
-			.catch(err => {throw err});
     }
 
     handleCreateButton(buttonPressed) {
@@ -63,39 +58,60 @@ class BoardMenu extends Component {
 	}
 
   render() {
-    const groups = this.state.groups;
-    const projects = this.state.projects;
-    const { userid, projectid, closeMenus } = this.props;
-    const displayGroups = groups.map( group => {
-        const index = groups.indexOf(group);
-        return (
-            <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
-                  <div className="board-menu-item">
-                  <div className="board-item-thumbnail">
 
-                  </div>
-                  <div className="board-item-name">
-                      {group.name}
-                  </div>
-              </div>
-            </Link>
-        )
-    })
+    const { projectid, closeMenus, updateProjectRedux } = this.props;
 
-    const displayProjects = projects.map( project => {
-      const index = projects.indexOf(project);
-      return (
-          <Link to={`/user/${userid}/project/${project.id}/ideas`} onClick={closeMenus}>
-                <div className="board-menu-item">
-                <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
 
-                </div>
-                <div className="board-item-name" onClick={(e) => {window.location.reload()}}>
-                    {project.name}
-                </div>
-            </div>
-          </Link>
-      )
+    // const groups = this.props.dashboardInfo.groups;
+    // const projects = this.props.dashboardInfo.projects;
+
+    function getProject(projectid, path){
+        findProject(projectid)
+        .then( res => {
+            if (res.status !== 200) {
+                console.log(res);
+            }
+            else {
+                closeMenus();
+                updateProjectRedux(res.data[0]);
+                history.push(path)
+            }
+        })
+        .catch(err => {throw err});
+    }
+
+    // const displayGroups = groups.map( group => {
+    //     const index = groups.indexOf(group);
+    //     return (
+    //         <Link to={`/group-dashboard/${group.id}`} key={`group-${index}`}>
+    //               <div className="board-menu-item">
+    //               <div className="board-item-thumbnail">
+
+    //               </div>
+    //               <div className="board-item-name">
+    //                   {group.name}
+    //               </div>
+    //           </div>
+    //         </Link>
+    //     )
+    // })
+
+    let userid = this.props.userInfo.id;
+
+    const displayProjects = this.props.dashboardInfo.projects.map( (project, index) => {
+            if(project !== null){
+                let path = `/user/${userid}/project/${project.id}/ideas`;
+                return (
+                            <div className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
+                            <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
+
+                            </div>
+                            <div className="board-item-name">
+                                {project.name}
+                            </div>
+                        </div>
+                )
+            }
   })
   
     return (
@@ -121,7 +137,7 @@ class BoardMenu extends Component {
                             </div>
                         </div>
             </div>
-            <div className="recent-boards-con">
+            {/* <div className="recent-boards-con">
                 <div className="text-12">GROUP PROJECTS</div>
         
                 {displayGroups}
@@ -135,14 +151,18 @@ class BoardMenu extends Component {
                                 Create Group
                             </div>
                         </div>
-            </div>
+            </div> */}
             
         </div>
     );
   }
 }
 
-export default BoardMenu;
+function mapStateToProps(state){
+    return state;
+}
+  
+  export default connect( mapStateToProps, {updateProjectRedux} ) (BoardMenu);
 
 
 

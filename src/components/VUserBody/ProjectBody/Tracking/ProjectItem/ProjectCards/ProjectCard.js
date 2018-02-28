@@ -85,8 +85,10 @@ class ProjectCard extends Component {
 
      
       <div onClick={(e) => console.table(this.state.cardValue)}>
-            <li onClick={this.openCardView}><label>{card_name}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li>
             
+            {/* <li onClick={this.openCardView}><label>{card_name}</label><div className="edit-con"><img src={editIcon} alt="edit"/></div></li> */}
+            <li><label>{card_name}</label><div className="edit-con"><button className='delete-x-tracker' onClick={(e) => {this.props.onDeleteTaskClick(id)}} alt="edit"> &times; </button> </div></li>
+
             
             <Modal 
               isOpen ={this.state.cardViewModalOpen} 

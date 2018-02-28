@@ -4,6 +4,7 @@ import { createProjectIdea, findProjectIdeas, updateProjectIdea, deleteProjectId
 import { createProjectUserField, findProjectUserFields, updateProjectUserField, deleteProjectUserField } from '../../../../services/project.userfield.services';
 import IdeaField from './Fields/IdeaField';
 import UserField from './Fields/Userfield';
+import { connect } from 'react-redux';
 
 class Ideas_Users extends Component {
     constructor(props) {
@@ -16,10 +17,10 @@ class Ideas_Users extends Component {
         this.handleChangeField = this.handleChangeField.bind(this);
         this.submitChangeField = this.submitChangeField.bind(this);
         this.handleDeleteField = this.handleDeleteField.bind(this);
+        this.pullFromDatabase = this.pullFromDatabase.bind(this);
     }
 
-    componentWillMount() {
-        const projectid = this.props.match.params.projectid
+    pullFromDatabase(projectid){
         const ideaExamples = [
             { idea_data: 'e.g. Rule the Galaxy.' },
             { idea_data: 'e.g. Get Baby out of the corner.'}
@@ -50,6 +51,18 @@ class Ideas_Users extends Component {
                 }
             })
             .catch(err => {throw err});
+
+    }
+
+    componentWillMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromDatabase(projectid);
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        const projectid = nextProps.projectInfo.id;
+        this.pullFromDatabase(projectid);
     }
 
     handleAddField(field) {
@@ -201,4 +214,8 @@ class Ideas_Users extends Component {
     }
 }
 
-export default Ideas_Users;
+function mapStateToProps(state){
+    return state
+}
+
+export default connect(mapStateToProps)(Ideas_Users);

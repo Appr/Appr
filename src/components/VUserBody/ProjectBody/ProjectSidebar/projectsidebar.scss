@@ -49,6 +49,25 @@
     transition: 0.2s ease-in-out;
 }
 
+
+.settingsMenu-wrapper{
+    height: 100%;
+    transform: translateX(0%);
+    opacity: 1;
+    max-width: 240px;
+    position: relative;
+    transition: 0.2s ease-in-out;
+}
+
+.settingsMenu--hide{
+    height: 100%;
+    transform: translateX(-100%);
+    opacity: 0.2;
+    position: absolute;
+    overflow-x: hidden;
+    transition: 0.2s ease-in-out;
+}
+
 .psb-divider{
     display: block;
     position: absolute;
