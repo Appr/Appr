@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
-import { updateUserInfo } from '../../../../../services/account.services';
+import { updateUserInfo, updateUserEmail } from '../../../../../services/account.services';
 import { connect } from 'react-redux';
 class ChangeEmail extends Component {
     constructor(props){
@@ -14,16 +14,11 @@ class ChangeEmail extends Component {
 
     handleEmailSubmit(){
         const userid = this.props.userInfo.id;
-        let { username, first_name, last_name, avatar } = this.props.userInfo;
         const reqBody = {
-            username, 
-            firstName: first_name,
-            lastName: last_name,
-            email: this.state.email,
-            avatar
+            email: this.state.email
         };
         console.table(reqBody)
-        updateUserInfo(userid, reqBody)
+        updateUserEmail(userid, reqBody)
           .then( res => {
             if ( res.status !== 200 ) {
               alert(res);

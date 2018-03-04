@@ -33,7 +33,7 @@ class VUserBody extends Component {
           userInitials = '';
         }
         else{
-          userInitials = this.props.userInfo.firstName.charAt(0).toUpperCase();
+          userInitials = this.props.userInfo.first_name.charAt(0).toUpperCase();
         }
         return userInitials
       }

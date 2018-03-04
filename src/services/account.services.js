@@ -53,6 +53,33 @@ function updateUserPassword(userid, body) {
         .catch(err => {throw err});
 }
 
+function updateUserProfile(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/profile/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function updateUserEmail(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/email/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function updateUserEmail(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/email/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function updateUserAvatar(userid, body) {
+    return axios
+        .put(`${baseURL}/info/update/avatar/${userid}`, body)
+        .then(res => res)
+        .catch(err => {throw err});
+}
 
 export {
     findUser,
@@ -61,5 +88,8 @@ export {
     deleteUser,
     findUserInfo,
     updateUserInfo,
-    updateUserPassword
+    updateUserPassword,
+    updateUserProfile,
+    updateUserEmail,
+    updateUserAvatar
 };

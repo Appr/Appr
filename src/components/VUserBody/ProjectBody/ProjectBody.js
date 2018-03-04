@@ -75,9 +75,6 @@ class ProjectBody extends Component {
         })
       })
       .catch(err => {throw err});
-
-      
-
   }
 
 

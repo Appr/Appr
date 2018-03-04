@@ -371,20 +371,20 @@ VALUES
 INSERT INTO tracker_list ( project_id, list_name, list_order )
 VALUES
     (1, 'ToDo', 1),
-    (1, 'In Process', 1),
-    (1, 'Backlog', 1),
-    (1, 'Needs Approval', 1),
-    (1, 'Done', 1),
+    (1, 'In Process', 2),
+    (1, 'Backlog', 3),
+    (1, 'Needs Approval', 4),
+    (1, 'Done', 5),
     (2, 'ToDo' ,1),
     (2, 'In Process', 2),
     (2, 'Backlog', 3),
     (2, 'Needs Approval', 4),
     (2, 'Done', 5),
-    (3, 'ToDo', 3),
-    (3, 'In Process', 3),
+    (3, 'ToDo', 1),
+    (3, 'In Process', 2),
     (3, 'Backlog', 3),
-    (3, 'Needs Approval', 3),
-    (3, 'Done', 3)
+    (3, 'Needs Approval', 4),
+    (3, 'Done', 5)
 ;
 
 INSERT INTO tracker_card ( project_id, card_name, card_data, card_order, list_id )

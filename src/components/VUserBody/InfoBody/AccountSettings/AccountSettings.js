@@ -40,7 +40,15 @@ class AccountSettings extends Component {
             alert(res);
         }
         else {
-              this.props.updateUser(res.data[0])
+          let userInfo = {   
+            id: res.data[0].id,
+            username: res.data[0].username,
+            avatar: res.data[0].avatar,
+            first_name: res.data[0].first_name,
+            last_name: res.data[0].last_name,
+            email: res.data[0].email
+            }
+            this.props.updateUser(userInfo)
         }
     })
     .catch(err => {throw err});

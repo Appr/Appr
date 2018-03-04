@@ -20,7 +20,6 @@
     display: flex;
     justify-content: center;
     width: 1000px;
-    // border: 1px solid black;
     height: 540px;
     margin-left: auto;
     margin-right: auto;
@@ -28,10 +27,8 @@
 
 .option-container-inner{
     display: flex;
-    // justify-content: space-between;
     justify-content: center;
     width: 840px;
-    // border: 1px solid black;
     height: 500px;
 }
 
@@ -39,8 +36,6 @@
     width: 379px;
     background: lightgrey;
 }
-
-
 
 .option-divider {
     height: 420px;
@@ -53,7 +48,6 @@
     display: flex;
     justify-content: flex-end;
     width: 379px;
-    // background: lightgrey;
 }
 
 .create-account-inner{
@@ -71,7 +65,6 @@
         outline: none;
         border-radius: 3px;
         border: 1px solid #dbdbdb;
-
         -webkit-box-shadow-: inset 0 1px 2px rgba(10, 10, 10, 0.1);
         box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
        }
@@ -181,7 +174,7 @@
         margin-top: 0;
         text-align: left;
         margin-bottom: 28px;
-        // border: 1px solid black;
+        font-weight: normal;
 }
 
 .reg-btn-footer{
@@ -192,38 +185,21 @@
 
 .create-account-btn {
     font-size: 20px;
+    width: 100%;
 }
 .input-tag {
     font-size: 20px;
     text-align: left;
-
- 
 }
-
-// .input-combined {
-//     height: 40px;
-    
-// }
 
 .input-solo {
     height: 40px;
 }
 
-// .form-combined {
-//     display: flex;
-//     justify-content: space-between;
-// }
-
-.create-account-btn {
-    
+.create-account-btn {  
     width: 270px;
     height: 50px;
-
-
 }
-
-
-
 
 .reg-firstName{
     display: flex;
@@ -264,9 +240,6 @@
         transition: 0.2s ease-in-out;
     }
 }
-
-
-
 
 .reg-lastName{
     display: flex;
@@ -311,14 +284,11 @@
     
 }
 
-
-
 .reg-combined-wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    
+    width: 100%;   
 }
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
-import { updateUserInfo } from '../../../../../services/account.services'
+import { updateUserInfo, updateUserProfile } from '../../../../../services/account.services'
 import { connect } from 'react-redux';
 
 class EditProfile extends Component {
@@ -21,16 +21,13 @@ class EditProfile extends Component {
 
   handleNameSubmit(){
     const userid = this.props.userInfo.id;
-    let { avatar, email } = this.props.userInfo;
     let { username, firstName, lastName } = this.state;
     const reqBody = {
         username, 
         firstName,
-        lastName,
-        email,
-        avatar
+        lastName
     };
-    updateUserInfo(userid, reqBody)
+    updateUserProfile(userid, reqBody)
       .then( res => {
         if ( res.status !== 200 ) {
           alert(res);

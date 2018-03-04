@@ -5,7 +5,7 @@ import ChangeAvatarURL from './AvatarChangeURL/AvatarChangeURL';
 import AvatarIconGallery from './AvatarIconGallery/AvatarIconGallery';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { updateUserInfo } from '../../../../../../services/account.services'
+import { updateUserInfo, updateUserAvatar } from '../../../../../../services/account.services'
 import { connect } from 'react-redux';
 class ChangeAvatar extends Component {
     constructor(props){
@@ -44,16 +44,10 @@ class ChangeAvatar extends Component {
 
     handleAvatarSubmit(){
         const userid = this.props.userInfo.id;
-        let { username, first_name, last_name, email } = this.props.userInfo;
         const reqBody = {
-            username, 
-            firstName: first_name,
-            lastName: last_name,
-            email: email,
             avatar: this.state.userInfo.avatar
         };
-        console.table(reqBody)
-        updateUserInfo(userid, reqBody)
+        updateUserAvatar(userid, reqBody)
           .then( res => {
             if ( res.status !== 200 ) {
               alert(res);
@@ -70,10 +64,6 @@ class ChangeAvatar extends Component {
         let newAvatar = e.trim();
         this.setState({
             userInfo: {
-                username: this.props.userInfo.username,
-                firstName: this.props.userInfo.firstName,
-                lastName: this.props.userInfo.lastName,
-                email: this.props.userInfo.email,
                 avatar: newAvatar
             }
           })
@@ -82,7 +72,7 @@ class ChangeAvatar extends Component {
         const {userInfo, handleAvatarSubmit, onCloseBtnClick } = this.props;
 
         let avatarGalleryClass = classnames({
-            "avatarIconGallary-wrapper":  true,
+            "avatarIconGallery-wrapper":  true,
             "avatarIconGallery--hide": this.state.UI.hideAvatarGallery
         })
 

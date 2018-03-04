@@ -114,7 +114,7 @@ const { closeMenus, updateProjectRedux } = this.props;
                 let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
                         <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
-                            <div className="board-item-thumbnail" style={{'background-image': `url(${project.background})`}}>
+                            <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
                             </div>
                             <div className="board-item-name">

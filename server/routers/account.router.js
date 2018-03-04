@@ -8,14 +8,11 @@ const accountRouter = express.Router();
 accountRouter.get('/:userid', (req, res) => {
     const userId = req.params.userid;
     const passportId = req.user[0].id;
-    if(!req.user){
-        res.send({newPath: `login`})
-    }
+
     if(userId != req.user[0].id){
-        res.send({newPath: `user/${passportId}/dashboard`})
+        res.send('check yo facts')
     }
 
-        // res.redirect('/');
     const db = getDb();
     db.find_user_by_id([ userId ])
         .then(user => res.send(user))
@@ -25,10 +22,11 @@ accountRouter.get('/:userid', (req, res) => {
 // find by username
 accountRouter.post('/username', (req, res) => {
     const { username } = req.body;
-    if(username !== req.user[0].username)
-        // res.redirect('/');
-        console.log('thats not you2');
-
+    console.log(req.user[0])
+    if(username != req.user[0].username){
+        res.send('are you kitten me right meow?')
+    }
+    
     const db = getDb();
     db.find_user_by_username([ username ])
         .then(user => res.send(user[0].username))
@@ -37,9 +35,10 @@ accountRouter.post('/username', (req, res) => {
 
 accountRouter.put('/update/:userid', (req, res) => {
     const userId = req.params.userid;
-    if(userId !== req.user[0].id)
-        // res.redirect('/');
-        console.log('thats not you3');
+    if(userId !== req.user[0].id){
+        res.send('am I cute yet?')
+    }
+        
     const { firstName, lastName, email, password, username, avatar } = req.body;
     const db = getDb();
     db.find_user_by_email([ email ])
@@ -67,9 +66,9 @@ accountRouter.put('/update/:userid', (req, res) => {
 
 accountRouter.put('/delete/:userid', (req, res) => {
     const userId = req.params.userId;
-    if(userId !== req.user[0].id)
-        // res.redirect('/');
-         console.log('thats not you4');
+    if(userId != req.user[0].id){
+        res.send('I hear you like scene kids ;)')
+    }
     const db = getDb();
     db.delete_user([ userId ])
         .then(promise => res.send())
@@ -79,9 +78,9 @@ accountRouter.put('/delete/:userid', (req, res) => {
 //find user info
 accountRouter.get('/info/:userid', (req, res) => {
     const userId = req.params.userid;
-    if(userId != req.user[0].id)
-    // res.redirect('/');
-     console.log('thats not you5');
+    if(userId != req.user[0].id){
+        res.send('yummmmmy!')
+    }
     const db = getDb();
     db.find_user_info([ userId ])
         .then(user => res.send(user))
@@ -93,9 +92,9 @@ accountRouter.get('/info/:userid', (req, res) => {
 accountRouter.put('/info/update/:userid', (req, res) => {
     const userId = req.params.userid;
     const { firstName, lastName, email, password, username, avatar } = req.body;
-    if(userId !== req.user[0].id)
-        // res.redirect('/');
-        console.log('thats not you5');
+    if(userId !== req.user[0].id){
+        res.send('who wants to play zelda with me?')
+    }
     const db = getDb();
     db.update_user([ userId, firstName, lastName, email, password, username, avatar ])
     .then(promise => res.send())
@@ -112,7 +111,7 @@ accountRouter.put('/info/update/:userid', (req, res) => {
 accountRouter.put('/info/update/password/:userid', (req, res) => {
     const userId = req.params.userid;
     const { password } = req.body;
-    if(userId !== req.user[0].id){
+    if(userId != req.user[0].id){
         res.send('NO NO NO NO NO NO NO');
     }
     const db = getDb();
@@ -121,5 +120,41 @@ accountRouter.put('/info/update/password/:userid', (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+accountRouter.put('/info/update/profile/:userid', (req,res) => {
+    const userId = req.params.userid;
+    const { username, firstName, lastName } = req.body;
+    console.log(req.user[0].id + " " + "user with 0");
+    if(userId != req.user[0].id){
+        res.send('update profile info failed!!');
+    }
+    const db = getDb();
+    db.update_user_profile([ userId, username, firstName, lastName ])
+    .then(promise => res.send())
+    .catch(err => res.status(500).send(err));
+});
+
+accountRouter.put('/info/update/email/:userid', (req, res) => {
+    const userId = req.params.userid;
+    const { email } = req.body;
+    if(userId != req.user[0].id){
+        res.send('update email failed');
+    }
+    const db = getDb();
+    db.update_user_email([ userId, email ])
+    .then(promise => res.send() )
+    .catch(err => res.status(500).send(err));
+});
+
+accountRouter.put('/info/update/avatar/:userid', (req, res) => {
+    const userId = req.params.userid;
+    const { avatar } = req.body;
+    if(userId != req.user[0].id){
+        res.send('update avatar failed');
+    }
+    const db = getDb();
+    db.update_user_avatar([ userId, avatar ])
+    .then(promise => res.send())
+    .catch(err => res.status(500).send(err));
+});
 
 module.exports = accountRouter;

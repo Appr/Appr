@@ -77,7 +77,6 @@ class EndpointItem extends Component {
                           border={'1px solid #CCC'}
                           height={'120px'}
                           mode="json"
-                          theme="tomorrow"
                           name={`requestEditor` + index}
                           onLoad={this.onLoad}
                           onChange={(e) => {handleRequestChange(e, index)}}

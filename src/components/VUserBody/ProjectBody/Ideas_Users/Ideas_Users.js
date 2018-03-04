@@ -179,7 +179,7 @@ class Ideas_Users extends Component {
         });
         const displayUsers = userfields.map( userfield => {
             const index = userfields.indexOf(userfield);
-            return <UserField index={index} userfieldid={userfield.id} targetDemoData={userfield.target_demo_data} skillData={userfield.skill_data} descriptionData={userfield.description_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
+            return <UserField key={`user-${index}`} index={index} userfieldid={userfield.id} targetDemoData={userfield.target_demo_data} skillData={userfield.skill_data} descriptionData={userfield.description_data} handleChangeField={this.handleChangeField} submitChangeField={this.submitChangeField} handleDeleteField={this.handleDeleteField}/>
         });
 
         return (

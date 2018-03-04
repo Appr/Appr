@@ -107,6 +107,7 @@ class Features extends Component {
         const displayFeatures = features.map( (feature, index) => {
             const id = feature.id;
             return (<FeatureItem
+                        key={`featuresItem${index}`}
                         index={index}
                         projectid={projectid}
                         id={id}

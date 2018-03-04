@@ -83,7 +83,7 @@ class Dashboard extends Component {
 
 		return (
 			<div>
-				<div className p="dashboard-container">		
+				<div className="dashboard-container">		
 					<div className="dashboard-wrapper">
 						<div className="personal-list-container">
 							<label className="dash-section-title"> Projects </label>

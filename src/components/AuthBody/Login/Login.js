@@ -31,7 +31,6 @@ class Login extends Component {
 	}
 
 	handleSubmitLogin() {
-		const isAuth = this.props.isAuth;
 		const { username, password } = this.state;
 		const creds = { username, password };
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
@@ -68,13 +67,7 @@ class Login extends Component {
 															findPersonalProjects(userInfo.id)
 																.then( res => {
 																	this.props.updatePersonalProjects(res.data);
-																	history.push(`/user/${userInfo.id}/dashboard`);
-
-																	if(isAuth === true){
-																		console.log('I should be switching urls')
-																		history.push(`/user/${res.data.id}/dashboard`);
-																	}
-
+																		history.push(`/user/${userInfo.id}/dashboard`);
 																})
 													}
 												})

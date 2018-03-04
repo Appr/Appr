@@ -92,10 +92,10 @@ import { withRouter } from 'react-router-dom'
                 <div className={`${navMenuClass}`}>
                     <NavMenu userid={userid} projectid={projectid} toggleSettingsMenu={this.toggleSettingsMenu}  />
                 </div>
-                <div className={settingsMenuClass} toggleSettingsMenu={this.toggleSettingsMenu}>
+                <div className={settingsMenuClass} >
                     <SettingsMenu toggleSettingsMenu={this.toggleSettingsMenu} toggleBackgroundMenu={this.toggleBackgroundMenu} />
                 </div>
-                <div className={backgroundMenuClass} toggleBackgroundMenu={this.toggleBackgroundMenu}>
+                <div className={backgroundMenuClass} >
                     <BackgroundMenu changeProjectBackground={changeProjectBackground} selectedBackground={selectedBackground}  handleProjectBackground={handleProjectBackground} toggleBackgroundMenu={this.toggleBackgroundMenu} />
                 </div>
             </div>

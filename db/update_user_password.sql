@@ -1,3 +1,4 @@
+--test works
 UPDATE users
     SET
         password = $2
