@@ -61,16 +61,14 @@ class RenameProject extends Component {
               </div>
 
                 <div className="modal-body">
-
                     <label className="modal-input-tag">Current Name</label>
-                        <section className="modal-row">
-                            <label className="current-email">{projectInfo.name}</label>
-                        </section>
-                        <label className="modal-input-tag">New Name</label>
-                        <section className="modal-row">
-                            <input className="modal-form" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
-                        </section>
-
+                    <section className="modal-row">
+                        <label className="current-email">{projectInfo.name}</label>
+                    </section>
+                    <label className="modal-input-tag">New Name</label>
+                    <section className="modal-row">
+                        <input className="modal-form" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
+                    </section>
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={ (e) => closeProjectNameModal() }> Cancel </button>
