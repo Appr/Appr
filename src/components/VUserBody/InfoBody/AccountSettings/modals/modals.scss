@@ -2,8 +2,8 @@
 
     .modal-account-settings-content{
         max-width: 50vw;
-        padding-left: 20px;
-        padding-right: 20px;
+        // padding-left: 20px;
+        // padding-right: 20px;
         border: none;
         background-color: #f4f4f4;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
@@ -12,7 +12,7 @@
         z-index: 4;
         border-radius: 5px;
       }
-    
+
     .modalStyle{
         top: 0px;
         position: absolute;
@@ -23,7 +23,7 @@
         z-index: 0;
         transition: 0.2s ease-in-out;
       }
-  
+
     .modalStyle-inner{
         display: flex;
         justify-content: center;
@@ -39,7 +39,7 @@
         color: #95989A;
         white-space: nowrap;
       }
-    
+
       .closeBtn{
         display: flex;
         justify-content: flex-end;
@@ -47,30 +47,30 @@
         color: grey;
         font-size: 30px;
         user-select: none;
-        
-        
+
+
       }
-    
+
       .closeBtn:hover {
         color: #000;
         text-decoration: none;
         cursor: pointer;
         transition: 0.2s ease-in-out;
       }
-    
+
       .closeBtn:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
         transition: 0.2s ease-in-out;
       }
-    
+
 
       .modal-header h2, .modal-footer h3{
         margin: 0;
         transition: 0.2s ease-in-out;
       }
-    
+
       .modal-header{
         width: 100%;
         padding-top: 1px;
@@ -79,9 +79,9 @@
         align-items: center;
         border-bottom: #95989A 1px solid;
         color: white;
-        
+
       }
-    
+
       .modal-input-tag {
         width: 100%;
         text-align: left;
@@ -91,7 +91,7 @@
         margin-bottom: 10px;
         white-space: nowrap;
       }
-    
+
       .modal-body{
       /*   border: 1px solid blue; */
         padding-top: 20px;
@@ -100,8 +100,8 @@
         width: 25vw;
         align-items: center;
       }
-      
-      
+
+
       .submitModal{
         margin-bottom: 20px;
         button{
@@ -121,33 +121,33 @@
           white-space: nowrap;
         }
       }
-    
+
       .modal-form {
         height: 33px;
         width: 99%;
         outline: none;
-        
+
       }
-    
+
       .modal-row{
         width: 100%;
         margin-bottom: 18px;
         transition: 0.2s ease-in-out;
       }
-    
+
       @keyframes modalopen {
         from {opacity: 0;}
         to {opacity: 1;}
       }
-    
+
       .current-email{
         color: #95989A;
 
       }
-    
+
     /* Not modal css */
-    
-    
+
+
     #editProfileBtn {
         display: flex;
         align-items: center;
@@ -157,7 +157,7 @@
         background: #E2E4E6;
         cursor: pointer;
     }
-    
+
     .headline-20{
         font-size: 20px;
         text-align: left;
@@ -226,8 +226,8 @@
         height: 100%;
         opacity: 1;
         z-index: 1;
-        
-        
+
+
         padding: 0px;
       }
 
