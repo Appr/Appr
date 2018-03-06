@@ -128,6 +128,7 @@
         color: $dark-color;
         cursor: pointer;
         transition: 0.2s ease-in-out;
+        white-space: nowrap;
       }
 
       .archive-btn {
@@ -141,6 +142,7 @@
         color: white;
         cursor: pointer;
         transition: 0.2s ease-in-out;
+        white-space: nowrap;
       }
 
       .modal-form {
