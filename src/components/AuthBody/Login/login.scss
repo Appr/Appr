@@ -78,6 +78,7 @@
     width: 275px;
     height: 40px;
     border: 1.5px solid #CCC;
+    background: transparent;
   }
   
   .lgn-icon-con{
@@ -86,15 +87,14 @@
     align-items: center;
     width: 40px;
     height: 40px;
+    background: transparent;
   /*   border: 1px solid black; */
   }
   
   .lgn-icon {
     width: 25px;
     height: 25px;
-    img{
-      fill: blue;
-    }
+    background: transparent;
     
   }
   
@@ -112,36 +112,36 @@
     justify-content: flex-end;
   }
   
-  .login-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 105px;
-    background-color: #4A4A4A;
-    color: white;
-    border-style: none;
-    font-size: 18px;
-    border-radius: 3px;
-    outline: none;
-    height: 50px;
-    cursor: pointer;
-    button{
-      height: 50px;
-    }
+  // .login-btn{
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 105px;
+  //   background-color: #4A4A4A;
+  //   color: white;
+  //   border-style: none;
+  //   font-size: 18px;
+  //   border-radius: 3px;
+  //   outline: none;
+  //   height: 50px;
+  //   cursor: pointer;
+  //   button{
+  //     height: 50px;
+  //   }
 
-    &:hover {
-      background-color: #393939; 
-    }
+  //   &:hover {
+  //     background-color: #393939; 
+  //   }
     
-    &:active{
-      background-color: #2b2b2b;
-    }
-  }
+  //   &:active{
+  //     background-color: #2b2b2b;
+  //   }
+  // }
 
-  .login-btn a {
-    color: white;
-    text-decoration: none;
-  }
+  // .login-btn a {
+  //   color: white;
+  //   text-decoration: none;
+  // }
   
   .login-bottom {
     height: 115px;

@@ -6,15 +6,23 @@ class RegEmail extends Component {
         super(props);
         this.state = {
             showEmailFail: false,
-            showEmailSuccess: false
+            showEmailSuccess: false,
         }
         this.handleFailedEmail = this.handleFailedEmail.bind(this);
         this.handleSuccessEmail = this.handleSuccessEmail.bind(this);
         this.handleConstraint = this.handleConstraint.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.emailErrorText !== ''){
+            this.setState({
+                showEmailFail: true,
+                showEmailSuccess: false
+            })
+        }
+    }
+
     handleFailedEmail() {
-        this.props.toggleReadySwitch('email', false);
         this.setState({
             showEmailFail: true,
             showEmailSuccess: false
@@ -22,7 +30,6 @@ class RegEmail extends Component {
     }
 
     handleSuccessEmail() {
-        this.props.toggleReadySwitch('email', true);
         this.setState({
             showEmailFail: false,
             showEmailSuccess: true
@@ -32,7 +39,7 @@ class RegEmail extends Component {
     handleConstraint(e) {
         const email = e.target.value;
         if (email.length > 0) {
-            !email.includes('@') || email[email.length - 4] !== '.' ? this.handleFailedEmail() : this.handleSuccessEmail();
+            !email.includes('@') || email[email.length - 4] !== '.' || this.props.emailErrorText.length > 0 ? this.handleFailedEmail() : this.handleSuccessEmail();
         }
         else {
             this.setState({
@@ -43,7 +50,10 @@ class RegEmail extends Component {
     }
 
     render() {
-        const { handleChangeInput } = this.props;
+        const { handleChangeInput, emailReady } = this.props;
+        
+
+
         let failEmailClass = classnames({
             "reg-field": true,
             "reg-field--fail": this.state.showEmailFail
@@ -58,7 +68,7 @@ class RegEmail extends Component {
                 <label className="input-tag"> Email </label>
                 <input className="input-solo" type="text" name="email" placeholder="e.g. kyloren@firstorder.org" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
                 <div className="reg-info">
-                    <p className="invalid-text"> This email is invalid </p>
+                    <p className="invalid-text"> {this.props.emailErrorText} </p>
                     <p className="valid-text"> This email is valid </p>
                 </div>
             </div>
