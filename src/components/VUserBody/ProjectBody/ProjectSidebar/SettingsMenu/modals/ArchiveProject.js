@@ -53,7 +53,7 @@ class ArchiveProject extends Component {
 
                 </div>
               <div className="submitModal">
-                <button className="cancel-btn"> Cancel </button>
+                <button className="cancel-btn" onClick={ (e) => closeArchiveModal() }> Cancel </button>
                 <button className="archive-btn" onClick={(e) => handleArchive()}> Archive </button>
               </div>
             </div>
