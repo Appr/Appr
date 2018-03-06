@@ -15,7 +15,7 @@ class RenameProject extends Component {
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleRename = this.handleRename.bind(this);
-  } 
+  }
 
   handleNameChange(e){
     let newName = e;
@@ -37,7 +37,7 @@ class RenameProject extends Component {
                     updateProjectRedux(res.data[0])
                     findPersonalProjects(userid)
                     .then( res => {
-                      this.props.updatePersonalProjects(res.data)                      
+                      this.props.updatePersonalProjects(res.data)
                       closeProjectNameModal()
                   })
 
@@ -52,7 +52,7 @@ class RenameProject extends Component {
         console.log(this.state.localProjectName);
 
       return (
-          
+
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
@@ -60,9 +60,9 @@ class RenameProject extends Component {
                 <h2 className="modal-title">Change Project Name</h2>
                 <span className="closeBtn" onClick={(e) => closeProjectNameModal()}>&times;</span>
               </div>
-              
+
                 <div className="modal-body">
-                  
+
                     <label className="modal-input-tag">Current Name</label>
                         <section className="modal-row">
                             <label className="current-email">{projectInfo.name}</label>
@@ -71,12 +71,11 @@ class RenameProject extends Component {
                         <section className="modal-row">
                             <input className="modal-form" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
                         </section>
-                
+
                 </div>
               <div className="submitModal">
-                <button onClick={(e) => this.handleRename()}>
-                  CHANGE NAME
-                </button>
+                <button className="submit-btn"onClick={(e) => this.handleRename()}> Change Name </button>
+                <button className="cancel-btn" onClick={ (e) => closeProjectNameModal() }> Cancel </button>
               </div>
             </div>
            </div>
