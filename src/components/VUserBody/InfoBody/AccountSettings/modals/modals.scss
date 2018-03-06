@@ -112,7 +112,9 @@
       .submitModal{
         margin-bottom: 20px;
         width: 22vw;
-
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 15px;
       }
 
       .modal-form {
