@@ -42,9 +42,9 @@
 
       .closeBtn{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         width: 33px;
-        color: grey;
+        color: $light-color;
         font-size: 30px;
         user-select: none;
 
