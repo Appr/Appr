@@ -100,7 +100,9 @@
 
       .modal-body{
         display: flex;
-        flex-direction: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
         width: 25vw;
         align-items: center;
       }
