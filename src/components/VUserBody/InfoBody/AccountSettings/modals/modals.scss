@@ -11,6 +11,9 @@
         animation-duration: 0.3s;
         z-index: 4;
         border-radius: 5px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
       }
 
     .modalStyle{
@@ -111,10 +114,11 @@
 
       .submitModal{
         margin-bottom: 20px;
-        width: 22vw;
+        width: 23vw;
         display: flex;
         justify-content: flex-end;
-        padding-right: 15px;
+        padding-right: 5px;
+        border: solid red 2px;
       }
 
       .cancel-btn {
