@@ -117,14 +117,14 @@
         width: 23vw;
         display: flex;
         justify-content: flex-end;
-        padding-right: 5px;
+        border: solid red 2px;
       }
 
       .cancel-btn {
         text-align: center;
         font-size: 11px;
         height: 35px;
-        width: 70px;
+        width: 90px;
         outline: none;
         border: none;
         background: $light-color;
@@ -139,7 +139,7 @@
         text-align: center;
         font-size: 11px;
         height: 35px;
-        width: 70px;
+        width: 90px;
         outline: none;
         border: none;
         background: $red-btn-color;
@@ -149,6 +149,7 @@
         white-space: nowrap;
         border-radius: 3px;
         margin-left: 10px;
+        margin-right: 10px;
       }
 
       .modal-form {

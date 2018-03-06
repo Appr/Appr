@@ -56,7 +56,6 @@ class RenameProject extends Component {
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
-                <div className="modal-header-placeholder"></div>
                 <h2 className="modal-title">Change Project Name</h2>
                 <span className="closeBtn" onClick={(e) => closeProjectNameModal()}>&times;</span>
               </div>
