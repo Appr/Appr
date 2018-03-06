@@ -74,8 +74,8 @@ class RenameProject extends Component {
 
                 </div>
               <div className="submitModal">
-                <button className="submit-btn"onClick={(e) => this.handleRename()}> Change Name </button>
                 <button className="cancel-btn" onClick={ (e) => closeProjectNameModal() }> Cancel </button>
+                <button className="submit-btn"onClick={(e) => this.handleRename()}> Change Name </button>
               </div>
             </div>
            </div>
