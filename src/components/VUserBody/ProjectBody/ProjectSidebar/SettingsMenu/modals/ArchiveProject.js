@@ -17,7 +17,7 @@ class ArchiveProject extends Component {
 
 
 
-    
+
     render() {
 
         const { closeArchiveModal, projectInfo, userInfo, dashboardInfo, updatePersonalProjects } = this.props;
@@ -31,27 +31,27 @@ class ArchiveProject extends Component {
                   findPersonalProjects(userid)
                   .then( res => {
                       updatePersonalProjects(res.data);
-                      history.push(path);                 
+                      history.push(path);
                   })
                 })
 
         }
 
       return (
-          
+
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
                 <div className="modal-header-placeholder"></div>
-                <h2 className="modal-title"></h2>
+                <h2 className="modal-title">ARCHIVE PROJECT</h2>
                 <span className="closeBtn" onClick={(e) => closeArchiveModal()}>&times;</span>
               </div>
-              
+
                 <div className="modal-body">
-                  
+
                     <p>Are you sure you want to archive <b>{projectInfo.name}</b>?
                     </p>
-                
+
                 </div>
               <div className="submitModal">
                 <button onClick={(e) => handleArchive()}>
