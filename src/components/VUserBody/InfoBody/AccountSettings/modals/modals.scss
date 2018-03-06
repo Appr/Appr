@@ -111,22 +111,8 @@
 
       .submitModal{
         margin-bottom: 20px;
-        button{
-          text-align: center;
-          font-size: 18px;
-          text-transform: uppercase;
-          height: 35px;
-          width: 100%;
-          background: blue;
-          outline: none;
-          border: none;
-          background: $secondary;
-          color: white;
-          cursor: pointer;
-          transition: 0.2s ease-in-out;
-          width: 100%;
-          white-space: nowrap;
-        }
+        width: 22vw;
+
       }
 
       .modal-form {
