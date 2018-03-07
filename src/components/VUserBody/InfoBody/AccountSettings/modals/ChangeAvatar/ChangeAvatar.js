@@ -85,6 +85,12 @@ class ChangeAvatar extends Component {
             "modal-header-placeholder--before": this.state.UI.hideChangeURLOption,
             "model-header-placeholder--after": true
         })
+
+        let backBtnClass = classnames({
+            "avatar-back-btn--before": this.state.UI.hideChangeURLOption,
+            "avatar-back-btn--after": true
+        })
+
       return (
         <div className="avatar-modal-wrapper">
             <div className="avatar-modal-content">
@@ -95,7 +101,7 @@ class ChangeAvatar extends Component {
                 {/* <form> */}
                 <div className="avatar-settings-content">
                     <div className={`${modelBackBtnClass}`}>
-                        <button className="avatar-back-btn" onClick={this.toggleChangeURL}>Back</button>
+                        <button className={`${backBtnClass}`} onClick={this.toggleChangeURL}>Back</button>
                     </div>
                     <div className={`${avatarGalleryClass}`}>
                         <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>

@@ -228,24 +228,41 @@
       display: flex;
       align-items: center;
       width: 33px;
-      height: 34px;
+      height: 5px;
       background: transparent;
       transition: 0.2s ease-in-out;
       position: relative;
-
-      span{
-        width: 33px;
-        height: 33px;
-      }
     }
 
     .modal-header-placeholder--after{
       display: flex;
       align-items: center;
       width: 33px;
-      height: 34px;
+      height: 5px;
       background: transparent;
       transition: 0.2s ease-in-out;
       position: relative;
-
     }
+
+    .avatar-back-btn--before {
+        width: 33px;
+        height: 34px;
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .avatar-back-btn--after {
+        text-align: center;
+        font-size: 11px;
+        height: 30px;
+        width: 50px;
+        outline: none;
+        border: none;
+        background: $medium-color;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        white-space: nowrap;
+        border-radius: 3px;
+      }
