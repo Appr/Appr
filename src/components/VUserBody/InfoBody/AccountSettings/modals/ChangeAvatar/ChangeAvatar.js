@@ -89,14 +89,14 @@ class ChangeAvatar extends Component {
         <div className="avatar-modal-wrapper">
             <div className="avatar-modal-content">
                 <div className="avatar-modal-header">
-                    <div className={`${modelBackBtnClass}`}>
-                        <button onClick={this.toggleChangeURL}>Back</button>
-                    </div>
                     <h2 className="avatar-modal-title">CHANGE AVATAR</h2>
                     <span className="avatar-closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
                 <div className="avatar-settings-content">
+                    <div className={`${modelBackBtnClass}`}>
+                        <button onClick={this.toggleChangeURL}>Back</button>
+                    </div>
                     <div className={`${avatarGalleryClass}`}>
                         <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
                     </div>
