@@ -214,3 +214,18 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+
+  .avatar-back-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 30px;
+    width: 60px;
+    outline: none;
+    border: none;
+    background: $light-color;
+    color: $dark-color;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+  }
