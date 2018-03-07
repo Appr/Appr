@@ -21,9 +21,8 @@ class EditProfile extends Component {
 
   handleNameSubmit(){
     const userid = this.props.userInfo.id;
-    let { username, firstName, lastName } = this.state;
+    let { firstName, lastName } = this.state;
     const reqBody = {
-        username,
         firstName,
         lastName
     };
@@ -85,11 +84,16 @@ class EditProfile extends Component {
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
+<<<<<<< HEAD
 
                   <label className="modal-input-tag">Username</label>
+=======
+
+                  {/* <label className="modal-input-tag">Username</label>
+>>>>>>> 3b84dd2a00c12434075ca61442441206ef88b584
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
-                    </section>
+                    </section> */}
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>

@@ -9,36 +9,34 @@ const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
-    bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash(password, salt, function(err, hash){
-            console.log(hash);
-            // console.log(password);
-            // let credentials = {
-            //     username: email,
-            //     password: hash
-            // }
+    //EMAIL VALIDATION//
+    const db = getDb(); 
+    db.find_user_by_email([ email ])
+        .then( user => {
+            if(email === user[0].email){
+                res.send({emailError: 'Email already in use'})
+            }
+        })
+    //EMAIL VALIDATION//
+    //PASSWORD VALIDATION//
+    if(password.length < 8){
+        return res.send({passwordError: 'Password must contain at least eight characters!'})
+    }
+    //PASSWORD VALIDATION//
 
-            // console.log(credentials)
-            const db = getDb();
-            db.register_user([ firstName, lastName, email, hash, username ])
-                .then(promise => res.send(hash))
-                .catch(err => res.status(500).send(err));
+        bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(password, salt, function(err, hash){
+                console.log(hash);
+                const db = getDb();
+                db.register_user([ firstName, lastName, email, hash, username ])
+                    .then(promise => res.send(hash))
+                    .catch(err => res.status(500).send(err));
+            });
         });
-    });
+    
+
 })
 
-
-// authRouter.get('/get-password', (req, res) => {
-//     const { firstName, lastName, email, password, username } = req.body;
-//     bcrypt.genSalt(10, function(err, salt){
-//         bcrypt.hash(password, salt, function(err, hash){
-//             const db = getDb();
-//             db.register_user([ firstName, lastName, email, hash, username ])
-//                 .then(promise => res.send(hash))
-//                 .catch(err => res.status(500).send(err));
-//         });
-//     });
-// })
 
 
 
@@ -95,7 +93,8 @@ authRouter.post('/login-test', (req, res) => {
                 }
             })
         })
-        .catch(err => {throw err});
+        .catch(err => {throw err
+        });
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {
@@ -103,6 +102,8 @@ authRouter.post('/login', passport.authenticate('login'), (req, res) => {
     res.send(req.user);
 });
 
-// authRouter.post('/logout');
+authRouter.get('/logout', (req, res) => {
+    req.logout();
+});
 
 module.exports = authRouter;

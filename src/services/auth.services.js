@@ -25,7 +25,7 @@ function login(body) {
 
 function logout(body) {
     return axios
-        .post(`${baseURL}/logout`, body)
+        .get(`${baseURL}/logout`, body)
         .then(res => res)
         .catch(err => {throw err});
 }

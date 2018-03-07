@@ -128,13 +128,13 @@ accountRouter.put('/info/update/password/:userid', (req, res) => {
 
 accountRouter.put('/info/update/profile/:userid', (req,res) => {
     const userId = req.params.userid;
-    const { username, firstName, lastName } = req.body;
+    const { firstName, lastName } = req.body;
     console.log(req.user[0].id + " " + "user with 0");
     if(userId != req.user[0].id){
         res.send('update profile info failed!!');
     }
     const db = getDb();
-    db.update_user_profile([ userId, username, firstName, lastName ])
+    db.update_user_profile([ userId, firstName, lastName ])
     .then(promise => res.send())
     .catch(err => res.status(500).send(err));
 });

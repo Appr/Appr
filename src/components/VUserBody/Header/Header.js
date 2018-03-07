@@ -8,6 +8,7 @@ import './header.scss';
 import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
 import { connect } from 'react-redux';
+import { logout } from '../../../services/auth.services';
 
 
 class Header extends Component {
@@ -28,6 +29,7 @@ class Header extends Component {
             this.closeMenus = this.closeMenus.bind(this);
             this.openFeedbackModal = this.openFeedbackModal.bind(this);
             this.closeFeedbackModal = this.closeFeedbackModal.bind(this);
+            this.handleLogOut = this.handleLogOut.bind(this);
     }
 
 
@@ -83,6 +85,13 @@ class Header extends Component {
                 rightMenuOpen: true,
                 breadToX: false
             })
+    }
+
+    handleLogOut() {
+        logout()
+        .then( res => {
+            console.log(res);
+        })
     }
     
   render(){
@@ -152,7 +161,7 @@ class Header extends Component {
                 <ul>
                     <Link to={`/user/${userInfo.id}/account/settings/${userInfo.id}`} onClick={this.closeMenus}><li>Settings</li></Link>
                     <li onClick={this.openFeedbackModal}>Report Bug</li>
-                    <Link to="/" onClick={this.closeMenus}><li>Log Out</li></Link>
+                    <Link to="/" onClick={(e) => this.handleLogOut()}><li>Log Out</li></Link>
                 </ul>
             </div>
             </div>

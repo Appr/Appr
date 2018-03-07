@@ -1,0 +1,55 @@
+  
+  .login-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 105px;
+    background-color: #4A4A4A;
+    color: white;
+    border-style: none;
+    font-size: 18px;
+    border-radius: 3px;
+    outline: none;
+    height: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+
+  .login-btn:hover {
+    background-color: #393939; 
+  }
+  
+  .login-btn:active{
+    background-color: #2b2b2b;
+  }
+
+  .login-btn a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+  .login-btn-loading{
+    transition: 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 105px;
+    background-color: transparent !important;
+    color: #4A4A4A;
+    border-style: none;
+    font-size: 18px;
+    border-radius: 3px;
+    outline: none;
+    height: 50px;
+    text-transform: uppercase;
+    transition: 0.2s ease-in-out;
+    user-select: none;
+  }
+
+
+
+
+
+  

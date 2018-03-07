@@ -12,6 +12,7 @@ import {  findPersonalProjects } from '../../../services/dashboard.services';
 import { connect } from 'react-redux'
 import history from '../../../history';
 import { withRouter } from 'react-router-dom';
+import LoginButton from '../../VUserBody/landomon-UI/LoginButton';
 
 
 class Login extends Component {
@@ -19,10 +20,15 @@ class Login extends Component {
 		super(props);
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			UI:{
+				loginLabel: 'Login',
+				loginLoading: false,
+			}
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
+		this.revertLoginButton = this.revertLoginButton.bind(this);
 	}
 
 	handleInputChange(e) {
@@ -30,9 +36,19 @@ class Login extends Component {
 		this.setState({ [field]: e.target.value });
 	}
 
+	revertLoginButton(){
+		this.setState({
+			UI:{
+				loginLabel: 'Login',
+				loginLoading: false
+			}
+		})
+	}
+
 	handleSubmitLogin() {
 		const { username, password } = this.state;
 		let creds = { username, password };
+
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
 			alert('Make sure you entered your email correctly!');
 		}
@@ -48,16 +64,24 @@ class Login extends Component {
 								 username: this.state.username,
 								 password: res.data
 							 }
+							 this.setState({
+								UI:{
+									loginLabel: 'Loading',
+									loginLoading: true
+								}
+							})
 							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
+
 										if(res.status === 200){
 												findUserInfo(res.data.id)
 												.then( res => {
 													if (res.status !== 200) {
 													alert('failed')
+														this.revertLoginButton();
 													}
-													if (res.status === 200){
+													else if (res.status === 200){
 														let userInfo = {   
 															id: res.data[0].id,
 															username: res.data[0].username,
@@ -73,20 +97,22 @@ class Login extends Component {
 																	this.props.updatePersonalProjects(res.data);
 																		history.push(`/user/${userInfo.id}/dashboard`);
 																})
+																
 													}
 												})
-												.catch(err => {throw err});
+												.catch(err => {throw err})
 											}
 									}
 								)
-								.catch(err => {throw err});
+								.catch(err => {throw err})
 						}
 						else {
-							alert(res.data);
+							this.revertLoginButton();
 						}
 					})
 					.catch(err => {
 						this.props.updateAuth(false)
+						throw err
 					});
 			}
 		}
@@ -112,7 +138,7 @@ class Login extends Component {
 								<input className="usr-pswd-input" type="text"  name="username" placeholder="vader@empire.org" onChange={e => this.handleInputChange(e)}/>
 							</div>
 							<div className="usr-pswd-row">
-								<div className="lgn-icon-con">
+								<div className="lgn-icon-con" style={{backgroundColor: 'transparent'}}>
 									<div className="lgn-icon">
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
@@ -121,7 +147,11 @@ class Login extends Component {
 							</div>
 
 							<div className="login-btn-con">
-								<button className="login-btn" onClick={this.handleSubmitLogin}> LOGIN </button>
+								<LoginButton
+									onClickAction={this.handleSubmitLogin}
+									label={this.state.UI.loginLabel}
+									loading={this.state.UI.loginLoading}
+								/>
 							</div>
 						</div>
 					</div>

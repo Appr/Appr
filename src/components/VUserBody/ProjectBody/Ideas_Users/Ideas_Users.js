@@ -238,7 +238,7 @@ class Ideas_Users extends Component {
                                     <div className="users-column-name">
                                         <section>
                                             <span><label>Demographic</label></span>
-                                            <span><label>Skills</label></span>
+                                            <span><label>Skill Level</label></span>
                                             <span><label>Description</label></span>
                                         </section>
 
