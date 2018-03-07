@@ -235,15 +235,6 @@
       transition: 0.2s ease-in-out;
       position: relative;
 
-      button{
-        width: 33px;
-        height: 34px;
-        opacity: 0;
-        position: absolute;
-        z-index: -1;
-        background: red;
-      }
-
       span{
         width: 33px;
         height: 33px;
@@ -259,17 +250,5 @@
       background: transparent;
       transition: 0.2s ease-in-out;
       position: relative;
-
-
-      button{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
-        z-index: 1;
-        padding: 0px;
-        background: red;
-      }
-
 
     }
