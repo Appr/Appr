@@ -62,7 +62,7 @@ class ChangeEmail extends Component {
                 </div>
                 <div className="submitModal">
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
-                    <button id="updateEmail" className="submit-btn" onClick={(e) => {this.handleEmailSubmit()}}> Update Email </button>
+                    <button id="updateEmail" className="submit-btn" deleted donClick={(e) => {this.handleEmailSubmit()}}> Update Email </button>
                 </div>
                 {/* </form> */}
             </div>
