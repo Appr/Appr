@@ -96,15 +96,15 @@ class ChangeAvatar extends Component {
                     <span className="avatar-closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
-                    <div className="avatar-settings-content">
-                        <div className={`${avatarGalleryClass}`}>
-                            <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
-                        </div>
-
-                        <div className={`${changeURLClass}`} >
-                            <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
-                        </div>
+                <div className="avatar-settings-content">
+                    <div className={`${avatarGalleryClass}`}>
+                        <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
                     </div>
+
+                    <div className={`${changeURLClass}`} >
+                        <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
+                    </div>
+                </div>
 
                 <div className="avatar-submitModal">
                     <button className="avatar-cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
