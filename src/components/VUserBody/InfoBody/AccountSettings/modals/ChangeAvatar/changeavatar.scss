@@ -197,3 +197,19 @@
         border-radius: 3px;
 }
 
+.avatar-submit-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 35px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $red-btn-color;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
