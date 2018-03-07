@@ -95,7 +95,7 @@ class ChangeAvatar extends Component {
                 {/* <form> */}
                 <div className="avatar-settings-content">
                     <div className={`${modelBackBtnClass}`}>
-                        <button onClick={this.toggleChangeURL}>Back</button>
+                        <button className="avatar-back-btn" onClick={this.toggleChangeURL}>Back</button>
                     </div>
                     <div className={`${avatarGalleryClass}`}>
                         <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
