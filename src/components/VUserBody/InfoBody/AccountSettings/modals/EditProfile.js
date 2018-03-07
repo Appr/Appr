@@ -23,7 +23,7 @@ class EditProfile extends Component {
     const userid = this.props.userInfo.id;
     let { username, firstName, lastName } = this.state;
     const reqBody = {
-        username, 
+        username,
         firstName,
         lastName
     };
@@ -62,7 +62,7 @@ class EditProfile extends Component {
           username: newUsername
       })
   }
-    
+
     render() {
       console.log(this.state)
       const { userInfo, handleNameSubmit, onCloseBtnClick } = this.props;
@@ -70,32 +70,30 @@ class EditProfile extends Component {
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
-                <div className="modal-header-placeholder"></div>
-                <h2 className="modal-title">Edit Profile</h2>
+                <h2 className="modal-title">EDIT PROFILE</h2>
                 <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
               </div>
-              
+
                 <div className="modal-body">
-                  
+
                   <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
                     </section>
-                  
+
                   <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
                     </section>
-                  
+
                   <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
                     </section>
                 </div>
               <div className="submitModal">
-                <button id="updateProfile" onClick={(e) => {this.handleNameSubmit()}}>
-                  Update Profile
-                </button>
+                <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                <button id="updateProfile" className="submit-btn" onClick={(e) => {this.handleNameSubmit()}}> Update </button>
               </div>
             </div>
            </div>
