@@ -59,7 +59,7 @@ class ChangeAvatar extends Component {
           })
           .catch(err => {throw err});
     }
-    
+
     handleAvatarChange(e){
         let newAvatar = e.trim();
         this.setState({
@@ -100,16 +100,15 @@ class ChangeAvatar extends Component {
                         <div className={`${avatarGalleryClass}`}>
                             <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
                         </div>
-                        
+
                         <div className={`${changeURLClass}`} >
                             <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
                         </div>
                     </div>
 
                 <div className="submitModal">
-                    <button id="updateAvatar" onClick={(e) => {this.handleAvatarSubmit()}}>
-                    Update Avatar
-                    </button>
+                    <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                    <button id="updateAvatar" className="submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update Avatar </button>
                 </div>
                 {/* </form> */}
             </div>
