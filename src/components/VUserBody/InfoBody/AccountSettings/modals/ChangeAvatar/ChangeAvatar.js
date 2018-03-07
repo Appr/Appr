@@ -86,14 +86,14 @@ class ChangeAvatar extends Component {
             "model-header-placeholder--after": true
         })
       return (
-        <div className="modalStyle-inner">
-            <div className="modal-account-settings-content">
-                <div className="modal-header">
+        <div className="avatar-modal-wrapper">
+            <div className="avatar-modal-content">
+                <div className="avatar-modal-header">
                     <div className={`${modelBackBtnClass}`}>
                         <button onClick={this.toggleChangeURL}>Back</button>
                     </div>
-                    <h2 className="modal-title">CHANGE AVATAR</h2>
-                    <span className="closeBtn" onClick={onCloseBtnClick}>&times;</span>
+                    <h2 className="avatar-modal-title">CHANGE AVATAR</h2>
+                    <span className="avatar-closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
                     <div className="avatar-settings-content">
@@ -106,9 +106,9 @@ class ChangeAvatar extends Component {
                         </div>
                     </div>
 
-                <div className="submitModal">
-                    <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                    <button id="updateAvatar" className="submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update </button>
+                <div className="avatar-submitModal">
+                    <button className="avatar-cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                    <button id="updateAvatar" className="avatar-submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>
