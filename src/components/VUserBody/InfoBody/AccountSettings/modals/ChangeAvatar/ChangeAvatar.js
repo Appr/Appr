@@ -92,7 +92,7 @@ class ChangeAvatar extends Component {
                     <div className={`${modelBackBtnClass}`}>
                         <button onClick={this.toggleChangeURL}>Back</button>
                     </div>
-                    <h2 className="modal-title">Change Avatar</h2>
+                    <h2 className="modal-title">CHANGE AVATAR</h2>
                     <span className="closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
@@ -108,7 +108,7 @@ class ChangeAvatar extends Component {
 
                 <div className="submitModal">
                     <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                    <button id="updateAvatar" className="submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update Avatar </button>
+                    <button id="updateAvatar" className="submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>
