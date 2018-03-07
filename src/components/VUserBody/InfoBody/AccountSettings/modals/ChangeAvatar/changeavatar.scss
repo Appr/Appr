@@ -150,4 +150,15 @@
     align-items: center;
 }
 
+.avatar-closeBtn {
+    display: flex;
+    justify-content: center;
+    width: 33px;
+    color: $light-color;
+    font-size: 30px;
+    user-select: none;
+    padding-bottom: 5px;
+    padding-right: 4px;
+}
+
 
