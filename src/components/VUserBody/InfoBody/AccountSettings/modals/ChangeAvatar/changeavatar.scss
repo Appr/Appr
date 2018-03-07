@@ -168,3 +168,9 @@
     transition: 0.2s ease-in-out;
 }
 
+.avatar-closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
