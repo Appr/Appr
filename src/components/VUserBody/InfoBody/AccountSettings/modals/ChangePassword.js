@@ -13,8 +13,8 @@ class ChangePassword extends Component {
         }
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
-        this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);        
-                
+        this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+
     }
 
     handlePasswordSubmit(){
@@ -49,15 +49,14 @@ class ChangePassword extends Component {
             confirmPassword: text
         })
     }
-    
+
     render() {
         console.table(this.state);
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
                 <div className="modal-header">
-                    <div className="modal-header-placeholder"></div>
-                    <h2 className="modal-title">Change Password</h2>
+                    <h2 className="modal-title">CHANGE PASSWORD</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
 
@@ -70,18 +69,17 @@ class ChangePassword extends Component {
                 <section className="modal-row">
                     <input type="password" className="modal-form" required onChange={ (e) => {this.handleConfirmPasswordChange(e.target.value)}} maxLength="18" />
                 </section>
-                
+
                 </div>
                 <div className="submitModal">
-                    <button id="updatePassword" onClick={(e) => {this.handlePasswordSubmit()}}>
-                    Update Password
-                    </button>
+                    <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>
+                    <button id="updatePassword" className="submit-btn" onClick={(e) => {this.handlePasswordSubmit()}}> Update </button>
                 </div>
 
             </div>
-        
+
         </div>
-        
+
       );
     }
   }

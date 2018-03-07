@@ -45,7 +45,7 @@ class ChangeEmail extends Component {
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
                 <div className="modal-header">
-                    <h2 className="modal-title">Change Email</h2>
+                    <h2 className="modal-title">CHANGE EMAIL</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
@@ -62,7 +62,7 @@ class ChangeEmail extends Component {
                 </div>
                 <div className="submitModal">
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
-                    <button id="updateEmail" className="submit-btn" deleted donClick={(e) => {this.handleEmailSubmit()}}> Update Email </button>
+                    <button id="updateEmail" className="submit-btn" deleted donClick={(e) => {this.handleEmailSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>
