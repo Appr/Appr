@@ -55,7 +55,7 @@ export default class BackgroundMenu extends Component {
 
                     <div className='project-background-footer'>
                         <div className="project-sidebar-buttonset">
-                            <button onClick={(e) => {changeProjectBackground(), toggleBackgroundMenu()} } className="changeBackgroundBtn">Change</button>
+                            <button onClick={(e) => {changeProjectBackground() && toggleBackgroundMenu()} } className="changeBackgroundBtn">Change</button>
                             <div onClick={(e) => {toggleBackgroundMenu()}} className="closeBackgroundList"> <span /> </div>
                         </div>
                         
