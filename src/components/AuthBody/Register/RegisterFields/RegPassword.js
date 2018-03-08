@@ -70,7 +70,7 @@ class RegPassword extends Component {
         return (
             <div className={`${successPasswordClass} ${failPasswordClass}`}>
                 <label className="input-tag"> Password </label>
-                <input className="input-solo" type="password" name="password" placeholder="e.g. ih8d@ddy" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
+                <input className="input-solo" type="password" name="password" placeholder="e.g. password123" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
                 <div className="reg-info">
                     <p className="invalid-text"> {this.props.passwordErrorText} </p>
                     <p className="valid-text"> Ready to go! </p>
