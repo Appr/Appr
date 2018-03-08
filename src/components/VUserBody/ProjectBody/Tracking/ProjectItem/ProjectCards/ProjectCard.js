@@ -3,7 +3,7 @@ import './projectcard.scss'
 import CardView from './modals/CardView';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import { findTrackerCard } from '../../../../../../services/project.tracker.services';
+// import { findTrackerCard } from '../../../../../../services/project.tracker.services';
 
 
 const CardViewModalBox = {
@@ -76,7 +76,7 @@ class ProjectCard extends Component {
 
 
   render() {
-    let { card_name, card_data, card_order, id, list_id, project_id, listName } = this.props;
+    let { card_name, id, listName } = this.props;
 
 
     return (

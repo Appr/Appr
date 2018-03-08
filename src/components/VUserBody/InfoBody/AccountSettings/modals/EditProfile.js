@@ -64,7 +64,7 @@ class EditProfile extends Component {
     
     render() {
       console.log(this.state)
-      const { userInfo, handleNameSubmit, onCloseBtnClick } = this.props;
+      const { userInfo, onCloseBtnClick } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">

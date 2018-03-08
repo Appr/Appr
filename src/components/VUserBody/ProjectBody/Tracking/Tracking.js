@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './tracking.scss'
 import ProjectItem from './ProjectItem/ProjectItem';
 import classnames from "classnames";
-import { findTrackerLists, deleteTrackerListNew, deleteTrackerCards, createTrackerList, deleteTrackerListCardsNew, updateTrackerList } from '../../../../services/project.tracker.services';
+import { findTrackerLists, deleteTrackerListNew, createTrackerList, updateTrackerList } from '../../../../services/project.tracker.services';
 import { connect } from 'react-redux';
 
 
