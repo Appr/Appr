@@ -27,8 +27,8 @@ class EndpointItem extends Component {
     const show = () => {this.setState({UI:{hideReqField: false}})};
     if(e === "GET" || e === "DELETE"){
          hide();
-    } 
-    else { 
+    }
+    else {
         show();
     }
   }
@@ -44,7 +44,7 @@ class EndpointItem extends Component {
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
-    
+
 
     const requireConClass = classnames({
         "requireCon--hide" : this.state.UI.hideReqField,
@@ -67,8 +67,8 @@ class EndpointItem extends Component {
                       <option value="DELETE"> DELETE </option>
                   </select>
                   <input className="api-input" onChange={(e) => {handleEndpointURLChange(e.target.value, index)}} placeholder={urlData} />
-                  
-                  <button className="endpoint-save" onClick={(e) => {handleSubmitEndpoint(index)}}>Save</button>
+
+                  {/* <button className="endpoint-save" onClick={(e) => {handleSubmitEndpoint(index)}}>Save</button> */}
               </div>
               <div className={requireConClass}>
                   <label>Request</label>
@@ -117,9 +117,9 @@ class EndpointItem extends Component {
                           tabSize: 2,
                       }}/>
               </div>
-          
+
           </div>
-      
+
       </div>
   );
 }

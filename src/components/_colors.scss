@@ -80,8 +80,8 @@ $border-radius: 5px;
 @mixin addBtn (){
     border-radius: $addBtn-radius;
     border: none;
-    background: $addBtn-color1;
-    box-shadow: 0 1px 0 #539A40;
+    background: $btn-color;
+    box-shadow: 0 1px 0 $btn-color;
     font-weight: bold;
     height: 30px;
     display: flex;
@@ -98,7 +98,7 @@ $border-radius: 5px;
     }
 
     &:active{
-        background: #539A40;
+        background: $btn-color;
 
     }
 }
