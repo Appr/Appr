@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { findAvatars} from '../../../../../../../services/avatar.services';
 import AvatarItem from './AvatarItem/AvatarItem';
-import BanjoKazooieAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
-import LinkAvatar from '../../../../../../../img/User_Customization/avatars/link_avatar.svg';
-import MasterChiefAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
-import SonicAvatar from '../../../../../../../img/User_Customization/avatars/sonic_avatar.svg';
+// import BanjoKazooieAvatar from '../../../../../../../img/User_Customization/avatars/banjokazooie_avatar.svg';
+// import LinkAvatar from '../../../../../../../img/User_Customization/avatars/link_avatar.svg';
+// import MasterChiefAvatar from '../../../../../../../img/User_Customization/avatars/mastercheif_avatar.svg';
+// import SonicAvatar from '../../../../../../../img/User_Customization/avatars/sonic_avatar.svg';
 
 class AvatarIconGallery extends Component {
     constructor(props){

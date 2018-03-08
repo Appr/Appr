@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PasswordIcon from '../../../img/icons/Key-Icon.svg';
 import UsernameIcon from '../../../img/icons/Username-Icon.svg';
-import { Link } from 'react-router-dom';
 import './login.scss';
 import { loginTest, login } from '../../../services/auth.services';
-import { request } from 'https';
 import { updateAuth, updateUser, updatePersonalProjects } from '../../../actions/actionCreators';
 import { findUserInfo } from '../../../services/account.services';
 import {  findPersonalProjects } from '../../../services/dashboard.services';

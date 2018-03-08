@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
-import { updateUserInfo, updateUserEmail } from '../../../../../services/account.services';
+import { updateUserEmail } from '../../../../../services/account.services';
 import { connect } from 'react-redux';
 class ChangeEmail extends Component {
     constructor(props){
