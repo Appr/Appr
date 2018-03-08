@@ -7,12 +7,14 @@ import { findDashboardInfo, findPersonalProjects } from '../../../../../services
 import { connect } from 'react-redux';
 import { updatePersonalProjects, updateProjectRedux } from '../../../../../actions/actionCreators';
 import history from '../../../../../history';
+import SubmitButton from '../../../landomon-UI/SubmitButton';
 
 class CreateProject extends Component {
     constructor(props){
         super(props);
         this.state = {
-            projectName: ''
+            projectName: '',
+            validated: false
         }
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleProjectSubmit = this.handleProjectSubmit.bind(this);
@@ -54,6 +56,21 @@ class CreateProject extends Component {
         this.setState({
             projectName: newProjectName
           })
+        if (this.state.projectName) {
+            this.setState({
+                validated: true
+            })
+        }
+        else{
+            this.setState({
+                validated: false
+            })
+        }
+        // else if(this.state.projectName.length === 0){
+        //     this.setState({
+        //         validated: false
+        //     })
+        // }
       }
 
     render() {
@@ -74,7 +91,8 @@ class CreateProject extends Component {
                 </div>
                 <div className="submitModal">
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
-                    <button id="updateEmail" className="submit-btn" deleted onClick={(e) => {this.handleProjectSubmit()}}> Update </button>
+                    {/* <button id="createProject" className="submit-btn" deleted onClick={(e) => {this.handleProjectSubmit()}}> Update </button> */}
+                    <SubmitButton label='create' disabled={this.state.validated} onClickAction={this.handleProjectSubmit} />
                 </div>
             </div>
         </div>
