@@ -3,18 +3,23 @@ import './modals.scss'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateUserPassword } from '../../../../../services/account.services';
+import SubmitButton from '../../../landomon-UI/SubmitButton';
+import ModalTextField from '../../../landomon-UI/ModalTextField';
+
 
 class ChangePassword extends Component {
     constructor(props){
         super(props)
         this.state = {
             confirmPassword: '',
-            newPassword: ''
+            newPassword: '',
+            errorText: '',
+            showSuccessButton: false,
+            showSuccessField: false,
         }
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
         this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
-
     }
 
     handlePasswordSubmit(){
@@ -26,9 +31,14 @@ class ChangePassword extends Component {
             };
             updateUserPassword(userid, reqBody)
                 .then( res => {
-                    if ( res.status !== 200 ) {
-                        alert(res);
-                    }
+                    if(res.data['passwordError']){
+                        let newErrorText = res.data['passwordError'];
+                        console.log(newErrorText)
+                        this.setState({
+                            showSuccessField: false,
+                            errorText: newErrorText,
+                            
+                    })}
                     else {
                         this.props.pullFromBackend(userid);
                         this.props.onCloseBtnClick();
@@ -38,16 +48,55 @@ class ChangePassword extends Component {
         }
     }
 
+
+
     handleNewPasswordChange(text){
+        let confirmPassword = this.state.confirmPassword;
+        if(this.state.errorText.length > 3){
+            this.setState({
+                errorText: ''
+            })
+        }
         this.setState({
             newPassword: text
         })
+        
+        if (text !== confirmPassword) {
+            this.setState({
+                showSuccessButton: true,
+                showSuccessField: true
+            })
+        }
+        else{
+            this.setState({
+                showSuccessButton: false,
+                showSuccessField: false
+            })
+        }
     }
 
     handleConfirmPasswordChange(text){
+        let newPassword = this.state.newPassword;
+        if(this.state.errorText.length > 3){
+            this.setState({
+                errorText: ''
+            })
+        }
         this.setState({
             confirmPassword: text
         })
+        if (text !== newPassword) {
+            this.setState({
+                showSuccessButton: true,
+                showSuccessField: true
+            })
+        }
+        else{
+            this.setState({
+                showSuccessButton: false,
+                showSuccessField: false
+            })
+        }
     }
 
     render() {
@@ -61,19 +110,36 @@ class ChangePassword extends Component {
                 </div>
 
                 <div className="modal-body">
-                <label className="modal-input-tag">New Password</label>
                 <section className="modal-row">
-                    <input type="password" className="modal-form" autoFocus required onChange={ (e) => {this.handleNewPasswordChange(e.target.value)}} maxLength="18" />
+                    <ModalTextField 
+                        type='password'
+                        onChangeAction={(e) => {this.handleNewPasswordChange(e.target.value)}}
+                        label="New Password"
+                        errorText={this.state.errorText}
+                        maxLength="18"
+                        showSuccess={this.state.showSuccessField}
+                        
+                    />
                 </section>
-                <label className="modal-input-tag">Confirm Password</label>
                 <section className="modal-row">
-                    <input type="password" className="modal-form" required onChange={ (e) => {this.handleConfirmPasswordChange(e.target.value)}} maxLength="18" />
+                    <ModalTextField 
+                        type='password'
+                        onChangeAction={(e) => {this.handleConfirmPasswordChange(e.target.value)}}
+                        label="Confirm Password"
+                        errorText={this.state.errorText}
+                        maxLength="18"
+                        showSuccess={this.state.showSuccessField}
+                    />
                 </section>
 
                 </div>
                 <div className="submitModal">
-                    <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>
-                    <button id="updatePassword" className="submit-btn" onClick={(e) => {this.handlePasswordSubmit()}}> Update </button>
+                    <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>                    
+                    <SubmitButton 
+                        label='update' 
+                        disabled={this.state.showSuccessButton} 
+                        onClickAction={this.handlePasswordSubmit}
+                    />
                 </div>
 
             </div>

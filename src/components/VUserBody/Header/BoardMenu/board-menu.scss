@@ -44,6 +44,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     z-index: 4;
+    overflow: auto;
   }
 
   .boards-main-container{
@@ -86,6 +87,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 20px;
+    margin-bottom: 80px;
   }
 
   .board-item-thumbnail {
