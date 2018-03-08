@@ -59,7 +59,7 @@ class ChangeAvatar extends Component {
           })
           .catch(err => {throw err});
     }
-    
+
     handleAvatarChange(e){
         let newAvatar = e.trim();
         this.setState({
@@ -85,31 +85,36 @@ class ChangeAvatar extends Component {
             "modal-header-placeholder--before": this.state.UI.hideChangeURLOption,
             "model-header-placeholder--after": true
         })
+
+        let backBtnClass = classnames({
+            "avatar-back-btn--before": this.state.UI.hideChangeURLOption,
+            "avatar-back-btn--after": true
+        })
+
       return (
-        <div className="modalStyle-inner">
-            <div className="modal-account-settings-content">
-                <div className="modal-header">
-                    <div className={`${modelBackBtnClass}`}>
-                        <button onClick={this.toggleChangeURL}>Back</button>
-                    </div>
-                    <h2 className="modal-title">Change Avatar</h2>
-                    <span className="closeBtn" onClick={onCloseBtnClick}>&times;</span>
+        <div className="avatar-modal-wrapper">
+            <div className="avatar-modal-content">
+                <div className="avatar-modal-header">
+                    <h2 className="avatar-modal-title">CHANGE AVATAR</h2>
+                    <span className="avatar-closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
-                    <div className="avatar-settings-content">
-                        <div className={`${avatarGalleryClass}`}>
-                            <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
-                        </div>
-                        
-                        <div className={`${changeURLClass}`} >
-                            <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
-                        </div>
+                <div className="avatar-settings-content">
+                    <div className={`${modelBackBtnClass}`}>
+                        <button className={`${backBtnClass}`} onClick={this.toggleChangeURL}>Back</button>
+                    </div>
+                    <div className={`${avatarGalleryClass}`}>
+                        <AvatarIconGallery selectedAvatar={this.state.userInfo.avatar} handleAvatarChange={this.handleAvatarChange} toggleChangeURL={this.toggleChangeURL}/>
                     </div>
 
-                <div className="submitModal">
-                    <button id="updateAvatar" onClick={(e) => {this.handleAvatarSubmit()}}>
-                    Update Avatar
-                    </button>
+                    <div className={`${changeURLClass}`} >
+                        <ChangeAvatarURL userInfo={userInfo} handleAvatarChange={this.handleAvatarChange} />
+                    </div>
+                </div>
+
+                <div className="avatar-submitModal">
+                    <button className="avatar-cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                    <button id="updateAvatar" className="avatar-submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>

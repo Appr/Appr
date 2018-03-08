@@ -8,7 +8,7 @@ class ChangeEmail extends Component {
         super(props);
         this.state = {
             email: ''
-        }   
+        }
         this.handleEmailChange = this.handleEmailChange.bind(this);
     }
 
@@ -26,7 +26,7 @@ class ChangeEmail extends Component {
             else{
               this.props.pullFromBackend(userid)
               this.props.onCloseBtnClick();
-              
+
             }
           })
           .catch(err => {throw err});
@@ -36,22 +36,21 @@ class ChangeEmail extends Component {
         let newEmail = e.toLowerCase();
         this.setState({
             email: newEmail
-          }) 
+          })
       }
-    
+
     render() {
         const { handleEmailSubmit, userInfo } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
                 <div className="modal-header">
-                    <div className="modal-header-placeholder"></div>
-                    <h2 className="modal-title">Change Email</h2>
+                    <h2 className="modal-title">CHANGE EMAIL</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
                 {/* <form> */}
                 <div className="modal-body">
-                    
+
                     <label className="modal-input-tag">Current Email</label>
                     <section className="modal-row">
                         <label className="current-email">{userInfo.email}</label>
@@ -62,14 +61,13 @@ class ChangeEmail extends Component {
                     </section>
                 </div>
                 <div className="submitModal">
-                    <button id="updateEmail" onClick={(e) => {this.handleEmailSubmit()}}>
-                    Update Email
-                    </button>
+                    <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
+                    <button id="updateEmail" className="submit-btn" deleted donClick={(e) => {this.handleEmailSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>
         </div>
-        
+
       );
     }
   }

@@ -2,17 +2,20 @@
 
     .modal-account-settings-content{
         max-width: 50vw;
-        padding-left: 20px;
-        padding-right: 20px;
+        // padding-left: 20px;
+        // padding-right: 20px;
         border: none;
         background-color: #f4f4f4;
         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
         animation-name: modalopen;
         animation-duration: 0.3s;
         z-index: 4;
-        border-radius: 5px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
       }
-    
+
     .modalStyle{
         top: 0px;
         position: absolute;
@@ -23,7 +26,7 @@
         z-index: 0;
         transition: 0.2s ease-in-out;
       }
-  
+
     .modalStyle-inner{
         display: flex;
         justify-content: center;
@@ -34,120 +37,157 @@
     }
 
       .modal-title {
-        font-size: 18px;
+        width: 20vw;
+        height: 30px;
+        font-size: 14px;
         font-weight: normal;
-        color: #95989A;
+        color: white;
         white-space: nowrap;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
       }
-    
+
       .closeBtn{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         width: 33px;
-        color: grey;
+        color: $light-color;
         font-size: 30px;
         user-select: none;
-        
-        
+        padding-bottom: 5px;
+        padding-right: 5px;
       }
-    
+
       .closeBtn:hover {
         color: #000;
         text-decoration: none;
         cursor: pointer;
         transition: 0.2s ease-in-out;
       }
-    
+
       .closeBtn:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
         transition: 0.2s ease-in-out;
       }
-    
+
 
       .modal-header h2, .modal-footer h3{
         margin: 0;
         transition: 0.2s ease-in-out;
       }
-    
+
       .modal-header{
         width: 100%;
         padding-top: 1px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: #95989A 1px solid;
+        background: $dark-color;
+        // border-bottom: #95989A 1px solid;
         color: white;
-        
+        border-radius: 3px 3px 0 0;
       }
-    
+
       .modal-input-tag {
         width: 100%;
         text-align: left;
-        color: #3C3C3C;
+        color: $dark-color;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 16px;
         margin-bottom: 10px;
+        margin-left: 5px;
         white-space: nowrap;
       }
-    
+
       .modal-body{
-      /*   border: 1px solid blue; */
-        padding-top: 20px;
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
-        width: 25vw;
-        align-items: center;
-      }
-      
-      
-      .submitModal{
-        margin-bottom: 20px;
-        button{
-          text-align: center;
-          font-size: 18px;
-          text-transform: uppercase;
-          height: 35px;
-          width: 100%;
-          background: blue;
-          outline: none;
-          border: none;
-          background: $secondary;
-          color: white;
-          cursor: pointer;
-          transition: 0.2s ease-in-out;
-          width: 100%;
-          white-space: nowrap;
+        width: 22vw;
+        padding-left: 20px;
+        padding-top: 10px;
+        font-size: 10pt;
+        color: $medium-color;
+        // border: solid red 1px;
+
+        p {
+          padding-bottom: 15px;
         }
       }
-    
+
+
+      .submitModal{
+        margin-bottom: 20px;
+        width: 23vw;
+        display: flex;
+        justify-content: flex-end;
+        // border: solid red 2px;
+      }
+
+      .cancel-btn {
+        text-align: center;
+        font-size: 11px;
+        height: 35px;
+        width: 90px;
+        outline: none;
+        border: none;
+        background: $light-color;
+        color: $dark-color;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        white-space: nowrap;
+        border-radius: 3px;
+      }
+
+      .submit-btn {
+        text-align: center;
+        font-size: 11px;
+        height: 35px;
+        width: 90px;
+        outline: none;
+        border: none;
+        background: $red-btn-color;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        white-space: nowrap;
+        border-radius: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
       .modal-form {
         height: 33px;
-        width: 99%;
+        width: 92%;
         outline: none;
-        
+        font-size: 10pt;
+        padding-left: 5px;
       }
-    
+
       .modal-row{
         width: 100%;
         margin-bottom: 18px;
         transition: 0.2s ease-in-out;
       }
-    
+
       @keyframes modalopen {
         from {opacity: 0;}
         to {opacity: 1;}
       }
-    
+
       .current-email{
         color: #95989A;
-
+        margin-left: 10px;
       }
-    
+
+
+
     /* Not modal css */
-    
-    
+
+
     #editProfileBtn {
         display: flex;
         align-items: center;
@@ -157,7 +197,7 @@
         background: #E2E4E6;
         cursor: pointer;
     }
-    
+
     .headline-20{
         font-size: 20px;
         text-align: left;
@@ -184,52 +224,45 @@
       position: relative;
     }
 
-
-
     .modal-header-placeholder--before{
       display: flex;
       align-items: center;
       width: 33px;
-      height: 34px;
+      height: 5px;
       background: transparent;
       transition: 0.2s ease-in-out;
       position: relative;
-
-      button{
-        width: 33px;
-        height: 34px;
-        opacity: 0;
-        position: absolute;
-        z-index: -1;
-      }
-
-      span{
-        width: 33px;
-        height: 33px;
-      }
-
     }
 
     .modal-header-placeholder--after{
       display: flex;
       align-items: center;
       width: 33px;
-      height: 34px;
+      height: 5px;
       background: transparent;
       transition: 0.2s ease-in-out;
       position: relative;
-
-
-      button{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
-        z-index: 1;
-        
-        
-        padding: 0px;
-      }
-
-
     }
+
+    .avatar-back-btn--before {
+        width: 33px;
+        height: 34px;
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .avatar-back-btn--after {
+        text-align: center;
+        font-size: 11px;
+        height: 30px;
+        width: 50px;
+        outline: none;
+        border: none;
+        background: $medium-color;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        white-space: nowrap;
+        border-radius: 3px;
+      }
