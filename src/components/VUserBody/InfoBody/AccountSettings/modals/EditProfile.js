@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modals.scss'
 import PropTypes from 'prop-types';
-import { updateUserInfo, updateUserProfile } from '../../../../../services/account.services'
+import { updateUserProfile } from '../../../../../services/account.services'
 import { connect } from 'react-redux';
 
 class EditProfile extends Component {

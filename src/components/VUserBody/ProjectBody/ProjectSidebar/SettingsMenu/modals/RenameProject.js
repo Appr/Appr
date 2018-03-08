@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateProject, findProject } from '../../../../../../services/project.services';
-import history from '../../../../../../history';
-import { findDashboardInfo, findPersonalProjects } from '../../../../../../services/dashboard.services';
+// import history from '../../../../../../history';
+import { findPersonalProjects } from '../../../../../../services/dashboard.services';
 import { updateDashboard, updateProjectRedux, updatePersonalProjects } from '../../../../../../actions/actionCreators';
 
 

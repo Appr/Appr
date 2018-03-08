@@ -15,7 +15,7 @@ class SchemaItem extends Component {
 
 
   render() {
-    const {index, schemaName, projectid, databaseType, schemaData, removeSchemaItemHandler, handleSchemaNameChange, handleSchemaDataChange, handleSubmitSchema, handleSaveChange, id} = this.props;
+    const {index, schemaName, schemaData, removeSchemaItemHandler, handleSchemaNameChange, handleSchemaDataChange, handleSaveChange} = this.props;
 
     let schemaDataText = schemaData.toString();
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './dashboard.scss';
 import './dashboard-projects.scss';
-import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
+import { findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject, findProject, updateProject } from '../../../../services/project.services';
+import { createProject, findProject } from '../../../../services/project.services';
 import DashGroup from './DashItems/DashGroup';
 import DashProject from './DashItems/DashProject';
 import { connect } from 'react-redux';
