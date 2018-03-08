@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import './navmenu.scss';
-import { findProject, updateProject } from '../../../../../services/project.services';
 import { connect } from 'react-redux';
-import { findDashboardInfo } from '../../../../../services/dashboard.services';
+
 
 class ProjectSetupSidebar extends Component {
     constructor(props) {
@@ -17,7 +16,7 @@ class ProjectSetupSidebar extends Component {
 
 
     render() {
-        const { userid, projectid, projectInfo, toggleSettingsMenu } = this.props;
+        const { userid, projectid, toggleSettingsMenu } = this.props;
         let projectName = this.props.projectInfo.name;
         return (
             <div>
