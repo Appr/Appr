@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './projectcard.scss'
-import editIcon from '../../../../../../img/icons/Pencil-Icon.svg';
 import CardView from './modals/CardView';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
