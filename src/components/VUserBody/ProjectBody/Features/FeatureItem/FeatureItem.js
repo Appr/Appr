@@ -28,10 +28,6 @@ class FeatureItem extends Component {
 
     render() {
         const { index, featureData, handleChangeFeature, handleDeleteFeature, handleSaveChange } = this.props;
-        const saveBtnClass = classnames({
-        "input-complete-btn":  this.state.UI.saveBtn,
-        "input-incomplete-btn" : true
-        });
         return (
             <div className="features-item">
                 <section>
