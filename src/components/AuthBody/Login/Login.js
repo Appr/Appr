@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import history from '../../../history';
 import { withRouter } from 'react-router-dom';
 import LoginButton from '../../VUserBody/landomon-UI/LoginButton';
+import LoginTextField from '../../VUserBody/landomon-UI/LoginTextField';
 
 
 class Login extends Component {
@@ -24,52 +25,86 @@ class Login extends Component {
 			UI:{
 				loginLabel: 'Login',
 				loginLoading: false,
+				errorText: '',
+				forceFailUserName: false
 			}
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
-		this.revertLoginButton = this.revertLoginButton.bind(this);
 	}
 
 	handleInputChange(e) {
 		const field = e.target.name;
 		this.setState({ [field]: e.target.value });
-	}
-
-	revertLoginButton(){
 		this.setState({
 			UI:{
+				usernameErrorText: '',
+				forceFailUserName: false,
+				errorText: '',
 				loginLabel: 'Login',
-				loginLoading: false
+				loginLoading: false,
 			}
 		})
 	}
+
+
 
 	handleSubmitLogin() {
 		const { username, password } = this.state;
 		let creds = { username, password };
 
 		if (!username.includes('@') || username[username.length - 4] !== '.'){
-			alert('Make sure you entered your email correctly!');
+			this.setState({
+				UI: {
+					errorText: this.state.UI.errorText,
+					usernameErrorText: 'Make sure you entered your email correctly!',
+					loginLabel: 'Login',
+					loginLoading: false,
+					forceFailUserName: false
+				}
+			})
 		}
 		else {
 			if (password.length === 0) {
-				alert('Type in your password.');
+				this.setState({
+					UI: {
+						errorText: 'Type in your password!',
+						usernameErrorText: this.state.UI.usernameErrorText,
+						loginLabel: 'Login',
+						loginLoading: false,
+						forceFailUserName: false
+					}
+				})
 			}
 			else {
+				this.setState({
+					UI:{
+						loginLabel: 'Loading',
+						loginLoading: true
+					}
+				})
 				loginTest(creds)
 					.then( res => {
-						if (res.data) {
+						console.log(res.data)
+						if(res.data['loginError']){
+							let newErrorText = res.data['loginError'];
+							this.setState({
+								UI:{
+									forceFailUserName: true,
+									errorText: newErrorText,
+									loginLoading: false,
+									loginLabel: 'Login',
+									usernameErrorText: '',
+
+								}
+							})
+							
+						}
+						 else if (res.status === 200) {
 							 const logInBody = {
 								 username: this.state.username,
 								 password: res.data
 							 }
-							 this.setState({
-								UI:{
-									loginLabel: 'Loading',
-									loginLoading: true
-								}
-							})
 							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
@@ -106,9 +141,6 @@ class Login extends Component {
 								)
 								.catch(err => {throw err})
 						}
-						else {
-							this.revertLoginButton();
-						}
 					})
 					.catch(err => {
 						this.props.updateAuth(false)
@@ -119,6 +151,7 @@ class Login extends Component {
 	}
 
 	render() {
+		console.log(this.state)
 		return (
 			<div className="login-parent">
 				<div className="login-container">
@@ -129,22 +162,37 @@ class Login extends Component {
 					</div>
 					<div className="login-middle">
 						<div className="usr-pswd-container">
-							<div className="usr-pswd-row">
-								<div className="lgn-icon-con">
+							{/* <div className="usr-pswd-row"> */}
+								{/* <div className="lgn-icon-con">
 									<div className="lgn-icon"> 
 										<img src={UsernameIcon} alt="username icon"/> 
 									</div>
-								</div>
-								<input className="usr-pswd-input" type="text"  name="username" placeholder="vader@empire.org" onChange={e => this.handleInputChange(e)}/>
-							</div>
-							<div className="usr-pswd-row">
+								</div> */}
+								<LoginTextField
+									onChangeAction={this.handleInputChange}
+									label='username'
+									type="text"
+									errorText={this.state.UI.usernameErrorText}
+									forceFail={this.state.UI.forceFailUserName}
+									placeholder="Username"
+								/>
+								<LoginTextField
+									onChangeAction={this.handleInputChange}
+									label='password'
+									type='password'
+									errorText={this.state.UI.errorText}
+									placeholder="Password"
+								/>
+								{/* <input className="usr-pswd-input" type="text"  name="username" placeholder="vader@empire.org" onChange={e => this.handleInputChange(e)}/> */}
+							{/* </div> */}
+							{/* <div className="usr-pswd-row">
 								<div className="lgn-icon-con" style={{backgroundColor: 'transparent'}}>
 									<div className="lgn-icon">
 										<img src={PasswordIcon} alt="password icon"/> 
 									</div>
 								</div>
 								<input className="usr-pswd-input" type="password"  name="password" placeholder="iamthebest" onChange={e => this.handleInputChange(e)}/>
-							</div>
+							</div> */}
 
 							<div className="login-btn-con">
 								<LoginButton

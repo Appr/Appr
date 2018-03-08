@@ -72,15 +72,14 @@ authRouter.post('/register', (req, res) => {
 authRouter.post('/login-test', (req, res) => {
     const { username, password } = req.body;
     let message = '';
-    const db = getDb(); 
 
-    db.find_user_by_email([ username ])
+    getDb().find_user_by_email([ username ])
         .then( user => {
-            console.log(user[0].password)
-            console.log(password)
             if( password === user[0].password){
-                message = 'login test was successful!';
                 res.send(user[0].password);
+            }
+            if( user[0].email != username){
+                res.send({loginError: 'Wrong account information!'})
             }
 
             bcrypt.compare(password, user[0].password, function(err, result){
@@ -89,11 +88,11 @@ authRouter.post('/login-test', (req, res) => {
                     message = 'login test was successful!';
                     res.send(user[0].password);
                 } else {
-                    message = 'Wrong account information!'
+                    res.send({loginError: 'Wrong account information!'})
                 }
             })
         })
-        .catch(err => {throw err
+        .catch(err => {res.send({loginError: 'Wrong account information!'})
         });
 });
 

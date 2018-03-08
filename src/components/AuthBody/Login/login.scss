@@ -39,7 +39,7 @@
   }
   
   .login-middle {
-    height: 215px;
+
     width: 100%;
   /*   border: 1px solid black; */
     display: flex;
@@ -48,7 +48,7 @@
   }
   
   .usr-pswd-container{
-    height: 175px;
+    max-height: 100%;
     width: 275px;
   /*   border: 1px solid black; */
     display: flex;
