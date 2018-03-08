@@ -10,12 +10,15 @@ class LoginButton extends Component {
         }
     }
 
-    
-
     componentWillReceiveProps(nextProps){
         if (nextProps.loading === true){
             this.setState({
                 loading: true
+            })
+        }
+        else {
+            this.setState({
+                loading: false
             })
         }
     }
@@ -35,9 +38,6 @@ class LoginButton extends Component {
         }
         return(
             <button className={loginBtnClass} onClick={(e) => handleAction()}>{this.props.label}</button>
-
-
-
         )
     }
 }

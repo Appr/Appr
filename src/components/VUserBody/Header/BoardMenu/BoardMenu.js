@@ -4,73 +4,44 @@ import history from '../../../../history';
 import './board-menu.scss'
 import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject } from '../../../../services/project.services';
 import { findProject } from '../../../../services/project.services';
 import { updateProjectRedux, updatePersonalProjects } from '../../../../actions/actionCreators';
 import { connect } from 'react-redux';
+import CreateProject from '../../InfoBody/Dashboard/CreateProject/CreateProject';
+import Modal from 'react-modal';
+import { ModalBoxBoardMenu } from '../../InfoBody/AccountSettings/accountsettingsStyled';
 
 class BoardMenu extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            groups: [],
-            projects: []
-        }
-        this.handleCreateButton = this.handleCreateButton.bind(this);
-    }
+		this.state = {
+			UI: {
+				createProjectModalOpen: false
+			}
+		};
+        this.openCreateProjectModal = this.openCreateProjectModal.bind(this);
+        this.closeCreateProjectModal = this.closeCreateProjectModal.bind(this);
+	}
 
-    handleCreateButton(buttonPressed) {
-		const userid = this.props.userInfo.id;
-		let name = '';
-		let reqBody = {};
-		if (buttonPressed === 'group') {
-			name = prompt('What is the name of your group?');
-			reqBody = {createdByUserId: userid, name};
-			createGroup(reqBody)
-				.then( res => {
-					if (res.data[0].id) {
-						const groupid = res.data[0].id;
-						history.push(`/user/${userid}/group/${groupid}/dashboard`);
-					}
-					else {
-						alert(res.data.message);
-					}
-				})
-				.catch(err => {throw err});
-		}
-		else if (buttonPressed === 'project') {
-            name = prompt('What is the name of your project?');
-           
-			reqBody = {name, authorId: userid};
-			createProject(reqBody)
-				.then( res => {
-                    console.table(res.data)
+	openCreateProjectModal() {
+		this.setState({
+			UI: {
+				createProjectModalOpen: true
+			}
+		})
+	}
 
-					if (res.data[0].id) {
-                        const projectid = res.data[0].id;
-                        findProject(projectid)
-                            .then(res => {
-                                this.props.updateProjectRedux(res.data[0]);
-                                findPersonalProjects(userid)
-                                .then(res => {
-                                    this.props.updatePersonalProjects(res.data);
-                                    this.props.closeMenus();
-                                    history.push(`/user/${userid}/project/${projectid}/ideas`);
-                                })
-                            })
-                        
-					}
-					else {
-						alert(res);
-					}
-				})
-				.catch(err => {throw err});
-        }
+	closeCreateProjectModal() {
+		this.setState({
+			UI: {
+				createProjectModalOpen: false
+			}
+		})
 	}
 
   render() {
 
-const { closeMenus, updateProjectRedux } = this.props;
+const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
 
     function getProject(projectid, path){
         findProject(projectid)
@@ -135,7 +106,7 @@ const { closeMenus, updateProjectRedux } = this.props;
                     {displayProjects}
         
                     
-                        <div className="create-board-item" onClick={() => this.handleCreateButton('project')}>
+                        <div className="create-board-item" onClick={() => this.openCreateProjectModal()}>
                             <div className="create-board-thumbnail">
                                 <div className="plus-symbol">+</div>
                             </div>
@@ -159,6 +130,16 @@ const { closeMenus, updateProjectRedux } = this.props;
                             </div>
                         </div>
             </div> */}
+
+
+            	<Modal
+					isOpen={this.state.UI.createProjectModalOpen}
+					onRequestClose={(e) => this.closeCreateProjectModal() & closeMenus()}
+					className="modal-accounts-settings-content"
+					style={ModalBoxBoardMenu}
+				>
+					<CreateProject onCloseBtnClick={(e) => this.closeCreateProjectModal() & closeMenus()}/>
+				</Modal>
             
         </div>
     );

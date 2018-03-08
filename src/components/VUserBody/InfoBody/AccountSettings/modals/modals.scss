@@ -54,6 +54,8 @@
         padding-left: 20px;
         display: flex;
         align-items: center;
+        font-weight: 700;
+        user-select: none;
       }
 
       .closeBtn{
@@ -96,7 +98,8 @@
         background: $dark-color;
         // border-bottom: #95989A 1px solid;
         color: white;
-        border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0px 0px;
+        // overflow: hidden;
       }
 
       .modal-input-tag {
@@ -114,13 +117,18 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+<<<<<<< HEAD
         width: 22vw;
         // padding-left: 20px;
         padding-top: 10px;
+=======
+        width: 21.5vw;
+        // padding-left: 20px;
+        padding-top: 20px;
+>>>>>>> 1ff7dcd7657259c96b546b9c22da9c496339934b
         font-size: 10pt;
         color: $medium-color;
         // border: solid red 1px;
-
         p {
           padding-bottom: 15px;
         }
@@ -148,6 +156,8 @@
         transition: 0.2s ease-in-out;
         white-space: nowrap;
         border-radius: 3px;
+        text-transform: uppercase;
+
       }
 
       .submit-btn {
@@ -164,6 +174,12 @@
         white-space: nowrap;
         border-radius: 3px;
         margin-left: 10px;
+<<<<<<< HEAD
+=======
+        margin-right: 10px;
+        text-transform: uppercase;
+
+>>>>>>> 1ff7dcd7657259c96b546b9c22da9c496339934b
       }
 
       .submit-btn-disabled {
@@ -180,7 +196,7 @@
 
       .modal-row{
         width: 100%;
-        margin-bottom: 18px;
+        // margin-bottom: 18px;
         transition: 0.2s ease-in-out;
       }
 

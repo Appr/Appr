@@ -7,6 +7,7 @@ import Login from './components/AuthBody/Login/Login';
 import VUserBody from './components/VUserBody/VUserBody';
 import Home from './components/AuthBody/Home/Home';
 import { connect } from 'react-redux';
+import ModalTest from './UITests/ModalTest';
 
 class App extends Component {
   constructor(){
@@ -33,6 +34,7 @@ class App extends Component {
           <Route component={ Home } path="/" exact />
           <Route component={ Register }  path="/register" />
           <Route component={ Login }  path="/login"/>
+          <Route component={ ModalTest } path="/test"/>
           <PrivateRoute component={ VUserBody } path="/user/:userid"/>
       </div>
     );
