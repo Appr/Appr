@@ -34,21 +34,19 @@ class CreateProject extends Component {
 						this.props.updatePersonalProjects(res.data);
 					})
 					if (res.data[0].id) {
-
 						const projectid = res.data[0].id;
 						findProject(projectid)
 						.then(res => {
 							this.props.updateProjectRedux(res.data[0]);
 							if(res.status === 200){
 								history.push(`/user/${userid}/project/${projectid}/ideas`);
-							}
+                            }
+
 						})
 					}
-					else {
-						alert(res);
-					}
+					this.props.onCloseBtnClick();
 				})
-				.catch(err => {throw err});
+                .catch(err => {throw err});
       }
 
     handleNameChange(e){
@@ -56,7 +54,7 @@ class CreateProject extends Component {
         this.setState({
             projectName: newProjectName
           })
-        if (this.state.projectName) {
+        if (e === '') {
             this.setState({
                 validated: true
             })
@@ -74,6 +72,20 @@ class CreateProject extends Component {
       }
 
     render() {
+        // function handleValidation(incomingName){
+        //     if (incomingName !== '') {
+        //         console.log('should enable');
+        //         this.setState({
+        //             validated: true
+        //         })
+        //     }
+        //     if (incomingName === ''){
+        //         console.log('should disable');
+        //         this.setState({
+        //             validated: false
+        //         })
+        //     }
+        // }
         const { userInfo } = this.props;
       return (
         <div className="modalStyle-inner">

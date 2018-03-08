@@ -10,8 +10,6 @@ class SubmitButton extends Component {
         }
     }
 
-
-
     componentWillReceiveProps(nextProps){
         if (nextProps.disabled === false){
             this.setState({
@@ -24,6 +22,7 @@ class SubmitButton extends Component {
             })
         }
     }
+
     render(){
         let {label, disabled, onClickAction} = this.props;
         let submitBtnClass = classnames({
@@ -39,7 +38,9 @@ class SubmitButton extends Component {
             )
         }
         return(
-            <button className={submitBtnClass} onClick={(e) => handleAction()}>{this.props.label}</button>
+            <button className={submitBtnClass} onClick={(e) => handleAction()}>
+                {this.props.label}
+            </button>
 
 
 
