@@ -1,3 +1,4 @@
+@import '../../_colors.scss';
 
 .register-container{
     display: flex;
@@ -157,7 +158,7 @@
         .valid-text{
             margin-top: 0;
             margin-bottom: 0;
-            display: block !important; 
+            display: block !important;
             color: #00D16E;
             transition: 0.2s ease-in-out;
         }
@@ -196,16 +197,26 @@
     height: 40px;
 }
 
-.create-account-btn {  
-    width: 270px;
-    height: 50px;
+.create-account-btn {
+    text-align: center;
+    font-size: 14px;
+    height: 35px;
+    width: 160px;
+    outline: none;
+    border: none;
+    background: $btn-color;
+    color: $light-color;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
 }
 
 .reg-firstName{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-   
+
     input{
         max-width: 170px;
     }
@@ -213,8 +224,8 @@
     .reg-info{
         display: flex;
         justify-content: flex-start;
-        width: 170px; 
-       
+        width: 170px;
+
     }
 
     .invalid-text{
@@ -244,11 +255,11 @@
 .reg-lastName{
     display: flex;
     flex-direction: column;
-    
+
     align-items: flex-end;
 
     input{
-       
+
         max-width: 170px;
     }
 
@@ -256,12 +267,12 @@
         display: flex;
         justify-content: flex-start;
         width: 100%;
-        
+
     }
     .invalid-text{
         display: none;
     }
-    
+
 }
 
 .reg-lastName--fail{
@@ -281,14 +292,14 @@
         color: #FF3560;
         transition: 0.2s ease-in-out;
     }
-    
+
 }
 
 .reg-combined-wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;   
+    width: 100%;
 }
 
 
