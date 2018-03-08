@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import { findProjectFeature } from '../../../../../services/project.feature.services';
 
 class FeatureItem extends Component {
