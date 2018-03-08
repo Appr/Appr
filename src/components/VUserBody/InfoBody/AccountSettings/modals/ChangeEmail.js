@@ -10,6 +10,7 @@ class ChangeEmail extends Component {
             email: ''
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
     }
 
     handleEmailSubmit(){
@@ -62,7 +63,7 @@ class ChangeEmail extends Component {
                 </div>
                 <div className="submitModal">
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
-                    <button id="updateEmail" className="submit-btn" deleted donClick={(e) => {this.handleEmailSubmit()}}> Update </button>
+                    <button id="updateEmail" className="submit-btn" deleted onClick={(e) => {this.handleEmailSubmit()}}> Update </button>
                 </div>
                 {/* </form> */}
             </div>
