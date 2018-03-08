@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './schemaitem.scss';
 import AceEditor from 'react-ace';
-import brace from 'brace';
 import 'brace/mode/sql';
 
 

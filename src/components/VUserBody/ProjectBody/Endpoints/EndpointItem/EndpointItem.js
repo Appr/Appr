@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './endpoint-item.scss';
 import AceEditor from 'react-ace';
-import brace from 'brace';
 import 'brace/mode/json';
 import 'brace/ext/spellcheck';
 import classnames from 'classnames';
