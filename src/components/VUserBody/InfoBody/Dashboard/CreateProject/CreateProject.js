@@ -38,12 +38,9 @@ class CreateProject extends Component {
 						findProject(projectid)
 						.then(res => {
 							this.props.updateProjectRedux(res.data[0]);
-							if(res.status === 200){
-								history.push(`/user/${userid}/project/${projectid}/ideas`);
-                            }
-
 						})
-					}
+                    }
+                    history.push(`/user/${userid}/project/${this.props.projectInfo.id}/ideas`);
 					this.props.onCloseBtnClick();
 				})
                 .catch(err => {throw err});
