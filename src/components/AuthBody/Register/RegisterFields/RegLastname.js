@@ -47,7 +47,7 @@ class RegLastname extends Component {
 
         return (
             <div className={`${failLastNameClass} ${successLastNameClass}`}>
-                <input type="text" name="lastName" placeholder="Last" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
+                <input type="text" name="lastName" placeholder="Last" onChange={e => { handleChangeInput(e) && this.handleConstraint(e) }}/>
                 <div className="reg-info">
                     <p className="invalid-text"> Please type in your last name </p>
                 </div>

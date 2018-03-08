@@ -40,7 +40,7 @@ class ChangeEmail extends Component {
       }
     
     render() {
-        const { handleEmailSubmit, userInfo } = this.props;
+        const { userInfo } = this.props;
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
