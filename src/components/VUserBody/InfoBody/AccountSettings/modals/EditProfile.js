@@ -68,10 +68,10 @@ class EditProfile extends Component {
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
-              <div className="modal-header">
-                <h2 className="modal-title">EDIT PROFILE</h2>
-                <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
-              </div>
+                <div className="modal-header">
+                  <h2 className="modal-title">EDIT PROFILE</h2>
+                  <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
+                </div>
 
                 <div className="modal-body">
 
@@ -90,10 +90,10 @@ class EditProfile extends Component {
                       <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
                     </section> */}
                 </div>
-              <div className="submitModal">
-                <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                <button id="updateProfile" className="submit-btn" onClick={(e) => {this.handleNameSubmit()}}> Update </button>
-              </div>
+                <div className="submitModal">
+                  <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                  <button id="updateProfile" className="submit-btn" onClick={(e) => {this.handleNameSubmit()}}> Update </button>
+                </div>
             </div>
            </div>
       );

@@ -65,22 +65,22 @@ class Feedback extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
 
-                <div className="modal-body">
-                    <label className="modal-input-tag">Problem</label>
-                    <section className="modal-row">
-                        <input type="text" name="problem" id="problem" className="modal-form" value={this.state.problem} required autoFocus onChange={(e) => {this.setState({ problem: `${e.target.value}`})}} />
-                    </section>
-                    <label className="modal-input-tag">Description</label>
-                    <section className="modal-row">
-                        <textarea id="description" name="description" className="modal-form" value={this.state.description} style={{minHeight: "70px", "resize": "none"}} onChange={(e) => {this.setState({ description: `${e.target.value}` })}} required/>
-                    </section>
-                    <input type="text" name="location" id="location" value={this.state.location} style={{"display": "none"}} />
+                    <div className="modal-body">
+                        <label className="modal-input-tag">Problem</label>
+                        <section className="modal-row">
+                            <input type="text" name="problem" id="problem" className="modal-form" value={this.state.problem} required autoFocus onChange={(e) => {this.setState({ problem: `${e.target.value}`})}} />
+                        </section>
+                        <label className="modal-input-tag">Description</label>
+                        <section className="modal-row">
+                            <textarea id="description" name="description" className="modal-form" value={this.state.description} style={{minHeight: "70px", "resize": "none"}} onChange={(e) => {this.setState({ description: `${e.target.value}` })}} required/>
+                        </section>
+                        <input type="text" name="location" id="location" value={this.state.location} style={{"display": "none"}} />
 
-                </div>
-                <div className="submitModal">
-                    <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>
-                    <button type="submit" className="submit-btn"> Send </button>
-                </div>
+                    </div>
+                    <div className="submitModal">
+                        <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>
+                        <button type="submit" className="submit-btn"> Send </button>
+                    </div>
                 </form>
             </div>
         </div>
