@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { findUsername } from '../../../../services/account.services';
+// import { findUsername } from '../../../../services/account.services';
 
 class RegUsername extends Component {
     constructor(props) {
@@ -30,8 +30,8 @@ class RegUsername extends Component {
         });
     }
 
-    handleConstraint(e) {
-        const username = e.target.value;
+    // handleConstraint(e) {
+    //     const username = e.target.value;
         // if (username.length > 0) {
         //     this.handleSuccessUsername();
         //     const reqBody = { username };
@@ -47,7 +47,7 @@ class RegUsername extends Component {
         //         showUsernameSuccess: false
         //     });
         // }
-    }
+    // }
 
     render() {
         const { handleChangeInput } = this.props;

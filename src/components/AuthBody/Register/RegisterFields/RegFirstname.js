@@ -46,7 +46,7 @@ class RegFirstname extends Component {
 
         return (
             <div className={`${failFirstNameClass} ${successFirstNameClass}`}>
-                <input type="text" name="firstName" placeholder="First" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
+                <input type="text" name="firstName" placeholder="First" onChange={e => { handleChangeInput(e) && this.handleConstraint(e) }}/>
                 <div className="reg-info">
                     <p className="invalid-text"> Please type in your first name </p>
                 </div>
