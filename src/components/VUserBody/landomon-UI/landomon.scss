@@ -244,26 +244,29 @@
 }
 
 
-.loginTextField--success{
+.loginTextField--forceFail{
   input{
-      border: #00D16E solid 1.5px !important;
+      border: #FF3560 solid 1.2px !important;
       transition: 0.2s ease-in-out;
   }
-
   .validation-info{
+      transition: ease-in-out 0.2s;
       margin-top: 0px;
-      margin-bottom: 0px !important;
+      // margin-bottom: 0px !important;
       text-align: left;
       font-size: 0.75rem;
       transition: 0.2s ease-in-out;
-
+      margin-bottom: 20px;
       .error-text{
-        margin-top: 0;
-        margin-bottom: 0;
-        opacity: 0;
+          opacity: 1;
+          margin-top: 0;
+          transition: 0.2s ease-in-out;
       }
   }
 }
+
+
+
 
 
 

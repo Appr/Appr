@@ -8,21 +8,26 @@ class LoginTextField extends Component {
         this.state ={
             showSuccess: false,
             showFail: false,
+            showForceFail: false,
         }
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleFailed = this.handleFailed.bind(this);
+        this.handleForceFailed = this.handleForceFailed.bind(this);
         this.handleDefaultStyle = this.handleDefaultStyle.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
         if (nextProps.errorText){
-            return this.handleFailed();
+             this.handleFailed();
         }
         else if(nextProps.forceFail === true){
-            return this.handleFailed()
+            this.handleForceFailed()
+        }
+        else if(nextProps.forceFail === false){
+            this.handleDefaultStyle();
         }
         else{
-            return this.handleDefaultStyle();
+            this.handleDefaultStyle();
         }
     }
 
@@ -36,7 +41,8 @@ class LoginTextField extends Component {
     handleDefaultStyle(){
         this.setState({
             showFail: false,
-            showSuccess: false
+            showSuccess: false,
+            showForceFail: false
         })
     }
 
@@ -44,6 +50,14 @@ class LoginTextField extends Component {
         this.setState({
             showFail: true,
             showSuccess: false
+        })
+    }
+
+    handleForceFailed(){
+        this.setState({
+            showFail: false,
+            showSuccess: false,
+            showForceFail: true
         })
     }
 
@@ -61,8 +75,13 @@ class LoginTextField extends Component {
             "loginTextField--success": this.state.showSuccess
         });
 
+        let forcedFailTextFieldClass = classnames({
+            "loginTextField": true,
+            "loginTextField--forceFail": this.state.showForceFail
+        });
+
         return(
-            <div className={`${failTextFieldClass} ${successTextFieldClass}`} >
+            <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
                 <input className="modalTextFieldInput"
                     name={label}  
                     type={this.props.type} 
