@@ -1,6 +1,6 @@
-  
+@import '../../_colors.scss';
 
-
+//Login Button
   .login-btn{
     display: flex;
     justify-content: center;
@@ -48,6 +48,66 @@
     text-transform: uppercase;
     transition: 0.2s ease-in-out;
     user-select: none;
+    cursor: auto;
+  }
+  //Login Button
+
+
+//SUBMIT BUTTON 
+.submit-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 34px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $addBtn-color1;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 1px 0 #539A40;
+    font-weight: bold;
+    font-size: 10pt;
+
+  }
+  .submit-btn-disabled {
+    background: none;
+    color: #5E5E5E;
+    outline: none;
+    font-weight: bold;
+    cursor: auto;
+    font-weight: normal;
+    background: #D9D9D9;
+    box-shadow: 0 1px 0 #D9D9D9;
+  }
+//SUBMIT BUTTON
+
+
+//DELETE BUTTON 
+.archive-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 34px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $red-btn-color;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 1px 0 rgb(187, 61, 68);
+    font-weight: bold;
+    font-size: 10pt;
   }
 
 
@@ -56,7 +116,7 @@
 
 
 
-
+//Modal Text Field
   .modalTextFieldLabel {
     width: 100%;
     text-align: left;
@@ -170,6 +230,8 @@
         }
     }
 }
+//Modal Text Field
+
 
 
 

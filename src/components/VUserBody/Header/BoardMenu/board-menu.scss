@@ -45,6 +45,19 @@
     align-items: flex-start;
     z-index: 4;
     overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 100%;
+      
+  }
+
+  &::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background-color: #C4C9CC;
+       
+  }
   }
 
   .boards-main-container{

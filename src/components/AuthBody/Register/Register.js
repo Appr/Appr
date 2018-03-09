@@ -12,6 +12,7 @@ import { findUserInfo } from '../../../services/account.services';
 import { withRouter } from 'react-router-dom';
 import history from '../../../history';
 import CreateAccountButton from '../../VUserBody/landomon-UI/CreateAccountButton';
+import SubmitButton from '../../VUserBody/landomon-UI/DeleteButton';
 
 
 class Register extends Component {
@@ -194,12 +195,17 @@ class Register extends Component {
                                 {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
                                     {/* {registerBtn} */}
-                                    <CreateAccountButton
+                                    <SubmitButton
                                         onClickAction={this.handleButtonRegister}
                                         label={this.state.createAccountBtnLabel}
                                         loading={this.state.createAccountBtnLoading}
                                         errorText=''
                                         disabled={this.state.createAccountBtnDisabled}
+                                    />
+
+                                 
+                                    <CreateAccountButton
+                                        
                                     />
                                 </div>
                             </div>

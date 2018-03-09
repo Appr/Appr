@@ -6,7 +6,7 @@ import './login.scss';
 import { loginTest, login } from '../../../services/auth.services';
 import { request } from 'https';
 import { updateAuth, updateUser, updatePersonalProjects } from '../../../actions/actionCreators';
-import { findUserInfo } from '../../../services/account.services';
+import { findUserInfo, reactivateUserAccount } from '../../../services/account.services';
 import {  findPersonalProjects } from '../../../services/dashboard.services';
 
 import { connect } from 'react-redux'
@@ -114,9 +114,12 @@ class Login extends Component {
 												.then( res => {
 													if (res.status !== 200) {
 													alert('failed')
-														this.revertLoginButton();
 													}
+
+													
 													else if (res.status === 200){
+														// reactivateUserAccount(res.data[0].id);
+
 														let userInfo = {   
 															id: res.data[0].id,
 															username: res.data[0].username,
@@ -151,7 +154,6 @@ class Login extends Component {
 	}
 
 	render() {
-		console.log(this.state)
 		return (
 			<div className="login-parent">
 				<div className="login-container">
