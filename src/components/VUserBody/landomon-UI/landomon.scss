@@ -126,6 +126,26 @@
     }
 }
 
+.modalTextField--forceFail{
+    input{
+        border: #FF3560 solid 1px !important;
+        transition: 0.2s ease-in-out;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        height: 20px;
+        margin-top: 0px;
+        // margin-bottom: 0 !important;
+        text-align: left;
+        .error-text{
+            margin-top: 0;
+            margin-bottom: 0;
+            opacity: 0;
+            transition: 0.2s ease-in-out;
+        }
+    }
+}
+
 
 .modalTextField--success{
     input{
@@ -171,7 +191,7 @@
 
 
 
-
+//Login Text Field
 .loginTextField{
   display: flex !important;
   flex-direction: column !important;
@@ -264,6 +284,8 @@
       }
   }
 }
+//Login Text Field
+
 
 
 

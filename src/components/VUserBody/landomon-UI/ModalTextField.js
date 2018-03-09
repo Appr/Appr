@@ -8,15 +8,20 @@ class ModalTextField extends Component {
         this.state ={
             showSuccess: false,
             showFail: false,
+            showForceFail: false
         }
         this.handleSuccess = this.handleSuccess.bind(this);
         this.handleFailed = this.handleFailed.bind(this);
         this.handleDefaultStyle = this.handleDefaultStyle.bind(this);
+        this.handleForceFailed = this.handleForceFailed.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        if (nextProps.errorText != ''){
-            this.handleFailed();
+        if (nextProps.errorText){
+             this.handleFailed();
+        }
+        else if(nextProps.forceFail === true){
+            this.handleForceFailed()
         }
         else{
             this.handleDefaultStyle();
@@ -36,7 +41,8 @@ class ModalTextField extends Component {
     handleDefaultStyle(){
         this.setState({
             showFail: false,
-            showSuccess: false
+            showSuccess: false,
+            showForceFail: false
         })
     }
 
@@ -44,6 +50,14 @@ class ModalTextField extends Component {
         this.setState({
             showFail: true,
             showSuccess: false
+        })
+    }
+
+    handleForceFailed(){
+        this.setState({
+            showFail: false,
+            showSuccess: false,
+            showForceFail: true
         })
     }
 
@@ -61,8 +75,14 @@ class ModalTextField extends Component {
             "modalTextField--success": this.state.showSuccess
         });
 
+
+        let forcedFailTextFieldClass = classnames({
+            "modalTextField": true,
+            "modalTextField--forceFail": this.state.showForceFail
+        });
+
         return(
-            <div className={`${failTextFieldClass} ${successTextFieldClass}`} >
+            <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
                 <label className="modalTextFieldLabel"> {label} </label>
                 <input className="modalTextFieldInput"
                     name={label}  
