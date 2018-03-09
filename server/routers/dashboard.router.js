@@ -18,6 +18,19 @@ dashboardRouter.get('/personal-projects/:userid', (req, res) => {
         .catch(err => res.send({message: 'could not get personal projects'}))
 })
 
+
+dashboardRouter.get('/recent-projects/:userid', (req, res) => {
+    const userid = req.params.userid;
+    // let { id } = req.user[0];
+    // if(id != userid){
+    //     res.send('NO')
+    // }
+    const db = getDb();
+    db.find_recent_projects([userid])
+        .then( recentProjects => res.send(recentProjects))
+        .catch(err => res.send({message: 'could not get recent projects'}))
+})
+
 // dashboardRouter.get('/:userid', (req, res) => {
 //     const userid = req.params.userid;
 //     const db = getDb();

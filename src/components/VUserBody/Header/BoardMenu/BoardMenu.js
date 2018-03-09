@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import history from '../../../../history';
 import './board-menu.scss'
-import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
+import { findDashboardInfo, findPersonalProjects, findRecentProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { findProject } from '../../../../services/project.services';
-import { updateProjectRedux, updatePersonalProjects } from '../../../../actions/actionCreators';
+import { findProject, updateLastOpenedProject } from '../../../../services/project.services';
+import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../../actions/actionCreators';
 import { connect } from 'react-redux';
 import CreateProject from '../../InfoBody/Dashboard/CreateProject/CreateProject';
 import Modal from 'react-modal';
 import { ModalBoxBoardMenu } from '../../InfoBody/AccountSettings/accountsettingsStyled';
+import moment from 'moment';
 
 class BoardMenu extends Component {
     constructor(props){
@@ -41,8 +42,8 @@ class BoardMenu extends Component {
 
   render() {
 
-const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
-
+const { closeMenus, updateProjectRedux, handleCurtain, updateRecentProjects } = this.props;
+const userid = this.props.userInfo.id;
     function getProject(projectid, path){
         findProject(projectid)
         .then( res => {
@@ -50,9 +51,26 @@ const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
                 console.log(res);
             }
             else {
-                closeMenus();
-                updateProjectRedux(res.data[0]);
-                history.push(path)
+                let incomingProjectInfo = res.data[0];
+                let newTime = moment();
+                let lastOpenedBody = {
+                    time: newTime
+                }
+                updateLastOpenedProject(projectid,lastOpenedBody)
+                    .then(res => {
+                        if(res.status === 200){
+                            findRecentProjects(userid)
+                                .then(res => {
+                                    console.log(res.data)
+                                    updateRecentProjects(res.data[0])
+                                    let path = `/user/${userid}/project/${projectid}/ideas`
+                                    closeMenus();
+                                    updateProjectRedux(incomingProjectInfo);
+                                    history.push(path)
+                                })
+                        }
+                    })
+
             }
         })
         .catch(err => {throw err});
@@ -74,8 +92,8 @@ const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
     //     )
     // })
 
-    let userid = this.props.userInfo.id;
     let personalProjects = this.props.dashboardInfo.personalProjects;
+    let recentProjects = this.props.dashboardInfo.recentProjects;
     let displayProjects = personalProjects.map( (project, index) => {
             if(project.status_id === 1){
                 let path = `/user/${userid}/project/${project.id}/ideas`;
@@ -91,6 +109,8 @@ const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
                 )
             }
   })
+
+
   
     return (
         <div className="boards-main-container">
@@ -100,6 +120,10 @@ const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
             <div className="board-text">Hide</div>
         </div> 
         </div>
+        <div className="personal-boards-con">
+                <div className="text-12">RECENT PROJECTS</div>
+
+            </div>
             <div className="personal-boards-con">
                 <div className="text-12">PERSONAL PROJECTS</div>
         
@@ -115,21 +139,7 @@ const { closeMenus, updateProjectRedux, handleCurtain } = this.props;
                             </div>
                         </div>
             </div>
-            {/* <div className="recent-boards-con">
-                <div className="text-12">GROUP PROJECTS</div>
-        
-                {displayGroups}
 
-
-                        <div className="create-board-item" onClick={() => this.handleCreateButton('group')}>
-                            <div className="create-board-thumbnail">
-                                <div className="plus-symbol">+</div>
-                            </div>
-                            <div className="create-board-name">
-                                Create Group
-                            </div>
-                        </div>
-            </div> */}
 
 
             	<Modal
@@ -150,7 +160,7 @@ function mapStateToProps(state){
     return state;
 }
   
-  export default withRouter(connect( mapStateToProps, {updateProjectRedux, updatePersonalProjects} ) (BoardMenu));
+  export default withRouter(connect( mapStateToProps, {updateProjectRedux, updatePersonalProjects, updateRecentProjects} ) (BoardMenu));
 
 
 

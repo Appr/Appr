@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import './login.scss';
 import { loginTest, login } from '../../../services/auth.services';
 import { request } from 'https';
-import { updateAuth, updateUser, updatePersonalProjects } from '../../../actions/actionCreators';
+import { updateAuth, updateUser, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
 import { findUserInfo, reactivateUserAccount } from '../../../services/account.services';
-import {  findPersonalProjects } from '../../../services/dashboard.services';
+import {  findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
 
 import { connect } from 'react-redux'
 import history from '../../../history';
@@ -129,6 +129,10 @@ class Login extends Component {
 															email: res.data[0].email
 															}
 															this.props.updateUser(userInfo)
+															findRecentProjects(userInfo.id)
+																.then(res => {
+																	this.props.updateRecentProjects(res.data);
+																})
 											
 															findPersonalProjects(userInfo.id)
 																.then( res => {
@@ -216,4 +220,4 @@ function mapStateToProps(state){
 	return state
 }
 
-export default withRouter(connect(mapStateToProps, {updateAuth, updateUser, updatePersonalProjects})(Login));
+export default withRouter(connect(mapStateToProps, {updateAuth, updateUser, updatePersonalProjects, updateRecentProjects})(Login));

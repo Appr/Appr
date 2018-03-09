@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import '../../AccountSettings/modals/modals.scss';
 import PropTypes from 'prop-types';
 import { updateUserInfo, updateUserEmail } from '../../../../../services/account.services';
-import { createProject, findProject, updateProject } from '../../../../../services/project.services';
+import { createProject, findProject, updateProject, updateLastOpenedProject } from '../../../../../services/project.services';
 import { findDashboardInfo, findPersonalProjects } from '../../../../../services/dashboard.services';
 import { connect } from 'react-redux';
 import { updatePersonalProjects, updateProjectRedux } from '../../../../../actions/actionCreators';
 import history from '../../../../../history';
 import SubmitButton from '../../../landomon-UI/SubmitButton';
+import moment from 'moment';
 
 class CreateProject extends Component {
     constructor(props){
@@ -37,7 +38,13 @@ class CreateProject extends Component {
 						const projectid = res.data[0].id;
 						findProject(projectid)
 						.then(res => {
-							this.props.updateProjectRedux(res.data[0]);
+                            this.props.updateProjectRedux(res.data[0]);
+                            let newTime = moment();
+                            let lastOpenedBody = {
+                                time: newTime
+                            }
+                            updateLastOpenedProject(res.data[0].id, lastOpenedBody)
+                            .then( res => res)
 						})
                     }
                     history.push(`/user/${userid}/project/${this.props.projectInfo.id}/ideas`);
