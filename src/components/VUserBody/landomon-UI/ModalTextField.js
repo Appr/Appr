@@ -85,6 +85,7 @@ class ModalTextField extends Component {
             <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
                 <label className="modalTextFieldLabel"> {label} </label>
                 <input className="modalTextFieldInput"
+                    autoFocus
                     name={label}  
                     type={this.props.type} 
                     onChange={onChangeAction}

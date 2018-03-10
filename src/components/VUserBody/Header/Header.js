@@ -9,6 +9,8 @@ import { ModalBox } from './headerStyles';
 import BoardMenu from './BoardMenu/BoardMenu';
 import { connect } from 'react-redux';
 import { logout } from '../../../services/auth.services';
+import { updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
+import { updateUserInfo } from '../../../services/account.services';
 
 
 class Header extends Component {
@@ -88,9 +90,12 @@ class Header extends Component {
     }
 
     handleLogOut() {
+        this.props.updatePersonalProjects();
+        this.props.updateRecentProjects();
+        this.props.updateUserInfo();
         logout()
         .then( res => {
-            console.log(res);
+
         })
     }
     
@@ -168,12 +173,7 @@ class Header extends Component {
             <div className="backdropCloseMenu" onClick={this.closeMenus}/>
         </div>
         
-      
-        
-        
-
-        <div className={handleCurtain} onClick={this.handleBoardMenuClick}>
-        </div>
+        <div className={handleCurtain} onClick={this.handleBoardMenuClick} />
 
         <Modal 
               isOpen ={this.state.feedbackModalOpen} 

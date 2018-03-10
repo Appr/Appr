@@ -105,11 +105,23 @@ class Login extends Component {
 								 username: this.state.username,
 								 password: res.data
 							 }
+							 this.setState({
+								UI:{
+									loginLabel: 'Loading.',
+									loginLoading: true
+								}
+							})
 							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
 
 										if(res.status === 200){
+												this.setState({
+													UI:{
+														loginLabel: 'Loading..',
+														loginLoading: true
+													}
+												})
 												findUserInfo(res.data.id)
 												.then( res => {
 													if (res.status !== 200) {
@@ -119,7 +131,12 @@ class Login extends Component {
 													
 													else if (res.status === 200){
 														// reactivateUserAccount(res.data[0].id);
-
+														this.setState({
+															UI:{
+																loginLabel: 'Loading...',
+																loginLoading: true
+															}
+														})
 														let userInfo = {   
 															id: res.data[0].id,
 															username: res.data[0].username,

@@ -44,7 +44,14 @@ class BoardMenu extends Component {
 
 const { closeMenus, updateProjectRedux, handleCurtain, updateRecentProjects } = this.props;
 const userid = this.props.userInfo.id;
-    function getProject(projectid, path){
+
+let personalProjects = this.props.dashboardInfo.personalProjects;
+let recentProjects = this.props.dashboardInfo.recentProjects;
+
+
+
+    function getProject(projectid){
+        let path = `/user/${userid}/project/${projectid}/ideas`;
         findProject(projectid)
         .then( res => {
             if (res.status !== 200) {
@@ -61,12 +68,13 @@ const userid = this.props.userInfo.id;
                         if(res.status === 200){
                             findRecentProjects(userid)
                                 .then(res => {
-                                    console.log(res.data)
-                                    updateRecentProjects(res.data[0])
-                                    let path = `/user/${userid}/project/${projectid}/ideas`
-                                    closeMenus();
-                                    updateProjectRedux(incomingProjectInfo);
-                                    history.push(path)
+                                    if(res.status === 200){
+                                        console.log(res.data)
+                                        updateRecentProjects(res.data)
+                                        closeMenus();
+                                        updateProjectRedux(incomingProjectInfo);
+                                        history.push(path)
+                                    }
                                 })
                         }
                     })
@@ -91,14 +99,26 @@ const userid = this.props.userInfo.id;
     //         </Link>
     //     )
     // })
+    let displayRecentProjects = recentProjects.map( (project, index) => {
+        if(project.status_id === 1){
+            return (
+                    <div key={`recent-board-menu-item${index}`} className="board-menu-item" onClick={(e) => getProject(project.id)} >
+                        <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
-    let personalProjects = this.props.dashboardInfo.personalProjects;
-    let recentProjects = this.props.dashboardInfo.recentProjects;
+                        </div>
+                        <div className="board-item-name">
+                            {project.name}
+                        </div>
+                    </div>
+            )
+        }
+})
+
+
     let displayProjects = personalProjects.map( (project, index) => {
             if(project.status_id === 1){
-                let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
-                        <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
+                        <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id)} >
                             <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
                             </div>
@@ -110,7 +130,17 @@ const userid = this.props.userInfo.id;
             }
   })
 
+  function handleClasses(){
+        if(personalProjects.length < 5){
+            return 'recent-boards-con--hide';
+        }
+        else{
+            return 'recent-boards-con';
+        }
+    }
 
+
+  let recentProjectsClass = handleClasses();
   
     return (
         <div className="boards-main-container">
@@ -120,9 +150,9 @@ const userid = this.props.userInfo.id;
             <div className="board-text">Hide</div>
         </div> 
         </div>
-        <div className="personal-boards-con">
+        <div className={recentProjectsClass}>
                 <div className="text-12">RECENT PROJECTS</div>
-
+                    {displayRecentProjects}
             </div>
             <div className="personal-boards-con">
                 <div className="text-12">PERSONAL PROJECTS</div>

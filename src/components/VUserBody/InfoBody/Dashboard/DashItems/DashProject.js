@@ -7,8 +7,9 @@ import moment from 'moment';
 import { findRecentProjects } from '../../../../../services/dashboard.services';
 class DashProject extends Component {
     render() {
-        const { userid, projectid, projectName, backgroundSource, updateProjectRedux } = this.props;
+        const { userid, projectid, projectName, backgroundSource, updateProjectRedux, updateRecentProjects } = this.props;
         function getProject(){
+            let path = `/user/${userid}/project/${projectid}/ideas`;
             findProject(projectid)
             .then( res => {
                 if (res.status !== 200) {
@@ -22,14 +23,16 @@ class DashProject extends Component {
                     }
                     updateLastOpenedProject(projectid,lastOpenedBody)
                         .then(res => {
+                            if (res.status === 200){
                             findRecentProjects(userid)
                                 .then(res => {
-                                    console.log(res.data)
-                                    updateRecentProjects(res.data[0])
-                                    let path = `/user/${userid}/project/${projectid}/ideas`
-                                    updateProjectRedux(incomingProjectInfo);
-                                    history.push(path)
+                                    if(res.status === 200){
+                                        updateRecentProjects(res.data);
+                                        updateProjectRedux(incomingProjectInfo);
+                                        history.push(path)
+                                    }
                                 })
+                            }
                         })
                 }
             })
