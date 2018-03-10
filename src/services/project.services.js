@@ -30,9 +30,17 @@ function deleteProject(projectid) {
         .catch(err => {throw err});
 }
 
+function updateLastOpenedProject(projectid, body) {
+    return axios
+        .put(`${baseURL}/update/${projectid}/lastopened`, body)
+        .then(res => res)
+        .catch(err => {throw err})
+}
+
 export {
     createProject,
     findProject,
     updateProject,
     deleteProject,
+    updateLastOpenedProject
 };

@@ -12,6 +12,7 @@ import { findUserInfo } from '../../../services/account.services';
 import { withRouter } from 'react-router-dom';
 import history from '../../../history';
 import CreateAccountButton from '../../VUserBody/landomon-UI/CreateAccountButton';
+import SubmitButton from '../../VUserBody/landomon-UI/SubmitButton';
 
 
 class Register extends Component {
@@ -45,6 +46,16 @@ class Register extends Component {
         let newState = this.state[key];
         newState = e.target.value;
         this.setState({ [key]: newState });
+        if(this.state.firstName.length !== 0 && this.state.lastName.length !== 0 && this.state.email.length !== 0 && this.state.password.length !== 0){
+            this.setState({
+                createAccountBtnDisabled: false
+            })
+        }
+        else{
+            this.setState({
+                createAccountBtnDisabled: true
+            })
+        }
     }
 
     toggleReadySwitch(field, ready) {
@@ -194,12 +205,17 @@ class Register extends Component {
                                 {/* <RegUsername handleChangeInput={this.handleChangeInput} toggleReadySwitch={this.toggleReadySwitch}/> */}
                                 <div className="reg-btn-footer">
                                     {/* {registerBtn} */}
-                                    <CreateAccountButton
+                                    <SubmitButton
                                         onClickAction={this.handleButtonRegister}
                                         label={this.state.createAccountBtnLabel}
                                         loading={this.state.createAccountBtnLoading}
-                                        errorText=''
                                         disabled={this.state.createAccountBtnDisabled}
+                                        buttonStyle={{
+                                            fontSize: '20px',
+                                            width: '100%',
+                                            height: '50px',
+                                            margin: '0'
+                                        }}
                                     />
                                 </div>
                             </div>

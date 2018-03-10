@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import './login.scss';
 import { loginTest, login } from '../../../services/auth.services';
 import { request } from 'https';
-import { updateAuth, updateUser, updatePersonalProjects } from '../../../actions/actionCreators';
-import { findUserInfo } from '../../../services/account.services';
-import {  findPersonalProjects } from '../../../services/dashboard.services';
+import { updateAuth, updateUser, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
+import { findUserInfo, reactivateUserAccount } from '../../../services/account.services';
+import {  findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
 
 import { connect } from 'react-redux'
 import history from '../../../history';
@@ -105,18 +105,38 @@ class Login extends Component {
 								 username: this.state.username,
 								 password: res.data
 							 }
+							 this.setState({
+								UI:{
+									loginLabel: 'Loading.',
+									loginLoading: true
+								}
+							})
 							login(logInBody)
 								.then( res => {
 										this.props.updateAuth(true);
 
 										if(res.status === 200){
+												this.setState({
+													UI:{
+														loginLabel: 'Loading..',
+														loginLoading: true
+													}
+												})
 												findUserInfo(res.data.id)
 												.then( res => {
 													if (res.status !== 200) {
 													alert('failed')
-														this.revertLoginButton();
 													}
+
+													
 													else if (res.status === 200){
+														// reactivateUserAccount(res.data[0].id);
+														this.setState({
+															UI:{
+																loginLabel: 'Loading...',
+																loginLoading: true
+															}
+														})
 														let userInfo = {   
 															id: res.data[0].id,
 															username: res.data[0].username,
@@ -126,6 +146,10 @@ class Login extends Component {
 															email: res.data[0].email
 															}
 															this.props.updateUser(userInfo)
+															findRecentProjects(userInfo.id)
+																.then(res => {
+																	this.props.updateRecentProjects(res.data);
+																})
 											
 															findPersonalProjects(userInfo.id)
 																.then( res => {
@@ -151,7 +175,6 @@ class Login extends Component {
 	}
 
 	render() {
-		console.log(this.state)
 		return (
 			<div className="login-parent">
 				<div className="login-container">
@@ -214,4 +237,4 @@ function mapStateToProps(state){
 	return state
 }
 
-export default withRouter(connect(mapStateToProps, {updateAuth, updateUser, updatePersonalProjects})(Login));
+export default withRouter(connect(mapStateToProps, {updateAuth, updateUser, updatePersonalProjects, updateRecentProjects})(Login));

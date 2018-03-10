@@ -66,13 +66,25 @@ accountRouter.put('/update/:userid', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
-accountRouter.put('/delete/:userid', (req, res) => {
-    const userId = req.params.userId;
-    if(userId != req.user[0].id){
+accountRouter.put('/delete/user', (req, res) => {
+    let { userid } = req.body;
+    console.log(userid)
+    if(userid != req.user[0].id){
         res.send('I hear you like scene kids ;)')
     }
     const db = getDb();
-    db.delete_user([ userId ])
+    db.delete_user([ userid ])
+        .then(promise => res.send(promise))
+        .catch(err => res.status(500).send(err));
+});
+
+accountRouter.put('/reactivate/:userid', (req, res) => {
+    const userId = req.params.userId;
+    if(userId != req.user[0].id){
+        res.send('nyan cat')
+    }
+    const db = getDb();
+    db.reactivate_user([ userId ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
@@ -175,5 +187,8 @@ accountRouter.put('/info/update/avatar/:userid', (req, res) => {
     .then(promise => res.send())
     .catch(err => res.status(500).send(err));
 });
+
+
+
 
 module.exports = accountRouter;

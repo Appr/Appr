@@ -6,7 +6,8 @@ class SubmitButton extends Component {
     constructor(props){
         super(props)
         this.state ={
-            disabled: true
+            disabled: true,
+            loading: false
         }
     }
 
@@ -16,7 +17,10 @@ class SubmitButton extends Component {
                 disabled: false
             })
         }
-        else{
+        else if(nextProps.loading === true){
+            console.log('loading')
+        }
+        else if(nextProps.disabled === true){
             this.setState({
                 disabled: true
             })
@@ -38,7 +42,7 @@ class SubmitButton extends Component {
             )
         }
         return(
-            <button className={submitBtnClass} onClick={(e) => handleAction()}>
+            <button className={submitBtnClass} style={this.props.buttonStyle} onClick={(e) => handleAction()}>
                 {this.props.label}
             </button>
 
