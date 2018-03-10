@@ -53,7 +53,7 @@ class Features extends Component {
                     alert(res);
                 }
                 else {
-                    this.pullFromBackend(projectid, 'yesScroll')   
+                    this.pullFromBackend(projectid, 'yesScroll')
                 }
             })
             .catch(err => {throw err});
