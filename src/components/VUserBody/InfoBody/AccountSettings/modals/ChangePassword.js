@@ -12,7 +12,7 @@ class ChangePassword extends Component {
         super(props)
         this.state = {
             confirmPassword: '',
-            newPassword: '',
+            newPasswordForceFail: false,
             errorText: '',
             showSuccessButton: false,
             showSuccessField: false,
@@ -37,7 +37,7 @@ class ChangePassword extends Component {
                         this.setState({
                             showSuccessField: false,
                             errorText: newErrorText,
-                            
+                            newPasswordForceFail: true
                     })}
                     else {
                         this.props.pullFromBackend(userid);
@@ -54,7 +54,8 @@ class ChangePassword extends Component {
         let confirmPassword = this.state.confirmPassword;
         if(this.state.errorText.length > 3){
             this.setState({
-                errorText: ''
+                errorText: '',
+                newPasswordForceFail: false
             })
         }
         this.setState({
@@ -79,7 +80,8 @@ class ChangePassword extends Component {
         let newPassword = this.state.newPassword;
         if(this.state.errorText.length > 3){
             this.setState({
-                errorText: ''
+                errorText: '',
+                newPasswordForceFail: false
             })
         }
         this.setState({
@@ -115,9 +117,9 @@ class ChangePassword extends Component {
                         type='password'
                         onChangeAction={(e) => {this.handleNewPasswordChange(e.target.value)}}
                         label="New Password"
-                        errorText={this.state.errorText}
                         maxLength="18"
                         showSuccess={this.state.showSuccessField}
+                        forceFail={this.state.newPasswordForceFail}
                         
                     />
                 </section>

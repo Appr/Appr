@@ -1,7 +1,7 @@
 
 
 var initialState={
-    groupProjects: [],
+    recentProjects: [],
     personalProjects: []
 }
 
@@ -11,8 +11,8 @@ function dashboardInfo(state = initialState, action){
         case "UPDATE_PERSONAL_PROJECTS":
             return Object.assign( {}, state, { personalProjects: action.payload });
 
-        case "UPDATE_GROUP_PROJECTS":
-            return Object.assign( {}, state, { groupProjects: action.payload });
+        case "UPDATE_RECENT_PROJECTS":
+            return Object.assign( {}, state, { recentProjects: action.payload });
 
 
         default: return state;

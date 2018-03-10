@@ -1,5 +1,5 @@
 const UPDATE_PERSONAL_PROJECTS = "UPDATE_PERSONAL_PROJECTS";
-const UPDATE_GROUP_PROJECTS = "UPDATE_GROUP_PROJECTS";
+const UPDATE_RECENT_PROJECTS = "UPDATE_RECENT_PROJECTS";
 const UPDATE_AUTH = "UPDATE_AUTH";
 
 const UPDATE_USER = "UPDATE_USER";
@@ -26,10 +26,10 @@ export function updatePersonalProjects(personalProjects){
     }
 }
 
-export function updateGroupProjects(groupProjects){
+export function updateRecentProjects(recentProjects){
     return {
-        type: UPDATE_PERSONAL_PROJECTS,
-        payload: groupProjects
+        type: UPDATE_RECENT_PROJECTS,
+        payload: recentProjects
     }
 }
 

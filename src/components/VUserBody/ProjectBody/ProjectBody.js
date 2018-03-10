@@ -11,8 +11,8 @@ import Tracking from './Tracking/Tracking';
 import { BlurOverlay, ProjectBodyContainer, Frame } from './projectbodyStyles';
 import { findProject, updateProject } from '../../../services/project.services';
 import { connect } from 'react-redux';
-import { updateProjectRedux, updatePersonalProjects } from '../../../actions/actionCreators';
-import { findPersonalProjects } from '../../../services/dashboard.services';
+import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
+import { findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
 
 class ProjectBody extends Component {
   constructor(props){
@@ -28,6 +28,8 @@ class ProjectBody extends Component {
     this.changeProjectBackground = this.changeProjectBackground.bind(this);
     this.clearProjectBackgroundPreview = this.clearProjectBackgroundPreview.bind(this);
   }
+
+
 
 
   handleProjectBackgroundPreview(image, color){
@@ -115,5 +117,5 @@ function mapStateToProps(state){
   return state;
 }
 
-export default withRouter(connect( mapStateToProps, { updateProjectRedux, updatePersonalProjects } ) (ProjectBody));
+export default withRouter(connect( mapStateToProps, { updateProjectRedux, updatePersonalProjects, updateRecentProjects } ) (ProjectBody));
 

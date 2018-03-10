@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import '../../AccountSettings/modals/modals.scss';
 import PropTypes from 'prop-types';
 import { updateUserInfo, updateUserEmail } from '../../../../../services/account.services';
-import { createProject, findProject, updateProject } from '../../../../../services/project.services';
-import { findDashboardInfo, findPersonalProjects } from '../../../../../services/dashboard.services';
+import { createProject, findProject, updateProject, updateLastOpenedProject } from '../../../../../services/project.services';
+import { findDashboardInfo, findPersonalProjects, findRecentProjects } from '../../../../../services/dashboard.services';
 import { connect } from 'react-redux';
-import { updatePersonalProjects, updateProjectRedux } from '../../../../../actions/actionCreators';
+import { updatePersonalProjects, updateProjectRedux, updateRecentProjects } from '../../../../../actions/actionCreators';
 import history from '../../../../../history';
 import SubmitButton from '../../../landomon-UI/SubmitButton';
+import moment from 'moment';
+import ModalTextField from '../../../landomon-UI/ModalTextField';
 
 class CreateProject extends Component {
     constructor(props){
@@ -37,17 +39,34 @@ class CreateProject extends Component {
 						const projectid = res.data[0].id;
 						findProject(projectid)
 						.then(res => {
-							this.props.updateProjectRedux(res.data[0]);
+                            let projectid = res.data[0].id;
+                            this.props.updateProjectRedux(res.data[0]);
+                            let newTime = moment();
+                            let lastOpenedBody = {
+                                time: newTime
+                            }
+                            updateLastOpenedProject(projectid, lastOpenedBody)
+                            .then( res => {
+                                if(res.status === 200){
+                                    findRecentProjects(userid)
+                                        .then(res => {
+                                            if(res.status === 200){
+                                                this.props.updateRecentProjects(res.data)
+                                                history.push(`/user/${userid}/project/${projectid}/ideas`);
+                                                this.props.onCloseBtnClick();
+                                            }
+                                        })
+                                }
+                            })
 						})
                     }
-                    history.push(`/user/${userid}/project/${this.props.projectInfo.id}/ideas`);
-					this.props.onCloseBtnClick();
+
 				})
                 .catch(err => {throw err});
       }
 
     handleNameChange(e){
-        let newProjectName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
+        let newProjectName = e;
         this.setState({
             projectName: newProjectName
           })
@@ -93,9 +112,14 @@ class CreateProject extends Component {
                 </div>
                 <div className="modal-body">
 
-                    <label className="modal-input-tag">Project Name</label>
+
                     <section className="modal-row">
-                        <input className="modal-form" type="text" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
+                        <ModalTextField
+                            label ="Project Name"
+                            onChangeAction={(e) => {this.handleNameChange(e.target.value)}}
+                            type='text'
+                            maxLength={30}
+                        />
                     </section>
                 </div>
                 <div className="submitModal">
@@ -116,4 +140,4 @@ class CreateProject extends Component {
 
   CreateProject.propTypes = { onCloseBtnClick: PropTypes.func }
   CreateProject.defaultProps = { onCloseBtnClick: () => {} }
-  export default connect(mapStateToProps, {updatePersonalProjects, updateProjectRedux})(CreateProject);
+  export default connect(mapStateToProps, {updatePersonalProjects, updateProjectRedux, updateRecentProjects})(CreateProject);

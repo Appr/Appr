@@ -128,6 +128,8 @@
     font-size: 20px;
     text-align: left;
     color: $medium-color;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .headline-22{
@@ -155,10 +157,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 115px;
     width: 209px;
     margin-left: 20px;
-    // background: lightgrey;
 }
 
 .name-and-username{

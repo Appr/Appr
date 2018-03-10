@@ -4,13 +4,16 @@ import { deleteProject, updateProject, findProject } from '../../../../../../ser
 import history from '../../../../../../history';
 import { findDashboardInfo, findPersonalProjects } from '../../../../../../services/dashboard.services';
 import { updateDashboard, updateProjectRedux, updatePersonalProjects } from '../../../../../../actions/actionCreators';
+import ModalTextField from '../../../../landomon-UI/ModalTextField';
+import SubmitButton from '../../../../landomon-UI/SubmitButton';
 
 
 class RenameProject extends Component {
   constructor(props){
     super(props)
     this.state={
-        localProjectName: ''
+        localProjectName: '',
+        validated: ''
 
     }
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -22,6 +25,17 @@ class RenameProject extends Component {
     this.setState({
         localProjectName: newName
     })
+
+    if (e === '') {
+        this.setState({
+            validated: true
+        })
+      }
+    else{
+        this.setState({
+            validated: false
+        })
+    }
   }
 
   handleRename(){
@@ -61,18 +75,20 @@ class RenameProject extends Component {
               </div>
 
                 <div className="modal-body">
-                    <label className="modal-input-tag">Current Name</label>
                     <section className="modal-row">
-                        <label className="current-email">{projectInfo.name}</label>
-                    </section>
-                    <label className="modal-input-tag">New Name</label>
-                    <section className="modal-row">
-                        <input className="modal-form" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
+                        <ModalTextField 
+                          onChangeAction={(e) => {this.handleNameChange(e.target.value)}} 
+                          maxLength={30}
+                        />
                     </section>
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={ (e) => closeProjectNameModal() }> Cancel </button>
-                <button className="submit-btn"onClick={(e) => this.handleRename()}> Change Name </button>
+                <SubmitButton 
+                  onClickAction={(e) => this.handleRename()}
+                  label="UPDATE"
+                  disabled={this.state.validated}
+                />
               </div>
             </div>
            </div>

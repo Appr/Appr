@@ -37,6 +37,8 @@ projectRouter.get('/:projectid', (req, res) => {
          .catch(err => res.status(500).send(err));
 });
 
+
+
 projectRouter.put('/update/:projectid', (req, res) => {
     const userid = req.user[0].id;
     const projectId = req.params.projectid;
@@ -58,6 +60,39 @@ projectRouter.put('/update/:projectid', (req, res) => {
         })
         .catch(err => res.status(500).send(err));
 });
+
+projectRouter.put('/update/:projectid', (req, res) => {
+    const userid = req.user[0].id;
+    const projectId = req.params.projectid;
+    const { name, background } = req.body;
+    const db = getDb();
+    console.log('find project roles for ' + userid + ' ' + projectId);
+    db.find_userprojects_roles_by_userid([userid, projectId])
+        .then(roles => {
+            const roleid = roles[0].roles_id;
+            console.log('I found the role ' + roleid);
+            if (roleid == 1 || roleid==2)
+            {
+                db.update_project([ projectId, name, background ])
+                    .then(promise => res.send())
+                    .catch(err => res.status(500).send(err));
+            }
+            else
+                res.send({message: 'not authorized'});
+        })
+        .catch(err => res.status(500).send(err));
+});
+
+projectRouter.put('/update/:projectid/lastopened', (req, res ) => {
+    const userid = req.user[0].id;
+    const projectId = req.params.projectid;
+    const { time } = req.body;
+    console.log(time)
+    const db = getDb();
+    db.update_last_opened_project([projectId, time])
+        .then(promise => res.send())
+        .catch(err => res.status(500).send(err))
+})
 
 
 projectRouter.delete('/delete/:projectid', (req, res) => {
