@@ -66,13 +66,25 @@ accountRouter.put('/update/:userid', (req, res) => {
         .catch(err => res.status(500).send(err));
 });
 
-accountRouter.put('/delete/:userid', (req, res) => {
-    const userId = req.params.userId;
-    if(userId != req.user[0].id){
+accountRouter.put('/delete/user', (req, res) => {
+    let { userid } = req.body;
+    console.log(userid)
+    if(userid != req.user[0].id){
         res.send('I hear you like scene kids ;)')
     }
     const db = getDb();
-    db.delete_user([ userId ])
+    db.delete_user([ userid ])
+        .then(promise => res.send(promise))
+        .catch(err => res.status(500).send(err));
+});
+
+accountRouter.put('/reactivate/:userid', (req, res) => {
+    const userId = req.params.userId;
+    if(userId != req.user[0].id){
+        res.send('nyan cat')
+    }
+    const db = getDb();
+    db.reactivate_user([ userId ])
         .then(promise => res.send())
         .catch(err => res.status(500).send(err));
 });
@@ -116,10 +128,15 @@ accountRouter.put('/info/update/password/:userid', (req, res) => {
     if(userId != req.user[0].id){
         res.send('NO NO NO NO NO NO NO');
     }
+    //PASSWORD VALIDATION
+    if(password.length < 8){
+        return res.send({passwordError: 'Password must contain at least eight characters!'})
+    }
+    //PASSWORD VALIDATION//
     bcrypt.genSalt(10, function(err, salt){
         bcrypt.hash(password, salt, function(err, hash){
-            const db = getDb();
-            db.update_user_password([ userId, hash])
+            
+            getDb().update_user_password([ userId, hash])
             .then(promise => res.send())
             .catch(err => res.status(500).send(err));
         });
@@ -144,11 +161,19 @@ accountRouter.put('/info/update/email/:userid', (req, res) => {
     const { email } = req.body;
     if(userId != req.user[0].id){
         res.send('update email failed');
-    }
-    const db = getDb();
-    db.update_user_email([ userId, email ])
-    .then(promise => res.send() )
-    .catch(err => res.status(500).send(err));
+    } 
+    //EMAIL VALIDATION// 
+    getDb().find_user_by_email([ email ])
+        .then( user => {
+            if(email === user[0].email){
+                res.send({emailError: 'Email already in use'})
+            }
+        })
+    //EMAIL VALIDATION//
+    getDb().update_user_email([ userId, email ])
+        .then(promise => res.send() )
+        .catch(err => res.status(500).send(err));
+    
 });
 
 accountRouter.put('/info/update/avatar/:userid', (req, res) => {
@@ -162,5 +187,8 @@ accountRouter.put('/info/update/avatar/:userid', (req, res) => {
     .then(promise => res.send())
     .catch(err => res.status(500).send(err));
 });
+
+
+
 
 module.exports = accountRouter;

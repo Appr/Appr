@@ -9,8 +9,6 @@ function findUser(userid) {
         .catch(err => {throw err});
 }
 
-
-
 function findUsername(body) {
     return axios
         .post(`${baseURL}/username`, body)
@@ -25,9 +23,16 @@ function updateUser(userid, body) {
         .catch(err => {throw err});
 }
 
-function deleteUser(userid) {
+function reactivateUserAccount(userid) {
     return axios
-        .put(`${baseURL}/update/${userid}`)
+        .put(`${baseURL}/reactivate/${userid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
+
+function deleteUser(body) {
+    return axios
+        .put(`${baseURL}/delete/user`, body)
         .then(res => res)
         .catch(err => {throw err});
 }
@@ -81,6 +86,8 @@ function updateUserAvatar(userid, body) {
         .catch(err => {throw err});
 }
 
+
+
 export {
     findUser,
     findUsername,
@@ -91,5 +98,6 @@ export {
     updateUserPassword,
     updateUserProfile,
     updateUserEmail,
-    updateUserAvatar
+    updateUserAvatar,
+    reactivateUserAccount
 };

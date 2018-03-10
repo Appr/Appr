@@ -10,6 +10,7 @@ import { ModalBox } from './accountsettingsStyled';
 import { findUserInfo } from '../../../../services/account.services';
 import { updateUser } from '../../../../actions/actionCreators';
 import { connect } from 'react-redux';
+import ArchiveAccount from './modals/ArchiveAccount';
 
 class AccountSettings extends Component {
   constructor(props){
@@ -19,6 +20,7 @@ class AccountSettings extends Component {
       emailModalOpen: false,
       passwordModalOpen: false,
       avatarModalOpen: false,
+      archiveModalOpen: false,
       userInfo: {}
     }
     //UI Modals
@@ -30,6 +32,8 @@ class AccountSettings extends Component {
       this.closeEmailModal = this.closeEmailModal.bind(this);
       this.closePasswordModal = this.closePasswordModal.bind(this);
       this.closeAvatarModal = this.closeAvatarModal.bind(this);
+      this.openArchiveModal = this.openArchiveModal.bind(this);
+      this.closeArchiveModal = this.closeArchiveModal.bind(this);
       this.pullFromBackend = this.pullFromBackend.bind(this);
   }
 
@@ -61,6 +65,10 @@ class AccountSettings extends Component {
       this.setState({profileModalOpen: false});
     }
 
+    closeArchiveModal(){
+      this.setState({archiveModalOpen: false})
+    }
+
     closeEmailModal(){
       this.setState({emailModalOpen: false})
     }
@@ -71,6 +79,10 @@ class AccountSettings extends Component {
 
     closeAvatarModal(){
       this.setState({avatarModalOpen: false})
+    }
+
+    openArchiveModal(){
+      this.setState({archiveModalOpen: true})
     }
 
     openProfileModal() {
@@ -128,6 +140,8 @@ class AccountSettings extends Component {
               <div className="headline-20" onClick={this.openEmailModal}> Change Email </div>
               <div className="headline-20" onClick={this.openPasswordModal}> Change Password </div>
               <div className="headline-20"  onClick={this.openAvatarModal}> Change Avatar </div>
+              <div className="headline-20" onClick={this.openArchiveModal}> Delete Account </div>
+
             </div>
 
           
@@ -167,6 +181,15 @@ class AccountSettings extends Component {
               style={ModalBox}
           >
               <ChangeAvatar pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeAvatarModal}/>
+          </Modal>
+
+          <Modal 
+              isOpen={this.state.archiveModalOpen} 
+              onRequestClose={this.closeArchiveModal}
+              className="modal-account-settings-content"
+              style={ModalBox}
+          >
+              <ArchiveAccount pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeAvatarModal} />
           </Modal>
       </div>
     );

@@ -2,86 +2,83 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import history from '../../../../history';
 import './board-menu.scss'
-import { findDashboardInfo, findPersonalProjects } from '../../../../services/dashboard.services';
+import { findDashboardInfo, findPersonalProjects, findRecentProjects } from '../../../../services/dashboard.services';
 import { createGroup } from '../../../../services/group.services';
-import { createProject } from '../../../../services/project.services';
-import { findProject } from '../../../../services/project.services';
-import { updateProjectRedux, updatePersonalProjects } from '../../../../actions/actionCreators';
+import { findProject, updateLastOpenedProject } from '../../../../services/project.services';
+import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../../actions/actionCreators';
 import { connect } from 'react-redux';
+import CreateProject from '../../InfoBody/Dashboard/CreateProject/CreateProject';
+import Modal from 'react-modal';
+import { ModalBoxBoardMenu } from '../../InfoBody/AccountSettings/accountsettingsStyled';
+import moment from 'moment';
 
 class BoardMenu extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            groups: [],
-            projects: []
-        }
-        this.handleCreateButton = this.handleCreateButton.bind(this);
-    }
+		this.state = {
+			UI: {
+				createProjectModalOpen: false
+			}
+		};
+        this.openCreateProjectModal = this.openCreateProjectModal.bind(this);
+        this.closeCreateProjectModal = this.closeCreateProjectModal.bind(this);
+	}
 
-    handleCreateButton(buttonPressed) {
-		const userid = this.props.userInfo.id;
-		let name = '';
-		let reqBody = {};
-		if (buttonPressed === 'group') {
-			name = prompt('What is the name of your group?');
-			reqBody = {createdByUserId: userid, name};
-			createGroup(reqBody)
-				.then( res => {
-					if (res.data[0].id) {
-						const groupid = res.data[0].id;
-						history.push(`/user/${userid}/group/${groupid}/dashboard`);
-					}
-					else {
-						alert(res.data.message);
-					}
-				})
-				.catch(err => {throw err});
-		}
-		else if (buttonPressed === 'project') {
-            name = prompt('What is the name of your project?');
-           
-			reqBody = {name, authorId: userid};
-			createProject(reqBody)
-				.then( res => {
-                    console.table(res.data)
+	openCreateProjectModal() {
+		this.setState({
+			UI: {
+				createProjectModalOpen: true
+			}
+		})
+	}
 
-					if (res.data[0].id) {
-                        const projectid = res.data[0].id;
-                        findProject(projectid)
-                            .then(res => {
-                                this.props.updateProjectRedux(res.data[0]);
-                                findPersonalProjects(userid)
-                                .then(res => {
-                                    this.props.updatePersonalProjects(res.data);
-                                    this.props.closeMenus();
-                                    history.push(`/user/${userid}/project/${projectid}/ideas`);
-                                })
-                            })
-                        
-					}
-					else {
-						alert(res);
-					}
-				})
-				.catch(err => {throw err});
-        }
+	closeCreateProjectModal() {
+		this.setState({
+			UI: {
+				createProjectModalOpen: false
+			}
+		})
 	}
 
   render() {
 
-const { closeMenus, updateProjectRedux } = this.props;
+const { closeMenus, updateProjectRedux, handleCurtain, updateRecentProjects } = this.props;
+const userid = this.props.userInfo.id;
 
-    function getProject(projectid, path){
+let personalProjects = this.props.dashboardInfo.personalProjects;
+let recentProjects = this.props.dashboardInfo.recentProjects;
+
+
+
+    function getProject(projectid){
+        let path = `/user/${userid}/project/${projectid}/ideas`;
         findProject(projectid)
         .then( res => {
             if (res.status !== 200) {
                 console.log(res);
             }
             else {
-                closeMenus();
-                updateProjectRedux(res.data[0]);
-                history.push(path)
+                let incomingProjectInfo = res.data[0];
+                let newTime = moment();
+                let lastOpenedBody = {
+                    time: newTime
+                }
+                updateLastOpenedProject(projectid,lastOpenedBody)
+                    .then(res => {
+                        if(res.status === 200){
+                            findRecentProjects(userid)
+                                .then(res => {
+                                    if(res.status === 200){
+                                        console.log(res.data)
+                                        updateRecentProjects(res.data)
+                                        closeMenus();
+                                        updateProjectRedux(incomingProjectInfo);
+                                        history.push(path)
+                                    }
+                                })
+                        }
+                    })
+
             }
         })
         .catch(err => {throw err});
@@ -102,14 +99,26 @@ const { closeMenus, updateProjectRedux } = this.props;
     //         </Link>
     //     )
     // })
+    let displayRecentProjects = recentProjects.map( (project, index) => {
+        if(project.status_id === 1){
+            return (
+                    <div key={`recent-board-menu-item${index}`} className="board-menu-item" onClick={(e) => getProject(project.id)} >
+                        <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
-    let userid = this.props.userInfo.id;
-    let personalProjects = this.props.dashboardInfo.personalProjects;
+                        </div>
+                        <div className="board-item-name">
+                            {project.name}
+                        </div>
+                    </div>
+            )
+        }
+})
+
+
     let displayProjects = personalProjects.map( (project, index) => {
             if(project.status_id === 1){
-                let path = `/user/${userid}/project/${project.id}/ideas`;
                 return (
-                        <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id, path)} >
+                        <div key={`board-menu-item${index}`}className="board-menu-item" onClick={(e) => getProject(project.id)} >
                             <div className="board-item-thumbnail" style={{backgroundImage: `url(${project.background})`}}>
 
                             </div>
@@ -120,6 +129,18 @@ const { closeMenus, updateProjectRedux } = this.props;
                 )
             }
   })
+
+  function handleClasses(){
+        if(personalProjects.length < 9){
+            return 'recent-boards-con--hide';
+        }
+        else{
+            return 'recent-boards-con';
+        }
+    }
+
+
+  let recentProjectsClass = handleClasses();
   
     return (
         <div className="boards-main-container">
@@ -129,13 +150,17 @@ const { closeMenus, updateProjectRedux } = this.props;
             <div className="board-text">Hide</div>
         </div> 
         </div>
+        <div className={recentProjectsClass}>
+                <div className="text-12">RECENT PROJECTS</div>
+                    {displayRecentProjects}
+            </div>
             <div className="personal-boards-con">
                 <div className="text-12">PERSONAL PROJECTS</div>
         
                     {displayProjects}
         
                     
-                        <div className="create-board-item" onClick={() => this.handleCreateButton('project')}>
+                        <div className="create-board-item" onClick={() => this.openCreateProjectModal()}>
                             <div className="create-board-thumbnail">
                                 <div className="plus-symbol">+</div>
                             </div>
@@ -144,21 +169,17 @@ const { closeMenus, updateProjectRedux } = this.props;
                             </div>
                         </div>
             </div>
-            {/* <div className="recent-boards-con">
-                <div className="text-12">GROUP PROJECTS</div>
-        
-                {displayGroups}
 
 
-                        <div className="create-board-item" onClick={() => this.handleCreateButton('group')}>
-                            <div className="create-board-thumbnail">
-                                <div className="plus-symbol">+</div>
-                            </div>
-                            <div className="create-board-name">
-                                Create Group
-                            </div>
-                        </div>
-            </div> */}
+
+            	<Modal
+					isOpen={this.state.UI.createProjectModalOpen}
+					onRequestClose={(e) => this.closeCreateProjectModal() & closeMenus()}
+					className="modal-accounts-settings-content"
+					style={ModalBoxBoardMenu}
+				>
+					<CreateProject onCloseBtnClick={(e) => this.closeCreateProjectModal() & closeMenus()}/>
+				</Modal>
             
         </div>
     );
@@ -169,7 +190,7 @@ function mapStateToProps(state){
     return state;
 }
   
-  export default withRouter(connect( mapStateToProps, {updateProjectRedux, updatePersonalProjects} ) (BoardMenu));
+  export default withRouter(connect( mapStateToProps, {updateProjectRedux, updatePersonalProjects, updateRecentProjects} ) (BoardMenu));
 
 
 

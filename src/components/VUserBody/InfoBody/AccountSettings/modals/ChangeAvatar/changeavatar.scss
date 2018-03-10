@@ -24,15 +24,15 @@
 .avatarPicContainer{
     display: flex;
     justify-content: center;
-    
+
     margin-top: 3%;
     margin-bottom: 3%;
     max-height: 255px;
     width: 100%;
-    
+
     overflow-y: auto;
     overflow-x: hidden;
-    
+
 
     .avatarPicList {
         width: 100%;
@@ -46,7 +46,7 @@
     }
 
     .avatarURLItem {
-        
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -55,7 +55,7 @@
         height: 85px;
         background-size: cover;
         border-radius: 10px;
-        
+
         background-image: url('../../../../../../img/icons/cameraIcon.svg');
         background-size: 60%;
         background-repeat: no-repeat;
@@ -69,7 +69,7 @@
     opacity: 1;
     transition: 0.2s ease-in-out;
     position: relative;
-    
+    // padding: 0 10px 0 10px;
 }
 .avatarIconGallery--hide{
     opacity: 0;
@@ -101,4 +101,117 @@
     overflow: hidden;
     min-height: 140px;
     transition: 0.2s ease-in-out;
+    padding: 0 15px 0 15px;
 }
+
+/* CSS for Change Avatar Modal */
+.avatar-modal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.avatar-modal-content {
+    max-width: 50vw;
+    border: none;
+    background-color:#f4f4f4;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 0.3s;
+    z-index: 4;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.avatar-modal-header {
+    width: 100%;
+    padding-top: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $dark-color;
+    color: white;
+    border-radius: 3px 3px 0 0;
+}
+
+.avatar-modal-title {
+    width: 20vw;
+    height: 30px;
+    font-size: 14px;
+    font-weight: normal;
+    color: white;
+    white-space: nowrap;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-closeBtn {
+    display: flex;
+    justify-content: center;
+    width: 33px;
+    color: $light-color;
+    font-size: 30px;
+    user-select: none;
+    padding-bottom: 5px;
+    padding-right: 4px;
+}
+
+.avatar-closeBtn:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.avatar-closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.avatar-submitModal {
+    margin-bottom: 20px;
+    width: 28vw;
+    display: flex;
+    justify-content: flex-end;
+    // border: solid red 2px;
+}
+
+.avatar-cancel-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 35px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $light-color;
+    color: $dark-color;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+}
+
+.avatar-submit-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 35px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $red-btn-color;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }

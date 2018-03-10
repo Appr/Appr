@@ -9,36 +9,34 @@ const authRouter = express.Router();
 
 authRouter.post('/register', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
-    bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash(password, salt, function(err, hash){
-            console.log(hash);
-            // console.log(password);
-            // let credentials = {
-            //     username: email,
-            //     password: hash
-            // }
+    //EMAIL VALIDATION//
+    const db = getDb(); 
+    db.find_user_by_email([ email ])
+        .then( user => {
+            if(email === user[0].email){
+                res.send({emailError: 'Email already in use'})
+            }
+        })
+    //EMAIL VALIDATION//
+    //PASSWORD VALIDATION//
+    if(password.length < 8){
+        return res.send({passwordError: 'Password must contain at least eight characters!'})
+    }
+    //PASSWORD VALIDATION//
 
-            // console.log(credentials)
-            const db = getDb();
-            db.register_user([ firstName, lastName, email, hash, username ])
-                .then(promise => res.send(hash))
-                .catch(err => res.status(500).send(err));
+        bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(password, salt, function(err, hash){
+                console.log(hash);
+                const db = getDb();
+                db.register_user([ firstName, lastName, email, hash, username ])
+                    .then(promise => res.send(hash))
+                    .catch(err => res.status(500).send(err));
+            });
         });
-    });
+    
+
 })
 
-
-// authRouter.get('/get-password', (req, res) => {
-//     const { firstName, lastName, email, password, username } = req.body;
-//     bcrypt.genSalt(10, function(err, salt){
-//         bcrypt.hash(password, salt, function(err, hash){
-//             const db = getDb();
-//             db.register_user([ firstName, lastName, email, hash, username ])
-//                 .then(promise => res.send(hash))
-//                 .catch(err => res.status(500).send(err));
-//         });
-//     });
-// })
 
 
 
@@ -74,15 +72,14 @@ authRouter.post('/register', (req, res) => {
 authRouter.post('/login-test', (req, res) => {
     const { username, password } = req.body;
     let message = '';
-    const db = getDb(); 
 
-    db.find_user_by_email([ username ])
+    getDb().find_user_by_email([ username ])
         .then( user => {
-            console.log(user[0].password)
-            console.log(password)
             if( password === user[0].password){
-                message = 'login test was successful!';
                 res.send(user[0].password);
+            }
+            if( user[0].email != username){
+                res.send({loginError: 'Wrong account information!'})
             }
 
             bcrypt.compare(password, user[0].password, function(err, result){
@@ -91,11 +88,12 @@ authRouter.post('/login-test', (req, res) => {
                     message = 'login test was successful!';
                     res.send(user[0].password);
                 } else {
-                    message = 'Wrong account information!'
+                    res.send({loginError: 'Wrong account information!'})
                 }
             })
         })
-        .catch(err => {throw err});
+        .catch(err => {res.send({loginError: 'Wrong account information!'})
+        });
 });
 
 authRouter.post('/login', passport.authenticate('login'), (req, res) => {

@@ -1,0 +1,358 @@
+@import '../../_colors.scss';
+
+//Login Button
+  .login-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 105px;
+    background-color: #4A4A4A;
+    color: white;
+    border-style: none;
+    font-size: 18px;
+    border-radius: 3px;
+    outline: none;
+    height: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+
+  .login-btn:hover {
+    background-color: #393939; 
+  }
+  
+  .login-btn:active{
+    background-color: #2b2b2b;
+  }
+
+  .login-btn a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+  .login-btn-loading{
+    transition: 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 105px;
+    background-color: transparent !important;
+    color: #4A4A4A;
+    border-style: none;
+    font-size: 18px;
+    border-radius: 3px;
+    outline: none;
+    height: 50px;
+    text-transform: uppercase;
+    transition: 0.2s ease-in-out;
+    user-select: none;
+    cursor: auto;
+  }
+  //Login Button
+
+
+//SUBMIT BUTTON 
+.submit-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 34px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $addBtn-color1;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 1px 0 #539A40;
+    font-weight: bold;
+    font-size: 10pt;
+
+  }
+  .submit-btn-disabled {
+    background: none;
+    color: #5E5E5E;
+    outline: none;
+    font-weight: bold;
+    cursor: auto;
+    font-weight: normal;
+    background: #D9D9D9;
+    box-shadow: 0 1px 0 #D9D9D9;
+  }
+//SUBMIT BUTTON
+
+
+//DELETE BUTTON 
+.archive-btn {
+    text-align: center;
+    font-size: 11px;
+    height: 34px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: $red-btn-color;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 1px 0 rgb(187, 61, 68);
+    font-weight: bold;
+    font-size: 10pt;
+  }
+
+
+
+
+
+
+
+//Modal Text Field
+  .modalTextFieldLabel {
+    width: 100%;
+    text-align: left;
+    color: #5E5E5E;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+
+  .modalTextField{
+    display: flex !important;
+    flex-direction: column !important;
+
+    input{
+        border: 1px #CCC solid;
+        height: 31px;
+        padding-left: 5px;
+        padding-right: 5px;
+        outline: none;
+        font-size: 17px;
+        transition: 0.2s ease-in-out;
+        border-radius: 3px 3px 3px 3px;
+    }
+    label{
+        margin-bottom: 8px;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        height: 20px;
+        margin-top: 0px;
+        // margin-bottom: 0 !important;
+        text-align: left;
+        font-size: 0.75rem;
+        .error-text{
+            margin-top: 0;
+            margin-bottom: 0;
+            opacity: 0;
+        }
+    }
+}
+
+
+.modalTextField--fail{
+    input{
+        border: #FF3560 solid 1px !important;
+        transition: 0.2s ease-in-out;
+    }
+    label{
+        margin-bottom: 8px;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        margin-top: 5px;
+        // margin-bottom: 0px !important;
+        text-align: left;
+        font-size: 0.75rem;
+        transition: 0.2s ease-in-out;
+        margin-bottom: 10px;
+        .error-text{
+            opacity: 1;
+            margin-top: 0;
+            display: block;
+            color: #FF3560;
+            transition: 0.2s ease-in-out;
+        }
+    }
+}
+
+.modalTextField--forceFail{
+    input{
+        border: #FF3560 solid 1px !important;
+        transition: 0.2s ease-in-out;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        height: 20px;
+        margin-top: 0px;
+        // margin-bottom: 0 !important;
+        text-align: left;
+        .error-text{
+            margin-top: 0;
+            margin-bottom: 0;
+            opacity: 0;
+            transition: 0.2s ease-in-out;
+        }
+    }
+}
+
+
+.modalTextField--success{
+    input{
+        border: #00D16E solid 1px !important;
+        transition: 0.2s ease-in-out;
+    }
+    label{
+        margin-bottom: 8px;
+    }
+    .validation-info{
+        height: 20px;
+        margin-top: 0px;
+        margin-bottom: 0px !important;
+        text-align: left;
+        font-size: 0.75rem;
+        transition: 0.2s ease-in-out;
+
+        .error-text{
+          margin-top: 0;
+          margin-bottom: 0;
+          opacity: 0;
+        }
+    }
+}
+//Modal Text Field
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Login Text Field
+.loginTextField{
+  display: flex !important;
+  flex-direction: column !important;
+  transition: ease-in-out 0.2s;
+
+
+  input{
+      border: 1.2px #CCC solid;
+      min-height: 40px;
+      padding-left: 10px;
+      padding-right: 5px;
+      outline: none;
+      transition: 0.2s ease-in-out;
+      border-radius: 3px 3px 3px 3px;
+
+      font-size: 20px;
+      color: #95989A;
+      font-weight: 300;
+      transition: ease-in-out 0.2s;
+
+  }
+
+
+  ::-webkit-input-placeholder {
+    font-size: 20px;
+    color: #CCC;
+    font-weight: 300;
+}
+  .validation-info{
+      transition: ease-in-out 0.2s;
+      margin-top: 0px;
+      // margin-bottom: 0 !important;
+      text-align: left;
+      font-size: 0.75rem;
+      margin-bottom: 20px;
+
+      .error-text{
+          margin-top: 0;
+          margin-bottom: 0;
+          opacity: 0;
+          transition: ease-in-out 0.2s;
+
+      }
+  }
+}
+
+
+.loginTextField--fail{
+  input{
+      border: #FF3560 solid 1.2px !important;
+      transition: 0.2s ease-in-out;
+  }
+  .validation-info{
+      transition: ease-in-out 0.2s;
+      margin-top: 5px;
+      // margin-bottom: 0px !important;
+      text-align: left;
+      font-size: 0.75rem;
+      transition: 0.2s ease-in-out;
+      margin-bottom: 20px;
+      .error-text{
+          opacity: 1;
+          margin-top: 0;
+          
+          display: block;
+          color: #FF3560;
+          transition: 0.2s ease-in-out;
+      }
+  }
+}
+
+
+.loginTextField--forceFail{
+  input{
+      border: #FF3560 solid 1.2px !important;
+      transition: 0.2s ease-in-out;
+  }
+  .validation-info{
+      transition: ease-in-out 0.2s;
+      margin-top: 0px;
+      // margin-bottom: 0px !important;
+      text-align: left;
+      font-size: 0.75rem;
+      transition: 0.2s ease-in-out;
+      margin-bottom: 20px;
+      .error-text{
+          opacity: 1;
+          margin-top: 0;
+          transition: 0.2s ease-in-out;
+      }
+  }
+}
+//Login Text Field
+
+
+
+
+
+
+
+
+  

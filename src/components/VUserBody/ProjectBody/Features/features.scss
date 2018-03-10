@@ -9,8 +9,6 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
     
-
-    
     &::-webkit-scrollbar {
         width: 15px;
         padding-right: 5px;
@@ -52,35 +50,27 @@
 }
 
 .features-area {
-
     width: 60%;
     background: $light-color;
     margin: 20px;
     border-radius: $border-radius;
     
- 
-
     .features-wrapper {
         max-height: 100%;
-
         padding: 20px;
         transition: 1s ease-in-out;
-       
     }
 
     .features-item{
-       
         padding-bottom: 10px;
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
 
-        
         section{
             display: flex;
-            width: 100%;
-           
+            width: 100%;           
         }
         label{
             @include darken-color($primary, 20%);
@@ -105,7 +95,6 @@
     }
 
     .features-footer{
-       
         button{
             @include addBtn();
             margin-left: 37px;

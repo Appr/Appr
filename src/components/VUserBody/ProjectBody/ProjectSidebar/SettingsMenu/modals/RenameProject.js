@@ -4,24 +4,38 @@ import { updateProject, findProject } from '../../../../../../services/project.s
 // import history from '../../../../../../history';
 import { findPersonalProjects } from '../../../../../../services/dashboard.services';
 import { updateDashboard, updateProjectRedux, updatePersonalProjects } from '../../../../../../actions/actionCreators';
+import ModalTextField from '../../../../landomon-UI/ModalTextField';
+import SubmitButton from '../../../../landomon-UI/SubmitButton';
 
 
 class RenameProject extends Component {
   constructor(props){
     super(props)
     this.state={
-        localProjectName: ''
+        localProjectName: '',
+        validated: ''
 
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleRename = this.handleRename.bind(this);
-  } 
+  }
 
   handleNameChange(e){
     let newName = e;
     this.setState({
         localProjectName: newName
     })
+
+    if (e === '') {
+        this.setState({
+            validated: true
+        })
+      }
+    else{
+        this.setState({
+            validated: false
+        })
+    }
   }
 
   handleRename(){
@@ -37,7 +51,7 @@ class RenameProject extends Component {
                     updateProjectRedux(res.data[0])
                     findPersonalProjects(userid)
                     .then( res => {
-                      this.props.updatePersonalProjects(res.data)                      
+                      this.props.updatePersonalProjects(res.data)
                       closeProjectNameModal()
                   })
 
@@ -52,31 +66,29 @@ class RenameProject extends Component {
         console.log(this.state.localProjectName);
 
       return (
-          
+
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
-                <div className="modal-header-placeholder"></div>
-                <h2 className="modal-title">Change Project Name</h2>
+                <h2 className="modal-title">CHANGE PROJECT NAME</h2>
                 <span className="closeBtn" onClick={(e) => closeProjectNameModal()}>&times;</span>
               </div>
-              
+
                 <div className="modal-body">
-                  
-                    <label className="modal-input-tag">Current Name</label>
-                        <section className="modal-row">
-                            <label className="current-email">{projectInfo.name}</label>
-                        </section>
-                        <label className="modal-input-tag">New Name</label>
-                        <section className="modal-row">
-                            <input className="modal-form" autoFocus onChange={(e) => {this.handleNameChange(e.target.value)}} maxLength={30} required/>
-                        </section>
-                
+                    <section className="modal-row">
+                        <ModalTextField 
+                          onChangeAction={(e) => {this.handleNameChange(e.target.value)}} 
+                          maxLength={30}
+                        />
+                    </section>
                 </div>
               <div className="submitModal">
-                <button onClick={(e) => this.handleRename()}>
-                  CHANGE NAME
-                </button>
+                <button className="cancel-btn" onClick={ (e) => closeProjectNameModal() }> Cancel </button>
+                <SubmitButton 
+                  onClickAction={(e) => this.handleRename()}
+                  label="UPDATE"
+                  disabled={this.state.validated}
+                />
               </div>
             </div>
            </div>

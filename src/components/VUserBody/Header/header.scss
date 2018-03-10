@@ -10,7 +10,7 @@
   max-width: 100%;
   border-radius: 3px 3px 3px 3px;
   @include darken-background($primary, 20%);
-  
+
   input{
     border: none;
     height: 30px;
@@ -18,9 +18,9 @@
     outline: none;
     background: transparent;
     color: white;
-    
+
   }
-  
+
   button{
     opacity: 0.5;
     background: url('../../../img/icons/searchIcon.svg') no-repeat;
@@ -47,7 +47,7 @@
     align-items: center;
     user-select: none;
   }
-  
+
   .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -58,24 +58,24 @@
     position: relative;
     @include darken-bottom-border($primary, 25%);
   }
-  
+
   .board-con {
     display: flex;
     max-width: 260px;
     padding-left: 15px;
   }
-  
+
   .logo {
     font-size: 20px;
     font-family: sans-serif;
-    
+
   }
-  
+
   .board-icon{
     width: 25px;
     height: 25px;
   }
-  
+
   .board-text{
     margin-top: auto;
     margin-bottom: auto;
@@ -85,14 +85,14 @@
     color: white;
     font-family: sans-serif;
   }
-  
+
   .user-con {
     min-width: 260px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
-  
+
   .avatar{
     display: flex;
     justify-content: center;
@@ -107,7 +107,7 @@
     max-height: 30px;
     border-radius: 100px;
   }
-  
+
   .hello-user {
     margin-left: 10px;
     font-size: 15px;
@@ -118,7 +118,7 @@
     overflow: hidden;
     margin-right: 20px;
   }
-  
+
   .alert-icon{
     width: 17px;
     height: 20px;
@@ -126,13 +126,13 @@
     margin-right: 20px;
     opacity: 0.5;
   }
-  
+
   .right-menu-container{
     display: flex;
     width:100%;
     max-height: 100%;
     justify-content: flex-end;
-    position: absolute; 
+    position: absolute;
     transition: 0.1s ease-in-out;
     z-index: 2;
 
@@ -141,13 +141,14 @@
       width: 250px;
       max-height: 100%;
       background: white;
-      border-left: 0.8px solid black;
+      // border-left: 0.8px solid black;
       border-right: none;
-      border-bottom: 0.8px solid black;
+      // border-bottom: 0.8px solid black;
       border-top: 0px solid transparent;
       position: relative;
       z-index: 1;
       transition: 0.1s ease-in-out;
+      box-shadow: -2px 2px 10px rgba(0,0,0,0.5);
 
       .right-menu-inner {
         display: flex;
@@ -157,16 +158,16 @@
         position: relative;
         z-index: 1;
         transition: 0.1s ease-in-out;
-    
+
         ul {
           display: flex;
           flex-direction: column;
           margin: 0;
           padding: 0;
           transition: 0.1s ease-in-out;
-       
+
         }
-    
+
         li {
           line-height: 18px;
           padding: 10px;
@@ -176,12 +177,13 @@
           font-weight: 600;
           transition: 0.1s ease-in-out;
           cursor: pointer;
-          color: #111111;
+          color: $dark-color;
           background: transparent;
+
         }
 
         li:hover{
-          background: #0366d6;
+          background: $dark-color;
           color: white;
         }
       }
@@ -201,8 +203,8 @@
     height: 0%;
     width:100%;
     justify-content: flex-end;
-    position: absolute; 
-   
+    position: absolute;
+
     transition: 0.1s ease-in-out;
 
     .right-menu-outter{
@@ -215,6 +217,7 @@
       border-right: 0px solid transparent;
       border-bottom: 0px solid transparent;
       transition: 0.1s ease-in-out;
+      box-shadow: 5px 5px 5px gray;
 
       .right-menu-inner {
         opacity: 0;
@@ -224,7 +227,8 @@
         margin-right: auto;
         transition: 0.1s ease-in-out;
         z-index: -1;
-    
+
+
         ul {
           opacity: 0;
           position: relative;
@@ -234,9 +238,8 @@
           padding: 0;
           transition: 0.1s ease-in-out;
           z-index: 0;
-          
         }
-    
+
         li {
           opacity: 0;
           position: relative;
@@ -289,7 +292,7 @@
           margin-bottom: 10px;
           transition: 0.1s ease-in-out;
         }
-    
+
         .bread-bottom{
           position: relative;
           transform: rotate(0deg);
@@ -303,7 +306,7 @@
 
 
     .bread-menu-toggle-after{
-      
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -313,11 +316,11 @@
       transition: 0.1s ease-in-out;
 
       .bread-menu{
-        
+
         position: relative;
         transition: 0.1s ease-in-out;
-        
-        
+
+
 
         .bread-top {
           @include lighten-background($primary, 20%);
@@ -330,7 +333,7 @@
           top: 2px;
           transition: 0.1s ease-in-out;
         }
-    
+
         .bread-bottom{
           @include lighten-background($primary, 20%);
           position: relative;
@@ -344,17 +347,6 @@
     }
   }
 
-  
-
-  
-  
-  
-  
-
-
-
-
-  
 
 
 
@@ -377,4 +369,14 @@
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+

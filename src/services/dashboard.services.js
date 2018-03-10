@@ -15,7 +15,15 @@ function findPersonalProjects(userid) {
         .then(res => res)
         .catch(err => {throw err});
 }
+
+function findRecentProjects(userid) {
+    return axios
+        .get(`${baseURL}/recent-projects/${userid}`)
+        .then(res => res)
+        .catch(err => {throw err});
+}
 export {
     findDashboardInfo,
-    findPersonalProjects
+    findPersonalProjects,
+    findRecentProjects
 };

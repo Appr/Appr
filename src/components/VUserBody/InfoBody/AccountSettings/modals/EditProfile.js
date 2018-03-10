@@ -3,6 +3,8 @@ import './modals.scss'
 import PropTypes from 'prop-types';
 import { updateUserProfile } from '../../../../../services/account.services'
 import { connect } from 'react-redux';
+import ModalTextField from '../../../landomon-UI/ModalTextField';
+import SubmitButton from '../../../landomon-UI/SubmitButton';
 
 class EditProfile extends Component {
   constructor(props){
@@ -22,7 +24,7 @@ class EditProfile extends Component {
   handleNameSubmit(){
     const userid = this.props.userInfo.id;
     let { firstName, lastName } = this.state;
-    const reqBody = { 
+    const reqBody = {
         firstName,
         lastName
     };
@@ -61,7 +63,7 @@ class EditProfile extends Component {
           username: newUsername
       })
   }
-    
+
     render() {
       console.log(this.state)
       const { userInfo, onCloseBtnClick } = this.props;
@@ -69,32 +71,41 @@ class EditProfile extends Component {
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
               <div className="modal-header">
-                <div className="modal-header-placeholder"></div>
-                <h2 className="modal-title">Edit Profile</h2>
+                <h2 className="modal-title">EDIT PROFILE</h2>
                 <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
               </div>
-              
+
                 <div className="modal-body">
-                  
-                  <label className="modal-input-tag">First Name</label>
+
                     <section className="modal-row">
-                      <input className="modal-form" defaultValue={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                        <ModalTextField 
+                            label="Last Name"
+                            onChangeAction={(e) => {this.handleFirstNameChange(e.target.value)}}
+                            maxLength="18"
+                            defaultValue={userInfo.first_name}
+                        />
                     </section>
-                  
-                  <label className="modal-input-tag">Last Name</label>
+
                     <section className="modal-row">
-                      <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <ModalTextField 
+                        label="Last Name"
+                        onChangeAction={(e) => {this.handleLastNameChange(e.target.value)}}
+                        maxLength="18"
+                        defaultValue={userInfo.last_name}
+                      />
                     </section>
-                  
+
                   {/* <label className="modal-input-tag">Username</label>
                     <section className="modal-row">
                       <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
                     </section> */}
                 </div>
               <div className="submitModal">
-                <button id="updateProfile" onClick={(e) => {this.handleNameSubmit()}}>
-                  Update Profile
-                </button>
+                <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
+                <SubmitButton 
+                  onClickAction={(e) => {this.handleNameSubmit()}}
+                  label="Update"
+                />
               </div>
             </div>
            </div>

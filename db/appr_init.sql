@@ -54,7 +54,8 @@ CREATE TABLE project (
     name TEXT,
     background TEXT,
     author_id int references users(id),
-    status_id int references status(id)
+    status_id int references status(id),
+    last_opened TEXT
 );
 
 --Project Fields--

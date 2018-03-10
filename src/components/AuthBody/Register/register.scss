@@ -32,10 +32,10 @@
     height: 500px;
 }
 
-.placeholder-div{
-    width: 379px;
-    background: lightgrey;
-}
+// .placeholderiv{
+//     width: 379px;
+//     background: lightgrey;
+// }
 
 .option-divider {
     height: 420px;
@@ -91,11 +91,9 @@
         margin-bottom: 0 !important;
         text-align: left;
         font-size: 0.75rem;
-
         .valid-text{
             display: none;
         }
-
         .invalid-text{
             display: none;
         }
