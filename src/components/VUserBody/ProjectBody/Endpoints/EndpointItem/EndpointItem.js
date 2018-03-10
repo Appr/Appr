@@ -40,7 +40,7 @@ class EndpointItem extends Component {
 
 
   render() {
-    const {httpVerb, endpointName, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
+    const { endpointid, httpVerb, endpointName, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
@@ -54,7 +54,7 @@ class EndpointItem extends Component {
   return (
       <div className="endpoint-item" id={index}>
           <div className="project-item-header">
-           <button onClick={() => removeEndpointItemHandler(index)}> </button>
+           <button onClick={() => removeEndpointItemHandler(endpointid)}> </button>
           </div>
             <div className="endpoint-inner" >
               <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />

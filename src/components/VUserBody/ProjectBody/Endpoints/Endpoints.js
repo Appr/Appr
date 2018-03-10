@@ -81,19 +81,20 @@ class Endpoints extends Component {
   }
 
 
-  removeEndpointItemHandler(index){
+  removeEndpointItemHandler(endpointid){
     const projectid = this.props.match.params.projectid;
-    const endpointid = this.state.endpoints[index].id;
-
+    console.log(endpointid);
     deleteProjectEndpoint(projectid, endpointid)
       .then( res => {
         if (res.status !== 200){
           console.log(res);
         }
         else {
+          console.log(res);
           this.pullFromBackend(projectid);
         }
       })
+      .catch( err => {throw err});
   }
 
   handleEndpointNameChange(newName, index){
