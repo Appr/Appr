@@ -13,6 +13,10 @@ class EditProfile extends Component {
       username: '',
       firstName: '',
       lastName: '',
+      errorText: '',
+      showSuccessButton: false,
+      firstNameFail: false,
+      lastNameFail: false,
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -45,16 +49,46 @@ class EditProfile extends Component {
 
   handleFirstNameChange(e){
     let newFirstName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
-    this.setState({
-          firstName: newFirstName,
+    if(this.state.errorText.length > 3){
+      this.setState({
+        errorText: '',
+        firstNameFail: false
       })
+    }
+    if (newFirstName !== '') { 
+      this.setState({
+        firstName: newFirstName,
+        showSuccessButton: false,
+      })
+    } 
+    else if (newFirstName = '') {
+        this.setState({
+          showSuccessButton: true,
+        })
+      }
+    console.log(this.state);
   }
 
   handleLastNameChange(e){
     let newLastName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();;
-    this.setState({
-          lastName: newLastName
+    if(this.state.errorText.length > 3){
+      this.setState({
+        errorText: '',
+        lastNameFail: false
       })
+    }
+    if (newLastName !== '') { 
+      this.setState({
+        lastName: newLastName,
+        showSuccessButton: false,
+      })
+    }
+    else if (newLastName = '') {
+      this.setState({
+          showSuccessButton: true,
+      })
+    }
+    console.log(this.state);
   }
 
   handleUserNameChange(e){
@@ -79,7 +113,7 @@ class EditProfile extends Component {
 
                     <section className="modal-row">
                         <ModalTextField 
-                            label="Last Name"
+                            label="First Name"
                             onChangeAction={(e) => {this.handleFirstNameChange(e.target.value)}}
                             maxLength="18"
                             defaultValue={userInfo.first_name}
@@ -95,16 +129,14 @@ class EditProfile extends Component {
                       />
                     </section>
 
-                  {/* <label className="modal-input-tag">Username</label>
-                    <section className="modal-row">
-                      <input className="modal-form" defaultValue={userInfo.username} onChange={ (e) => {this.handleUserNameChange(e.target.value)}} maxLength="18"/>
-                    </section> */}
+            
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
                 <SubmitButton 
                   onClickAction={(e) => {this.handleNameSubmit()}}
                   label="Update"
+                  disabled={this.state.showSuccessButton}
                 />
               </div>
             </div>
