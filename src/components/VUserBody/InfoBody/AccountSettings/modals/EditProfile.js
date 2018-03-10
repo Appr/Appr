@@ -45,7 +45,7 @@ class EditProfile extends Component {
       .catch(err => {throw err});
   }
 
-
+// ========== Green Update button doesn't go away on empty strings in input fields
 
   handleFirstNameChange(e){
     let newFirstName = e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
@@ -90,6 +90,8 @@ class EditProfile extends Component {
     }
     console.log(this.state);
   }
+
+  //================= end comment
 
   handleUserNameChange(e){
     let newUsername = e.toLowerCase();
