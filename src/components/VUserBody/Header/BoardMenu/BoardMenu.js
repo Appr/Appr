@@ -131,7 +131,7 @@ let recentProjects = this.props.dashboardInfo.recentProjects;
   })
 
   function handleClasses(){
-        if(personalProjects.length < 5){
+        if(personalProjects.length < 9){
             return 'recent-boards-con--hide';
         }
         else{

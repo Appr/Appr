@@ -3,6 +3,8 @@ import './modals.scss'
 import PropTypes from 'prop-types';
 import { updateUserInfo, updateUserProfile } from '../../../../../services/account.services'
 import { connect } from 'react-redux';
+import ModalTextField from '../../../landomon-UI/ModalTextField';
+import SubmitButton from '../../../landomon-UI/SubmitButton';
 
 class EditProfile extends Component {
   constructor(props){
@@ -75,14 +77,22 @@ class EditProfile extends Component {
 
                 <div className="modal-body">
 
-                  <label className="modal-input-tag">First Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" defaultValue={userInfo.first_name} onChange={ (e) => {this.handleFirstNameChange(e.target.value)}} autoFocus maxLength="18" />
+                        <ModalTextField 
+                            label="Last Name"
+                            onChangeAction={(e) => {this.handleFirstNameChange(e.target.value)}}
+                            maxLength="18"
+                            defaultValue={userInfo.first_name}
+                        />
                     </section>
 
-                  <label className="modal-input-tag">Last Name</label>
                     <section className="modal-row">
-                      <input className="modal-form" defaultValue={userInfo.last_name} onChange={ (e) => {this.handleLastNameChange(e.target.value)}} maxLength="18"/>
+                      <ModalTextField 
+                        label="Last Name"
+                        onChangeAction={(e) => {this.handleLastNameChange(e.target.value)}}
+                        maxLength="18"
+                        defaultValue={userInfo.last_name}
+                      />
                     </section>
 
                   {/* <label className="modal-input-tag">Username</label>
@@ -92,7 +102,10 @@ class EditProfile extends Component {
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                <button id="updateProfile" className="submit-btn" onClick={(e) => {this.handleNameSubmit()}}> Update </button>
+                <SubmitButton 
+                  onClickAction={(e) => {this.handleNameSubmit()}}
+                  label="Update"
+                />
               </div>
             </div>
            </div>
