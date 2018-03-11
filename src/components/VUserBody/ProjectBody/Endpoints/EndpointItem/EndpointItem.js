@@ -40,7 +40,7 @@ class EndpointItem extends Component {
 
 
   render() {
-    const { endpointid, httpVerb, endpointName, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint} = this.props;
+    const { endpointid, httpVerb, endpointName, requestData, responseData, urlData, index, handleRequestChange, handleResponseChange, handleEndpointNameChange, removeEndpointItemHandler, handleEndpointURLChange, handleSubmitEndpoint, handleSaveChange} = this.props;
 
     let responseText = responseData.toString();
     let requestText = requestData.toString();
@@ -57,16 +57,16 @@ class EndpointItem extends Component {
            <button onClick={() => removeEndpointItemHandler(endpointid)}> </button>
           </div>
             <div className="endpoint-inner" >
-              <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} />
+              <input className="endpoint-name"  onChange={(e) => {handleEndpointNameChange(e.target.value, index)}} placeholder={endpointName} onBlur={ e => handleSaveChange(e, index) }/>
               <div className="httpverb-url-con" >
-                  <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)}>
+                  <select className="http-verb"  onChange={ e => this.toggleRequireCon(e.target.value, index)} onBlur={ e => handleSaveChange(e, index) }>
                       <option value={httpVerb}> {httpVerb} </option>
                       <option value="GET"> GET </option>
                       <option value="POST" > POST </option>
                       <option value="PUT"> PUT </option>
                       <option value="DELETE"> DELETE </option>
                   </select>
-                  <input className="api-input" onChange={(e) => {handleEndpointURLChange(e.target.value, index)}} placeholder={urlData} />
+                  <input className="api-input" onChange={(e) => {handleEndpointURLChange(e.target.value, index)}} placeholder={urlData} onBlur={ e => handleSaveChange(e, index) }/>
 
                   {/* <button className="endpoint-save" onClick={(e) => {handleSubmitEndpoint(index)}}>Save</button> */}
               </div>
@@ -80,6 +80,7 @@ class EndpointItem extends Component {
                           name={`requestEditor` + index}
                           onLoad={this.onLoad}
                           onChange={(e) => {handleRequestChange(e, index)}}
+                          onBlur={ e => handleSaveChange(e, index) }
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}
@@ -104,6 +105,7 @@ class EndpointItem extends Component {
                           name={`responseEditor` + index}
                           onLoad={this.onLoad}
                           onChange={(e) => {handleResponseChange(e, index)}}
+                          onBlur={ e => handleSaveChange(e, index) }
                           fontSize={14}
                           showPrintMargin={true}
                           showGutter={true}
