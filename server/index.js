@@ -12,3 +12,10 @@ const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(chalk.green(`Server is listening on port ${chalk.cyan(port)}.`));
 });
+
+
+// Express only serves static assets in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+  }
+  
