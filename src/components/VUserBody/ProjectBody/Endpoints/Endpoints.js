@@ -83,11 +83,9 @@ class Endpoints extends Component {
 
   removeEndpointItemHandler(endpointid){
     const projectid = this.props.match.params.projectid;
-    console.log(endpointid);
     deleteProjectEndpoint(projectid, endpointid)
       .then( res => {
         if (res.status !== 200){
-          console.log(res);
         }
         else {
           console.log(res);
