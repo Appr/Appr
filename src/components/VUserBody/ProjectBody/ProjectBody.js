@@ -13,6 +13,7 @@ import { findProject, updateProject } from '../../../services/project.services';
 import { connect } from 'react-redux';
 import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
 import { findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
+import ProjectMobileBar from './ProjectSidebar/ProjectMobileBar/ProjectMobileBar';
 
 
 class ProjectBody extends Component {
@@ -96,6 +97,7 @@ class ProjectBody extends Component {
 
     return (
       <ProjectBodyContainer>
+              <ProjectMobileBar />
               <ProjectSidebar
                 selectedBackground={this.state.UI.backgroundPreview || this.props.projectInfo.background}
                 handleProjectBackground={this.handleProjectBackgroundPreview}

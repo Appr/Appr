@@ -348,6 +348,19 @@
   }
 
 
+  @media (max-width: 640px){
+    .board-text{
+        display: none;
+    }
+    .hello-user{
+      display: none;
+    }
+
+    .avatar{
+      margin-right: 10px;
+    }
+  }
+
 
 
 
