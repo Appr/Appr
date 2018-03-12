@@ -11,9 +11,10 @@ class EditProfile extends Component {
     super(props)
     this.state={
       fields: {
-        firstName: '',
-        lastName: ''
+        firstName: this.props.userInfo.first_name,
+        lastName: this.props.userInfo.last_name
       },
+      buttonLabel: 'Update',
       hideButtonSuccess: true
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -25,12 +26,14 @@ class EditProfile extends Component {
 
 
   handleNameSubmit(){
+
     const userid = this.props.userInfo.id;
     let { firstName, lastName } = this.state.fields;
     const reqBody = {
         firstName,
         lastName
     };
+
     updateUserProfile(userid, reqBody)
       .then( res => {
         if ( res.status !== 200 ) {
