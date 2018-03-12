@@ -19,7 +19,9 @@ class ChangeAvatar extends Component {
                 hideChangeURLOption: true,
                 hideAvatarGallery: false
             },
-            hideButtonSuccess: true
+            hideButtonSuccess: true,
+            buttonLoading: false
+
         };
         this.handleAvatarChange = this.handleAvatarChange.bind(this);
         this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
@@ -45,6 +47,9 @@ class ChangeAvatar extends Component {
     }}
 
     handleAvatarSubmit(){
+        this.setState({
+            buttonLoading: true
+        })
         const userid = this.props.userInfo.id;
         const reqBody = {
             avatar: this.state.userInfo.avatar
@@ -55,6 +60,9 @@ class ChangeAvatar extends Component {
               alert(res);
             }
             else{
+              this.setState({
+                  buttonLoading: false
+              })
               this.props.pullFromBackend(userid);
               this.props.onCloseBtnClick();
             }
@@ -126,6 +134,7 @@ class ChangeAvatar extends Component {
                         label='Update'
                         onClickAction={(e) => {this.handleAvatarSubmit()}}
                         disabled={this.state.hideButtonSuccess}
+                        loading={this.state.buttonLoading}
                     />
                 </div>
             </div>

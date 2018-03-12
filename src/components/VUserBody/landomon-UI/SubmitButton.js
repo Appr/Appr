@@ -12,29 +12,39 @@ class SubmitButton extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if (nextProps.disabled === false){
+        if(nextProps.loading === true){
+            this.setState({
+                loading: true,
+                disabled: false
+            })
+        }
+        else if (nextProps.disabled === false){
             this.setState({
                 disabled: false
             })
         }
-        else if(nextProps.loading === true){
-            console.log('loading')
-        }
         else if(nextProps.disabled === true){
             this.setState({
-                disabled: true
+                disabled: true,
+                loading: false
             })
         }
     }
 
     render(){
-        let {label, disabled, onClickAction} = this.props;
+        console.log(this.state)
+        let {label, onClickAction, disabled, loading} = this.props;
         let submitBtnClass = classnames({
             "submit-btn": true,
             "submit-btn-disabled": this.state.disabled,
         })
+
+        let loadingBtnClass = classnames({
+            "submit-btn": true,
+            "submit-btn-loading": this.state.loading,
+        })
         function handleAction(){
-            if (disabled === false){
+            if (disabled === false && loading === false){
                 onClickAction();
             }
             else(
@@ -42,7 +52,7 @@ class SubmitButton extends Component {
             )
         }
         return(
-            <button className={submitBtnClass} style={this.props.buttonStyle} onClick={(e) => handleAction()}>
+            <button className={`${submitBtnClass} ${loadingBtnClass} `} style={this.props.buttonStyle} onClick={(e) => handleAction()}>
                 {this.props.label}
             </button>
 

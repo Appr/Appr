@@ -20,16 +20,14 @@ feedbackMailer.post('/reportbug', (req, res) => {
     let mailOptions = {  
         to: 'landonwjohnson+tjc8uvdvy2oreploz92s@boards.trello.com', // list of receivers
         subject: `${problem} #User_Bugs`, // Subject line
-        text: `###Message: 
+        text: `Message
+=======
+From **${name}**
 >${description}
 
 ---
-
 Location:
     ${location}
----
-From:
-    ${name}
 `
     };
 

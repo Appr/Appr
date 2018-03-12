@@ -16,6 +16,7 @@ class ChangePassword extends Component {
             errorText: '',
             showSuccessButton: false,
             showSuccessField: false,
+            buttonLoading: false
         }
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
@@ -23,6 +24,9 @@ class ChangePassword extends Component {
     }
 
     handlePasswordSubmit(){
+        this.setState({
+            buttonLoading: true
+        })
         const userid = this.props.userInfo.id;
         let { confirmPassword, newPassword } = this.state;
         if(newPassword === confirmPassword) {
@@ -40,6 +44,9 @@ class ChangePassword extends Component {
                             newPasswordForceFail: true
                     })}
                     else {
+                        this.setState({
+                            buttonLoading: false
+                        })
                         this.props.pullFromBackend(userid);
                         this.props.onCloseBtnClick();
                     }
@@ -141,6 +148,7 @@ class ChangePassword extends Component {
                         label='update' 
                         disabled={this.state.showSuccessButton} 
                         onClickAction={this.handlePasswordSubmit}
+                        loading={this.state.buttonLoading}
                     />
                 </div>
 
