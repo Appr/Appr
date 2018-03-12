@@ -9,9 +9,9 @@ class ChangeEmail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: '',
+            email: this.props.userInfo.email,
             errorText: '',
-            fieldsFilled: false
+            hideButtonSuccess: true
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
@@ -45,17 +45,24 @@ class ChangeEmail extends Component {
 
 
     handleEmailChange(e){
+        let newEmail = e.toLowerCase();
+        console.log(this.state.email)
+
         if(this.state.errorText === 'Email already in use'){
             this.setState({
                 errorText: ''
             })
         }
-
-
-        let newEmail = e.toLowerCase();
         this.setState({
             email: newEmail
           })
+
+        if(newEmail === ''){
+            this.setState({hideButtonSuccess: true})
+        }
+        else{
+            this.setState({hideButtonSuccess: false})
+        } 
       }
 
     render() {
@@ -79,7 +86,6 @@ class ChangeEmail extends Component {
                             label="New Email"
                             errorText={this.state.errorText}
                             type="email"
-                            placeholder='BROO'
                             onChangeAction={(e) => {this.handleEmailChange(e.target.value)}} 
                             maxLength={30}
                         />
@@ -89,7 +95,7 @@ class ChangeEmail extends Component {
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
                     <SubmitButton 
                         label='update' 
-                        disabled={this.state.fieldsFilled} 
+                        disabled={this.state.hideButtonSuccess} 
                         onClickAction={this.handleEmailSubmit}
                     />
                 </div>

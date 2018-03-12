@@ -19,10 +19,16 @@ class Endpoints extends Component {
       this.handleRequestChange = this.handleRequestChange.bind(this);
       this.handleSubmitEndpoint = this.handleSubmitEndpoint.bind(this);
       this.pullFromBackend = this.pullFromBackend.bind(this);
+      this.handleSaveChange = this.handleSaveChange.bind(this);
   }
 
   scrollToBottom = () => {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
+}
+
+componentWillMount(){
+  const projectid = this.props.projectInfo.id;
+  this.pullFromBackend(projectid);
 }
 
   pullFromBackend(projectid, scrollOption){
@@ -40,10 +46,7 @@ class Endpoints extends Component {
     })
   }
 
-  componentDidMount(){
-    const projectid = this.props.projectInfo.id;
-    this.pullFromBackend(projectid);
-  }
+
 
   //endpoint ITEM add and remove methods
   addEndpointItemHandler(projectid){
@@ -81,19 +84,18 @@ class Endpoints extends Component {
   }
 
 
-  removeEndpointItemHandler(index){
+  removeEndpointItemHandler(endpointid){
     const projectid = this.props.match.params.projectid;
-    const endpointid = this.state.endpoints[index].id;
-
     deleteProjectEndpoint(projectid, endpointid)
       .then( res => {
         if (res.status !== 200){
-          console.log(res);
         }
         else {
+          console.log(res);
           this.pullFromBackend(projectid);
         }
       })
+      .catch( err => {throw err});
   }
 
   handleEndpointNameChange(newName, index){
@@ -126,7 +128,24 @@ class Endpoints extends Component {
     this.setState({ endpoints: newState })
   }
 
-
+  handleSaveChange(e, index) {
+      const projectid = this.props.projectInfo.id;
+      const endpointid = this.state.endpoints[index].id;
+      const reqBody = {
+        endpointName: this.state.endpoints[index].endpoint_name,
+        httpVerb: this.state.endpoints[index].http_verb,
+        urlData: this.state.endpoints[index].url_data,
+        responseData: this.state.endpoints[index].response_data,
+        requestData: this.state.endpoints[index].request_data
+      };
+      updateProjectEndpoint(projectid, endpointid, reqBody)
+          .then( res => {
+            if( res.status !== 200 ) {
+              console.log(res);
+            }
+          })
+          .catch( err => { throw err } );
+  }
 
 
   render() {
@@ -155,6 +174,7 @@ class Endpoints extends Component {
             handleResponseChange={this.handleResponseChange}
             handleRequestChange={this.handleRequestChange}
             handleSubmitEndpoint={this.handleSubmitEndpoint}
+            handleSaveChange={this.handleSaveChange}
 
         />
       )

@@ -13,7 +13,7 @@ export default class BackgroundMenu extends Component {
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         findProjectBackgrounds()
             .then( res => {
                 if (res.status !== 200){

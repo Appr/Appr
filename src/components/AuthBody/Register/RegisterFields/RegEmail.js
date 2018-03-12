@@ -51,7 +51,7 @@ class RegEmail extends Component {
 
     render() {
         const { handleChangeInput, emailReady } = this.props;
-        
+
 
 
         let failEmailClass = classnames({
@@ -66,7 +66,7 @@ class RegEmail extends Component {
         return (
             <div className={`${failEmailClass} ${successEmailClass}`}>
                 <label className="input-tag"> Email </label>
-                <input className="input-solo" type="text" name="email" placeholder="e.g. kyloren@firstorder.org" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
+                <input className="input-solo" type="text" name="email" placeholder="e.g. email123@email.com" onChange={e => { handleChangeInput(e), this.handleConstraint(e) }}/>
                 <div className="reg-info">
                     <p className="invalid-text"> {this.props.emailErrorText} </p>
                     <p className="valid-text"> This email is valid </p>

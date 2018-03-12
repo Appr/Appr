@@ -7,17 +7,19 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { updateUserInfo, updateUserAvatar } from '../../../../../../services/account.services'
 import { connect } from 'react-redux';
+import SubmitButton from '../../../../landomon-UI/SubmitButton';
 class ChangeAvatar extends Component {
     constructor(props){
         super(props)
         this.state={
             userInfo: {
-                avatar: ''
+                avatar: this.props.userInfo.avatar
             },
             UI:{
                 hideChangeURLOption: true,
                 hideAvatarGallery: false
-            }
+            },
+            hideButtonSuccess: true
         };
         this.handleAvatarChange = this.handleAvatarChange.bind(this);
         this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
@@ -61,12 +63,19 @@ class ChangeAvatar extends Component {
     }
 
     handleAvatarChange(e){
+        // pattern={/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)jpg|png|gif?/g}
         let newAvatar = e.trim();
         this.setState({
             userInfo: {
                 avatar: newAvatar
             }
           })
+          if(newAvatar === ''){
+            this.setState({hideButtonSuccess: true})
+          }
+          else{
+            this.setState({hideButtonSuccess: false})
+          } 
       }
     render() {
         const {userInfo, handleAvatarSubmit, onCloseBtnClick } = this.props;
@@ -98,7 +107,6 @@ class ChangeAvatar extends Component {
                     <h2 className="avatar-modal-title">CHANGE AVATAR</h2>
                     <span className="avatar-closeBtn" onClick={onCloseBtnClick}>&times;</span>
                 </div>
-                {/* <form> */}
                 <div className="avatar-settings-content">
                     <div className={`${modelBackBtnClass}`}>
                         <button className={`${backBtnClass}`} onClick={this.toggleChangeURL}>Back</button>
@@ -114,9 +122,12 @@ class ChangeAvatar extends Component {
 
                 <div className="avatar-submitModal">
                     <button className="avatar-cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                    <button id="updateAvatar" className="avatar-submit-btn" onClick={(e) => {this.handleAvatarSubmit()}}> Update </button>
+                    <SubmitButton 
+                        label='Update'
+                        onClickAction={(e) => {this.handleAvatarSubmit()}}
+                        disabled={this.state.hideButtonSuccess}
+                    />
                 </div>
-                {/* </form> */}
             </div>
         </div>
       );

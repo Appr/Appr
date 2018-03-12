@@ -14,6 +14,14 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+
+        form {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          // border: solid red 2px;
+        }
       }
 
     .modalStyle{
@@ -101,13 +109,12 @@
         font-weight: bold;
         font-size: 16px;
         margin-bottom: 10px;
-        margin-left: 5px;
         white-space: nowrap;
       }
 
       .modal-body{
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
         width: 21.5vw;
         // padding-left: 20px;
@@ -123,7 +130,7 @@
 
       .submitModal{
         margin-bottom: 20px;
-        width: 23vw;
+        width: 21.5vw;
         display: flex;
         justify-content: flex-end;
         // border: solid red 2px;
@@ -131,7 +138,7 @@
 
       .cancel-btn {
         text-align: center;
-        font-size: 11px;
+        font-size: 10pt;
         height: 35px;
         width: 90px;
         outline: none;
@@ -150,7 +157,7 @@
 
       .modal-form {
         height: 33px;
-        width: 92%;
+        width: 21vw;
         outline: none;
         font-size: 10pt;
         padding-left: 5px;
@@ -169,7 +176,6 @@
 
       .current-email{
         color: #95989A;
-        margin-left: 10px;
       }
 
 
