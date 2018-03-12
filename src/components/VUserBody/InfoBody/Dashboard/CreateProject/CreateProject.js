@@ -118,7 +118,7 @@ class CreateProject extends Component {
                             label ="Project Name"
                             onChangeAction={(e) => {this.handleNameChange(e.target.value)}}
                             type='text'
-                            maxLength={30}
+                            maxLength={20}
                         />
                     </section>
                 </div>

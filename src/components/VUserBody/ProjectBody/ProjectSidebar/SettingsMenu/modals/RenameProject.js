@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteProject, updateProject, findProject } from '../../../../../../services/project.services';
 import history from '../../../../../../history';
-import { findDashboardInfo, findPersonalProjects } from '../../../../../../services/dashboard.services';
-import { updateDashboard, updateProjectRedux, updatePersonalProjects } from '../../../../../../actions/actionCreators';
+import { findDashboardInfo, findPersonalProjects, findRecentProjects } from '../../../../../../services/dashboard.services';
+import { updateDashboard, updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../../../../actions/actionCreators';
 import ModalTextField from '../../../../landomon-UI/ModalTextField';
 import SubmitButton from '../../../../landomon-UI/SubmitButton';
 
@@ -13,7 +13,8 @@ class RenameProject extends Component {
     super(props)
     this.state={
         localProjectName: '',
-        validated: ''
+        validated: '',
+        buttonLoading: false
 
     }
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -39,6 +40,9 @@ class RenameProject extends Component {
   }
 
   handleRename(){
+    this.setState({
+      buttonLoading: true
+    })
     const { closeProjectNameModal, projectInfo, userInfo, dashboardInfo, updateProjectRedux } = this.props;
     let projectid = projectInfo.id;
     let userid = userInfo.id;
@@ -51,8 +55,17 @@ class RenameProject extends Component {
                     updateProjectRedux(res.data[0])
                     findPersonalProjects(userid)
                     .then( res => {
-                      this.props.updatePersonalProjects(res.data)
-                      closeProjectNameModal()
+                      this.props.updatePersonalProjects(res.data);
+                      findRecentProjects(userid)
+                      .then(res => {
+                          if(res.status === 200){
+                              this.props.updateRecentProjects(res.data)
+                              this.setState({
+                                buttonLoading: false
+                              })
+                              closeProjectNameModal()
+                          }
+                      })
                   })
 
                 })
@@ -78,7 +91,7 @@ class RenameProject extends Component {
                     <section className="modal-row">
                         <ModalTextField 
                           onChangeAction={(e) => {this.handleNameChange(e.target.value)}} 
-                          maxLength={30}
+                          maxLength={20}
                         />
                     </section>
                 </div>
@@ -88,6 +101,7 @@ class RenameProject extends Component {
                   onClickAction={(e) => this.handleRename()}
                   label="UPDATE"
                   disabled={this.state.validated}
+                  loading={this.state.buttonLoading}
                 />
               </div>
             </div>
@@ -101,6 +115,6 @@ class RenameProject extends Component {
   }
 
 
-  export default connect(mapStateToProps, {updatePersonalProjects, updateProjectRedux}) (RenameProject);
+  export default connect(mapStateToProps, {updatePersonalProjects, updateProjectRedux, updateRecentProjects}) (RenameProject);
 
 

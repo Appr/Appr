@@ -74,6 +74,12 @@ class ProjectBody extends Component {
         findPersonalProjects(userid)
         .then(res => {
           this.props.updatePersonalProjects(res.data)
+          findRecentProjects(userid)
+            .then(res => {
+                if(res.status === 200){
+                    this.props.updateRecentProjects(res.data)
+                }
+            })
         })
       })
       .catch(err => {throw err});
