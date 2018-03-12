@@ -83,7 +83,7 @@ class ModalTextField extends Component {
 
         return(
             <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
-                <label className="modalTextFieldLabel"> {label} </label>
+                <label className="modalTextFieldLabel"> {label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()} </label>
                 <input className="modalTextFieldInput"
                     defaultValue={this.props.defaultValue}
                     autoFocus

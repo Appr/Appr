@@ -2,15 +2,14 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const feedbackMailer = express.Router();
 
-
 feedbackMailer.post('/reportbug', (req, res) => {
-
+    let { name, problem, description, location } = req.body;
    // create reusable transporter object using the default SMTP transport
    let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'landonnodemailer@gmail.com', // generated ethereal user
-            pass: '***'  // generated ethereal password
+            pass: 'devmountainnodemailer'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -19,15 +18,18 @@ feedbackMailer.post('/reportbug', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {  
-        to: 'feedback73+oin4osvzkn6zozxwteis@boards.trello.com', // list of receivers
-        subject: `${req.body.problem} #User_Bugs`, // Subject line
+        to: 'landonwjohnson+tjc8uvdvy2oreploz92s@boards.trello.com', // list of receivers
+        subject: `${problem} #User_Bugs`, // Subject line
         text: `###Message: 
->${req.body.description}
+>${description}
 
 ---
 
 Location:
-    ${req.body.location}
+    ${location}
+---
+From:
+    ${name}
 `
     };
 
@@ -38,6 +40,7 @@ Location:
         }
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        res.send('Message Sent')
 
     });
 })
