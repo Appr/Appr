@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../../InfoBody/AccountSettings/modals/modals.scss';
+import ModalTextField from '../../landomon-UI/ModalTextField';
+import SubmitButton from '../../landomon-UI/SubmitButton';
 
 
 class Feedback extends Component {
@@ -30,21 +32,21 @@ class Feedback extends Component {
                 location: this.state.location
             })
         })
-
         .then((response) => response.json())
         .then((responseJson) => {
             if (responseJson.success){
                 this.setState({formSent: true})
+                this.props.onCloseBtnClick();
             }
-            else this.setState({formSent: false})
-        }
-    )
+            else{
+                 this.setState({formSent: false})
+            }
+        })
         .catch((error) => {
             console.log(error);
         });
 
 
-        this.props.onCloseBtnClick();
 
 
     }
@@ -63,12 +65,13 @@ class Feedback extends Component {
                     <h2 className="modal-title">REPORT BUG</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
-                <form onSubmit={this.handleSubmit}>
 
                     <div className="modal-body">
-                        <label className="modal-input-tag">Problem</label>
                         <section className="modal-row">
-                            <input type="text" name="problem" id="problem" className="modal-form" value={this.state.problem} required autoFocus onChange={(e) => {this.setState({ problem: `${e.target.value}`})}} />
+                            <ModalTextField 
+                                label="Problem"
+                                onChangeAction={(e) => {this.setState({ problem: `${e.target.value}`})}}
+                            />
                         </section>
                         <label className="modal-input-tag">Description</label>
                         <section className="modal-row">
@@ -79,9 +82,12 @@ class Feedback extends Component {
                     </div>
                     <div className="submitModal">
                         <button className="cancel-btn" onClick={this.props.onCloseBtnClick}> Cancel </button>
-                        <button type="submit" className="submit-btn"> Send </button>
+                        <SubmitButton 
+                            onClickAction={(e) => {this.handleSubmit}}
+                            label='Send'
+                        
+                        />
                     </div>
-                </form>
             </div>
         </div>
     );
