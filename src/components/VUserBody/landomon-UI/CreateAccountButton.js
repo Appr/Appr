@@ -7,7 +7,7 @@ class CreateAccountButton extends Component {
     render(){
         let {label, loading, errorText, onClickAction} = this.props;
         return(
-            <button onClick={(e) => onClickAction()}>{this.props.label}</button>
+            <button className="create-account-btn" onClick={(e) => onClickAction()}>{this.props.label}</button>
         )
     }
 }

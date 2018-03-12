@@ -48,6 +48,7 @@ projectEndpointRouter.put('/:projectid/update/endpoint/:endpointid', (req, res) 
 
 //Works
 projectEndpointRouter.delete('/:projectid/delete/endpoint/:endpointid', (req, res) => {
+    console.log(req.user[0]);
     const projectid = req.params.projectid;
     const endpointid = req.params.endpointid;
     const db = getDb();

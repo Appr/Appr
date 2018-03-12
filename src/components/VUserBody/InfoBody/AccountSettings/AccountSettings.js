@@ -189,7 +189,7 @@ class AccountSettings extends Component {
               className="modal-account-settings-content"
               style={ModalBox}
           >
-              <ArchiveAccount pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeAvatarModal} />
+              <ArchiveAccount pullFromBackend={this.pullFromBackend} onCloseBtnClick={this.closeArchiveModal} />
           </Modal>
       </div>
     );

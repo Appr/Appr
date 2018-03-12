@@ -13,7 +13,7 @@ class ArchiveAccount extends Component {
   }
     render() {
 
-        const { closeArchiveModal, projectInfo, userInfo } = this.props;
+        const { onCloseBtnClick, projectInfo, userInfo } = this.props;
 
         function handleArchive(){
             let projectid = projectInfo.id;
@@ -35,7 +35,7 @@ class ArchiveAccount extends Component {
             <div className="modal-account-settings-content">
               <div className="modal-header">
                 <h2 className="modal-title">DELETE ACCOUNT</h2>
-                <span className="closeBtn" onClick={(e) => closeArchiveModal()}>&times;</span>
+                <span className="closeBtn" onClick={(e) => onCloseBtnClick()}>&times;</span>
               </div>
 
                 <div className="modal-body">
@@ -45,7 +45,7 @@ class ArchiveAccount extends Component {
 
                 </div>
               <div className="submitModal">
-                <button className="cancel-btn" onClick={ (e) => closeArchiveModal() }> Cancel </button>
+                <button className="cancel-btn" onClick={ (e) => onCloseBtnClick() }> Cancel </button>
                 <button className="archive-btn" onClick={(e) => handleArchive()}> DELETE </button>
               </div>
             </div>

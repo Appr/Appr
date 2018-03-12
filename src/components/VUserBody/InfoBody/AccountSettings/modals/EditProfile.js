@@ -63,9 +63,7 @@ class EditProfile extends Component {
       }
       else{
         this.setState({hideButtonSuccess: false})
-      }
-
-    
+      } 
   }
 
   handleLastNameChange(e){
@@ -83,9 +81,6 @@ class EditProfile extends Component {
       else{
         this.setState({hideButtonSuccess: false})
       }
-
-
-
   }
 
 
@@ -95,10 +90,10 @@ class EditProfile extends Component {
       return (
         <div className="modalStyle-inner">
             <div className="modal-account-settings-content">
-              <div className="modal-header">
-                <h2 className="modal-title">EDIT PROFILE</h2>
-                <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
-              </div>
+                <div className="modal-header">
+                  <h2 className="modal-title">EDIT PROFILE</h2>
+                  <span onClick={onCloseBtnClick} className="closeBtn">&times;</span>
+                </div>
 
                 <div className="modal-body">
 
@@ -112,7 +107,7 @@ class EditProfile extends Component {
                     </section>
 
                     <section className="modal-row">
-                      <ModalTextField 
+                      <ModalTextField
                         label="Last Name"
                         onChangeAction={(e) => {this.handleLastNameChange(e.target.value)}}
                         maxLength="18"
@@ -124,7 +119,7 @@ class EditProfile extends Component {
                 </div>
               <div className="submitModal">
                 <button className="cancel-btn" onClick={onCloseBtnClick}> Cancel </button>
-                <SubmitButton 
+                <SubmitButton
                   onClickAction={(e) => {this.handleNameSubmit()}}
                   label="Update"
                   disabled={this.state.hideButtonSuccess}

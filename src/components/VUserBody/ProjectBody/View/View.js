@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createProjectView, findProjectViews, updateProjectView, deleteProjectView } from '../../../../services/project.view.services';
+import ViewItem from './ViewItem/ViewItem';
 import './view.scss';
 import { connect } from 'react-redux';
 
@@ -13,7 +14,13 @@ class View extends Component {
       this.handleChangeView = this.handleChangeView.bind(this);
       this.handleDeleteViewButton = this.handleDeleteViewButton.bind(this);
       this.pullFromBackend = this.pullFromBackend.bind(this);
+      this.handleSaveChange = this.handleSaveChange.bind(this);
     }
+
+    componentWillMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromBackend(projectid);
+      }
 
     pullFromBackend(projectid){
         findProjectViews(projectid)
@@ -32,10 +39,7 @@ class View extends Component {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
-    componentDidMount() {
-      const projectid = this.props.projectInfo.id;
-      this.pullFromBackend(projectid);
-    }
+
 
     handleAddViewButton() {
         const projectid = this.props.match.params.projectid || 1;
@@ -93,23 +97,41 @@ class View extends Component {
             .catch(err => {throw err});
     }
 
+    handleSaveChange(e, index) {
+        const projectid = this.props.projectInfo.id;
+        const viewid = this.state.views[index].id;
+        const reqBody = {
+            name: this.state.views[index].name,
+            imageUrl: this.state.views[index].image_url
+        };
+        updateProjectView(projectid, viewid, reqBody)
+        .then( res => {
+            if(res.status !== 200) {
+                alert(res);
+            }
+        })
+        .catch(err => {throw err});
+    }
+
+
   render() {
     const userid = this.props.userInfo.id;
     const projectid = this.props.projectInfo.id;
     const views = this.state.views;
     const displayViews = views.map( view => {
         const index = views.indexOf(view);
-        return (
-          <div className="view-item" key={`idea-${index}`}>
-          <section>
-            <label>{(index + 1) + '.'}</label>
-            <input className="view-input-name" type="text" placeholder="Name" id={view.id} value={view.name} onChange={e => this.handleChangeView(e, index, "name")} />
-            <input className="view-input-imgurl" type="text" placeholder="Wireframe URL" id={view.id} value={view.image_url} onChange={e => this.handleChangeView(e, index, "image_url")} />
-          </section>
-            <button className="input-complete-btn"  id={view.id} onClick={e => this.submitChangeView(e, index)}>Save</button>
-            <button className="delete-x" id={view.id} onClick={e => this.handleDeleteViewButton(e, index)}>&times;</button> 
-        </div>
-        )
+        const id = view.id;
+        return (<ViewItem
+                    key={`view-item-${index}`}
+                    index={index}
+                    projectid={projectid}
+                    id={id}
+                    viewName={view.name}
+                    viewImageUrl={view.image_url}
+                    handleChangeView={this.handleChangeView}
+                    handleDeleteViewButton={this.handleDeleteViewButton}
+                    handleSaveChange={this.handleSaveChange} />
+        );
     });
 
     return (
@@ -118,11 +140,12 @@ class View extends Component {
               <div className="project-section-header">
                   <label>View </label>
               </div>
-           
+
               <div className="view-area drop-shadow">
                 <div className="view-wrapper">
+
                   {displayViews}
-              
+
                   <div className="view-footer" ref={(el) => { this.listEnd = el; }}>
                   <button className="add-button" onClick={this.handleAddViewButton}> <span/> Add View </button>
                   </div>

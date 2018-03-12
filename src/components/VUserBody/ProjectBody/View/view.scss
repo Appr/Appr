@@ -6,33 +6,33 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
     overflow-y: auto;
-    
+
     &::-webkit-scrollbar {
         width: 15px;
         padding-right: 5px;
         -webkit-overflow-scrolling: touch;
     }
-    
+
 
     &::-webkit-scrollbar-track {
         margin-top: 3%;
         margin-bottom: 3%;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         -webkit-border-radius: 10px;
         border-radius: 10px;
     }
- 
+
 
     &::-webkit-scrollbar-thumb {
         @include darken-background($primary, 20%);
         -webkit-border-radius: 10px;
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
-        
+
     }
     &::-webkit-scrollbar-thumb:window-inactive {
-        background-color: rgba(50, 50, 50, 0.40);       
-    } 
+        background-color: rgba(50, 50, 50, 0.40);
+    }
 }
 
 
@@ -43,7 +43,7 @@
     // border: 1.5px solid red;
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
     margin-bottom: 40px;
 }
 
@@ -81,7 +81,7 @@
         font-size: 20px;
         min-width: 37px;
         text-align: left;
-        margin-right: 10px;
+        // margin-right: 10px;
     }
     input{
         border: 1px #CCC solid;
@@ -95,24 +95,24 @@
     }
     .view-input-name {
         width: 100%;
-       
+
         margin-right: 10px;
-       
+
         // border: 1px solid black;
     }
-    
+
     .view-input-imgurl {
         width: 60%;
         margin-left: 0px;
         margin-right: 0px;
-        
+
         // border: 1px solid black;
     }
 
 
 
     .view-footer{
-          padding-left: 47px;
+          padding-left: 37px;
           max-width: 100%;
 
           button{

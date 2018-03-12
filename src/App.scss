@@ -4,7 +4,7 @@
   text-align: center;
   height: 100vh;
   width: 100%;
-  overflow-y: hidden; 
+  overflow-y: hidden;
 }
 
 .project-section-header{
@@ -23,7 +23,7 @@ a{
 
 .home-container{
   display: flex;
- 
+
 }
 
 .hide-header{
@@ -76,7 +76,7 @@ a{
     max-width: 17px;
     padding-right: 8px;
   }
-  
+
 
 }
 
@@ -95,7 +95,7 @@ a{
   white-space: nowrap;
   max-width: 100%;
   outline: none;
-  
+
   img{
       position: relative;
       padding-right: 5px;
@@ -197,7 +197,7 @@ a{
       width: 25px;
       height: 25px;
       background-repeat: no-repeat;
-      
+
       opacity: 0.5;
       cursor: pointer;
       transition: 0.1s ease-in-out;
@@ -221,7 +221,7 @@ a{
   input{
     border: #FF3560 solid 1px !important;
   }
-  
+
 }
 
 
@@ -231,7 +231,7 @@ a{
 
 .v2-placeholder {
   opacity: 0;
-  
+
   img{
     opacity: 0;
   }
@@ -241,7 +241,7 @@ a{
 
 //Tracker
   .saveTBtn{
-    background: #5aac44;
+    background: $btn-color;
     font-weight: bolder;
     line-height: 22px;
     border: none;
@@ -267,7 +267,7 @@ a{
     height: 30px;
     outline: none;
     cursor: pointer;
-  
+
 
     span{
       display: block;
@@ -282,7 +282,7 @@ a{
         fill: blue;
       }
     }
-   
+
   }
 
 

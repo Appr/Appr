@@ -22,6 +22,11 @@ class Schema extends Component {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
   }
 
+  componentWillMount(){
+    const projectid = this.props.projectInfo.id;
+    this.pullFromBackend(projectid);
+  }
+
   pullFromBackend(projectid, scrollOption){
     findProjectSchemas(projectid)
       .then( res => {
@@ -38,10 +43,7 @@ class Schema extends Component {
       .catch(err => {throw err});
   }
 
-  componentDidMount(){
-    const projectid = this.props.projectInfo.id;
-    this.pullFromBackend(projectid);
-  }
+
 
   handleSubmitSchema(index){
     const projectid = this.props.projectInfo.id

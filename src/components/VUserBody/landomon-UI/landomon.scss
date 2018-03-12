@@ -19,9 +19,9 @@
   }
 
   .login-btn:hover {
-    background-color: #393939; 
+    background-color: #393939;
   }
-  
+
   .login-btn:active{
     background-color: #2b2b2b;
   }
@@ -53,7 +53,7 @@
   //Login Button
 
 
-//SUBMIT BUTTON 
+//SUBMIT BUTTON
 .submit-btn {
     text-align: center;
     font-size: 11px;
@@ -68,7 +68,6 @@
     white-space: nowrap;
     border-radius: 3px;
     margin-left: 10px;
-    margin-right: 10px;
     text-transform: uppercase;
     box-shadow: 0 1px 0 #539A40;
     font-weight: bold;
@@ -88,7 +87,7 @@
 //SUBMIT BUTTON
 
 
-//DELETE BUTTON 
+//DELETE BUTTON
 .archive-btn {
     text-align: center;
     font-size: 11px;
@@ -103,7 +102,6 @@
     white-space: nowrap;
     border-radius: 3px;
     margin-left: 10px;
-    margin-right: 10px;
     text-transform: uppercase;
     box-shadow: 0 1px 0 rgb(187, 61, 68);
     font-weight: bold;
@@ -317,7 +315,7 @@
       .error-text{
           opacity: 1;
           margin-top: 0;
-          
+
           display: block;
           color: #FF3560;
           transition: 0.2s ease-in-out;
@@ -355,4 +353,4 @@
 
 
 
-  
+

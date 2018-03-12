@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #D6DADC;
-} 
+}
 
 .profile-section-inner {
     justify-content: center;
@@ -28,7 +28,7 @@
         justify-content: flex-start;
         width: 85%;
     }
-} 
+}
 
 .avatar-initial{
     display: flex;
@@ -64,7 +64,7 @@
     line-height: 30px;
     font-size: 15px;
     z-index: 1;
-    
+
     div{
         opacity: 0;
         display: flex;
@@ -121,7 +121,7 @@
     font-size: 30px;
     text-align: left;
     white-space: nowrap;
-    
+
 }
 
 .headline-20{
@@ -167,7 +167,7 @@
     height: 28px;
     align-items: flex-start;
     // border: 1px solid black;
-    
+
 }
 
 .edit-profile-btn {
@@ -179,6 +179,7 @@
     background: #E2E4E6;
     cursor: pointer;
     user-select: none;
+    border-radius: 3px;
 }
 
 .name-username-edit-con {

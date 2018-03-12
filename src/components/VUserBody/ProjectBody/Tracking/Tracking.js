@@ -92,7 +92,7 @@ componentDidMount(){
   removeTrackerListHandle(listid){
     const projectid = this.props.projectInfo.id;
 
-    deleteTrackerListNew(projectid, listid)
+  deleteTrackerListNew(projectid, listid)
       .then( res => {
         this.findMeSomeStuff(projectid)
       })

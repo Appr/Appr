@@ -21,6 +21,11 @@ class Features extends Component {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
+    componentWillMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromBackend(projectid)
+    }
+
     pullFromBackend(projectid, scrollOption){
         findProjectFeatures(projectid)
             .then( res => {
@@ -39,10 +44,7 @@ class Features extends Component {
 
 
 
-    componentDidMount() {
-        const projectid = this.props.projectInfo.id;
-        this.pullFromBackend(projectid)
-    }
+
 
     handleAddFeature() {
         const projectid = this.props.projectInfo.id;
@@ -53,7 +55,7 @@ class Features extends Component {
                     alert(res);
                 }
                 else {
-                    this.pullFromBackend(projectid, 'yesScroll')   
+                    this.pullFromBackend(projectid, 'yesScroll')
                 }
             })
             .catch(err => {throw err});
