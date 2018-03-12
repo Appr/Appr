@@ -63,7 +63,7 @@ class ModalTextField extends Component {
 
 
     render(){
-        let {label, loading, errorText, onChangeAction} = this.props;
+        let {label, loading, errorText, onChangeAction, labelStyle} = this.props;
 
         let failTextFieldClass = classnames({
             "modalTextField": true,
@@ -83,7 +83,7 @@ class ModalTextField extends Component {
 
         return(
             <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
-                <label className="modalTextFieldLabel"> {label} </label>
+                <label className="modalTextFieldLabel" style={this.props.labelStyle}> {label} </label>
                 <input className="modalTextFieldInput"
                     defaultValue={this.props.defaultValue}
                     autoFocus

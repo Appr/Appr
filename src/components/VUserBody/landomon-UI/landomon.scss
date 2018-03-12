@@ -86,14 +86,12 @@
     background: #D9D9D9;
     box-shadow: 0 1px 0 #D9D9D9;
     transition: 0.2s ease-in-out;
-
   }
 
   .submit-btn-loading {
     opacity: 0.5;
     transition: 0.2s ease-in-out;
     cursor: auto;
-    
   }
 //SUBMIT BUTTON
 
@@ -118,6 +116,25 @@
     font-weight: bold;
     font-size: 10pt;
   }
+
+  .archive-btn-disabled {
+    background: none;
+    color: #5E5E5E;
+    outline: none;
+    font-weight: bold;
+    cursor: auto;
+    font-weight: normal;
+    background: #D9D9D9;
+    box-shadow: 0 1px 0 #D9D9D9;
+    transition: 0.2s ease-in-out;
+  }
+
+  .archive-btn-loading {
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+    cursor: auto;
+  }
+//DELETE BUTTON
 
 
 

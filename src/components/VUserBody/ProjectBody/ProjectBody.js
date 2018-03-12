@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
 import { findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
 
+
 class ProjectBody extends Component {
   constructor(props){
     super(props)

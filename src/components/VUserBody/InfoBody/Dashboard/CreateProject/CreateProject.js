@@ -111,8 +111,6 @@ class CreateProject extends Component {
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
                 <div className="modal-body">
-
-
                     <section className="modal-row">
                         <ModalTextField
                             label ="Project Name"

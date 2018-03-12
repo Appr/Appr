@@ -67,10 +67,13 @@ accountRouter.put('/update/:userid', (req, res) => {
 });
 
 accountRouter.put('/delete/user', (req, res) => {
-    let { userid } = req.body;
+    let { userid, email, password } = req.body;
     console.log(userid)
     if(userid != req.user[0].id){
         res.send('I hear you like scene kids ;)')
+    }
+    if(password != req.user[0].password){
+        res.send({ErrorText: 'Wrong account information'})
     }
     const db = getDb();
     db.delete_user([ userid ])

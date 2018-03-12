@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 let ProjectBodyContainer = styled.div `
-display: flex;
+    display: flex;
 `
 
 let Frame = styled.div `
