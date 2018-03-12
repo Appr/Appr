@@ -38,8 +38,8 @@
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template:  repeat(auto-fit, 85px) / repeat(auto-fit, 85px);
-        justify-content: space-evenly;
+        grid-template-columns:  repeat(auto-fit, minmax(85px, 1fr));
+        // justify-content: space-evenly;
         grid-gap: 10px;
         list-style: none;
         padding: 0px;
@@ -215,3 +215,117 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+
+
+
+//   @media only screen and (min-width: 1760px){
+
+//     .avatar-modal-wrapper {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 500px;
+//         height: 100%;
+//         z-index: 0;
+//     }
+
+//     .avatar-modal-content {
+//         max-width: 600px;
+//         border: none;
+//         background-color:#f4f4f4;
+//         box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+//         animation-name: modalopen;
+//         animation-duration: 0.3s;
+//         z-index: 4;
+//         border-radius: 3px;
+//         display: flex;
+//         align-items: center;
+//         flex-direction: column;
+//     }
+
+//     .avatar-settings-content{
+//         width: 500px;
+//         display: flex;
+//         flex-wrap: wrap;
+//         align-items: center;
+//         align-items: center;
+//         overflow: hidden;
+//         min-height: 140px;
+//         transition: 0.2s ease-in-out;
+//         padding: 0 15px 0 15px;
+//     }
+
+//     .avatarIconGallery-wrapper{
+//         width: 500px;
+//         opacity: 1;
+//         transition: 0.2s ease-in-out;
+//         position: relative;
+//         // padding: 0 10px 0 10px;
+//     }
+
+//     .modal-body-avatar{
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         width: 510px;
+//     }
+
+//     .avatarPicContainer{
+//         display: flex;
+//         justify-content: center;
+
+//         margin-top: 3%;
+//         margin-bottom: 3%;
+//         max-height: 255px;
+//         width: 505px;
+
+//         overflow-y: auto;
+//         overflow-x: hidden;
+
+
+//         .avatarPicList {
+//             width: 500px;
+//             height: 100%;
+//             display: grid;
+//             grid-template-columns: repeat(5, 1fr);
+//             grid-gap: 10px;
+//             list-style: none;
+//             padding: 0px;
+//         }
+
+//         .avatarURLItem {
+
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             background: #DCDCDC;
+//             width: 85px;
+//             height: 85px;
+//             background-size: cover;
+//             border-radius: 10px;
+
+//             background-image: url('../../../../../../img/icons/cameraIcon.svg');
+//             background-size: 60%;
+//             background-repeat: no-repeat;
+//             background-position: 50%;
+//             cursor: pointer;
+//         }
+//     }
+
+//     .changeAvatarURL-wrapper{
+//         opacity: 1;
+//         transition: 0.2s ease-in-out;
+//         position: relative;
+//     }
+
+//     .changeAvatarURL--hide{
+//         opacity: 0;
+//         position: absolute;
+//         z-index: -1;
+//         transition: 0.2s ease-in-out;
+//     }
+
+
+
+
+//   }
