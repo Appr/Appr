@@ -15,7 +15,8 @@ class EditProfile extends Component {
         lastName: this.props.userInfo.last_name
       },
       buttonLabel: 'Update',
-      hideButtonSuccess: true
+      hideButtonSuccess: true,
+      buttonLoading: false
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -26,6 +27,9 @@ class EditProfile extends Component {
 
 
   handleNameSubmit(){
+    this.setState({
+      buttonLoading: true
+    })
 
     const userid = this.props.userInfo.id;
     let { firstName, lastName } = this.state.fields;
@@ -40,6 +44,9 @@ class EditProfile extends Component {
           alert(res);
         }
         else{
+          this.setState({
+            buttonLoading: false
+          })
           this.props.pullFromBackend(userid);
           this.props.onCloseBtnClick();
         }
@@ -123,6 +130,7 @@ class EditProfile extends Component {
                   onClickAction={(e) => {this.handleNameSubmit()}}
                   label="Update"
                   disabled={this.state.hideButtonSuccess}
+                  loading={this.state.buttonLoading}
                 />
               </div>
             </div>

@@ -13,6 +13,8 @@ import { findProject, updateProject } from '../../../services/project.services';
 import { connect } from 'react-redux';
 import { updateProjectRedux, updatePersonalProjects, updateRecentProjects } from '../../../actions/actionCreators';
 import { findPersonalProjects, findRecentProjects } from '../../../services/dashboard.services';
+import ProjectMobileBar from './ProjectSidebar/ProjectMobileBar/ProjectMobileBar';
+
 
 class ProjectBody extends Component {
   constructor(props){
@@ -74,6 +76,12 @@ class ProjectBody extends Component {
         findPersonalProjects(userid)
         .then(res => {
           this.props.updatePersonalProjects(res.data)
+          findRecentProjects(userid)
+            .then(res => {
+                if(res.status === 200){
+                    this.props.updateRecentProjects(res.data)
+                }
+            })
         })
       })
       .catch(err => {throw err});
@@ -89,8 +97,9 @@ class ProjectBody extends Component {
 
     return (
       <ProjectBodyContainer>
+              <ProjectMobileBar />
               <ProjectSidebar
-                selectedBackground={this.state.UI.backgroundPreview || this.state.project.background}
+                selectedBackground={this.state.UI.backgroundPreview || this.props.projectInfo.background}
                 handleProjectBackground={this.handleProjectBackgroundPreview}
                 projectid={projectid}
                 userid={userid}

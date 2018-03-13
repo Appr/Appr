@@ -72,6 +72,8 @@
     box-shadow: 0 1px 0 #539A40;
     font-weight: bold;
     font-size: 10pt;
+    opacity: 1;
+    transition: 0.2s ease-in-out;
 
   }
   .submit-btn-disabled {
@@ -83,6 +85,13 @@
     font-weight: normal;
     background: #D9D9D9;
     box-shadow: 0 1px 0 #D9D9D9;
+    transition: 0.2s ease-in-out;
+  }
+
+  .submit-btn-loading {
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+    cursor: auto;
   }
 //SUBMIT BUTTON
 
@@ -107,6 +116,25 @@
     font-weight: bold;
     font-size: 10pt;
   }
+
+  .archive-btn-disabled {
+    background: none;
+    color: #5E5E5E;
+    outline: none;
+    font-weight: bold;
+    cursor: auto;
+    font-weight: normal;
+    background: #D9D9D9;
+    box-shadow: 0 1px 0 #D9D9D9;
+    transition: 0.2s ease-in-out;
+  }
+
+  .archive-btn-loading {
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+    cursor: auto;
+  }
+//DELETE BUTTON
 
 
 
@@ -251,13 +279,11 @@
 
 
 
-//Login Text Field
+//LOGIN TEXT FIELD//
 .loginTextField{
   display: flex !important;
   flex-direction: column !important;
   transition: ease-in-out 0.2s;
-
-
   input{
       border: 1.2px #CCC solid;
       min-height: 40px;
@@ -273,8 +299,6 @@
       transition: ease-in-out 0.2s;
 
   }
-
-
   ::-webkit-input-placeholder {
     font-size: 20px;
     color: #CCC;
@@ -283,11 +307,9 @@
   .validation-info{
       transition: ease-in-out 0.2s;
       margin-top: 0px;
-      // margin-bottom: 0 !important;
       text-align: left;
       font-size: 0.75rem;
       margin-bottom: 20px;
-
       .error-text{
           margin-top: 0;
           margin-bottom: 0;
@@ -297,7 +319,6 @@
       }
   }
 }
-
 
 .loginTextField--fail{
   input{
@@ -323,7 +344,6 @@
   }
 }
 
-
 .loginTextField--forceFail{
   input{
       border: #FF3560 solid 1.2px !important;
@@ -344,7 +364,72 @@
       }
   }
 }
-//Login Text Field
+//LOGIN TEXT FIELD//
+
+
+
+
+//MODAL TEXTAREA //
+.modalTextArea{
+    display: flex !important;
+    flex-direction: column !important;
+
+    textarea{
+        border: 1px #CCC solid;
+        height: 31px;
+        padding-left: 5px;
+        padding-right: 5px;
+        outline: none;
+        font-size: 17px;
+        transition: 0.2s ease-in-out;
+        border-radius: 3px 3px 3px 3px;
+        resize: none;
+        min-height: 70px;
+    }
+    label{
+        margin-bottom: 8px;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        height: 20px;
+        margin-top: 0px;
+        // margin-bottom: 0 !important;
+        text-align: left;
+        font-size: 0.75rem;
+        .error-text{
+            margin-top: 0;
+            margin-bottom: 0;
+            opacity: 0;
+        }
+    }
+}
+
+.modalTextArea--fail{
+    textarea{
+        border: #FF3560 solid 1px !important;
+        transition: 0.2s ease-in-out;
+    }
+    label{
+        margin-bottom: 8px;
+    }
+    .validation-info{
+        transition: ease-in-out 0.2s;
+        margin-top: 5px;
+        // margin-bottom: 0px !important;
+        text-align: left;
+        font-size: 0.75rem;
+        transition: 0.2s ease-in-out;
+        margin-bottom: 10px;
+        .error-text{
+            opacity: 1;
+            margin-top: 0;
+            display: block;
+            color: #FF3560;
+            transition: 0.2s ease-in-out;
+        }
+    }
+}
+//MODAL TEXTAREA//
 
 
 

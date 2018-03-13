@@ -1,0 +1,6 @@
+
+##Media Queries
+- The website will go responsive at 640px.
+- Project Sidebar will hide, a "Project Select Menu" will be used to navigate the project.
+- the "project section header" class will hide, and be replaced with the "Project Select Menu"
+     --Landon

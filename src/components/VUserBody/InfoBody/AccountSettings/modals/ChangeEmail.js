@@ -11,13 +11,17 @@ class ChangeEmail extends Component {
         this.state = {
             email: this.props.userInfo.email,
             errorText: '',
-            hideButtonSuccess: true
+            hideButtonSuccess: true,
+            buttonLoading: false
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
     }
 
     handleEmailSubmit(){
+        this.setState({
+            buttonLoading: true
+        })
         const userid = this.props.userInfo.id;
         const reqBody = {
             email: this.state.email
@@ -34,6 +38,9 @@ class ChangeEmail extends Component {
                 })
             }
             else{
+              this.setState({
+                  buttonLoading: false
+              })
               this.props.pullFromBackend(userid)
               this.props.onCloseBtnClick();
 
@@ -74,7 +81,6 @@ class ChangeEmail extends Component {
                     <h2 className="modal-title">CHANGE EMAIL</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
-                {/* <form> */}
                 <div className="modal-body">
 
                     <label className="modal-input-tag">Current Email</label>
@@ -97,6 +103,7 @@ class ChangeEmail extends Component {
                         label='update' 
                         disabled={this.state.hideButtonSuccess} 
                         onClickAction={this.handleEmailSubmit}
+                        loading={this.state.buttonLoading}
                     />
                 </div>
             </div>

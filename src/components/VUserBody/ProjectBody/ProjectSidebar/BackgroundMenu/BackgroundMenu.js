@@ -49,7 +49,7 @@ export default class BackgroundMenu extends Component {
                     </div>
                     
                     <ul className='background-list'>
-                            <li className="no-background-box" onClick={(e) => handleProjectBackground('', '#FFF')}>  <label>No Background</label>  </li>
+                            <li className="no-background-box" onClick={(e) => handleProjectBackground('empty')}>  <label>No Background</label>  </li>
                             {displayBackgroundItems}
                     </ul>
 
