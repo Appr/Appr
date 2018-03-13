@@ -127,7 +127,6 @@ class ChangePassword extends Component {
                         maxLength="18"
                         showSuccess={this.state.showSuccessField}
                         forceFail={this.state.newPasswordForceFail}
-                        
                     />
                 </section>
                 <section className="modal-row">

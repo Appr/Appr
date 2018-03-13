@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const passport = require('../auth/local.auth');
 
 function decorate(app) {
-    //app.use(express.static(/*directory of build folder*/));
+    app.use(express.static('../../build'));
     app.use(bodyParser.json());
     app.use(cors());
     app.use(helmet());
