@@ -277,7 +277,7 @@ a{
       width: 18px;
       height: 18px;
       fill: red;
-
+ 
       :hover{
         fill: blue;
       }
@@ -289,3 +289,26 @@ a{
   label, button, .project-section-header{
     user-select: none;
   }
+
+
+  .desktop-only{
+    display: none;
+  }
+
+
+  @media (max-width: 640px){
+
+    .desktop-only{
+      display: flex;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      label{
+        color: white;
+      }
+    }
+}

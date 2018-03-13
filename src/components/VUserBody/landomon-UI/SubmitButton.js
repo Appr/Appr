@@ -44,7 +44,7 @@ class SubmitButton extends Component {
             "submit-btn-loading": this.state.loading,
         })
         function handleAction(){
-            if (disabled === false && loading === false){
+            if (disabled === false || loading === false){
                 onClickAction();
             }
             else(

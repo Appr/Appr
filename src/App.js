@@ -32,6 +32,9 @@ class App extends Component {
 
     return (
       <div className="App">
+          <div className="desktop-only">
+              <label> DESKTOP SITE ONLY </label>
+          </div>
           <Route component={ Home } path="/" exact />
           <Route component={ Register }  path="/register" />
           <Route component={ Login }  path="/login"/>
