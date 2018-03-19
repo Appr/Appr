@@ -11,9 +11,8 @@ class ViewItem extends Component {
         };
     }
 
-    componentDidMount(){
+    componentWillMount(){
         const { projectid, id } = this.props;
-        console.log(projectid);
         findProjectView(projectid, id)
             .then(res => {
                 if(res.status !== 200){
@@ -27,9 +26,9 @@ class ViewItem extends Component {
     }
 
     render(){
-        const { key, index, id, viewName, viewImageUrl, handleChangeView, handleDeleteViewButton, handleSaveChange } = this.props;
+        const { index, id, viewName, viewImageUrl, handleChangeView, handleDeleteViewButton, handleSaveChange } = this.props;
         return (
-            <div className="view-item" key={key}>
+            <div className="view-item">
                 <section>
                     <label>{(index + 1) + '.'}</label>
                     <input className="view-input-name" type="text" placeholder="Name" id={id} value={viewName} onChange={e => handleChangeView(e, index, "name")} onBlur={e => handleSaveChange(e, index)}/>

@@ -17,6 +17,11 @@ class View extends Component {
       this.handleSaveChange = this.handleSaveChange.bind(this);
     }
 
+    componentWillMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromBackend(projectid);
+      }
+
     pullFromBackend(projectid){
         findProjectViews(projectid)
         .then( res => {
@@ -34,10 +39,7 @@ class View extends Component {
         this.listEnd.scrollIntoView({ behavior: "smooth" });
     }
 
-    componentDidMount() {
-      const projectid = this.props.projectInfo.id;
-      this.pullFromBackend(projectid);
-    }
+
 
     handleAddViewButton() {
         const projectid = this.props.match.params.projectid || 1;
@@ -120,7 +122,7 @@ class View extends Component {
         const index = views.indexOf(view);
         const id = view.id;
         return (<ViewItem
-                    key={`idea-${index}`}
+                    key={`view-item-${index}`}
                     index={index}
                     projectid={projectid}
                     id={id}

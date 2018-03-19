@@ -29,6 +29,11 @@ class Ideas_Users extends Component {
         this.usersListEnd.scrollIntoView({ behavior: "smooth" });
     }
 
+    componentWillMount() {
+        const projectid = this.props.projectInfo.id;
+        this.pullFromDatabase(projectid);
+    }
+
     pullFromDatabase(projectid, scrollOption){
         findProjectIdeas(projectid)
             .then( res => {
@@ -59,10 +64,7 @@ class Ideas_Users extends Component {
             .catch(err => {throw err});
     }
 
-    componentDidMount() {
-        const projectid = this.props.projectInfo.id;
-        this.pullFromDatabase(projectid);
-    }
+
 
 
     // componentWillReceiveProps(nextProps) {

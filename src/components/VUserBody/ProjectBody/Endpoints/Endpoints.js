@@ -26,6 +26,11 @@ class Endpoints extends Component {
     this.listEnd.scrollIntoView({ behavior: "smooth" });
 }
 
+componentWillMount(){
+  const projectid = this.props.projectInfo.id;
+  this.pullFromBackend(projectid);
+}
+
   pullFromBackend(projectid, scrollOption){
     findProjectEndpoints(projectid)
     .then(res => {
@@ -41,10 +46,7 @@ class Endpoints extends Component {
     })
   }
 
-  componentDidMount(){
-    const projectid = this.props.projectInfo.id;
-    this.pullFromBackend(projectid);
-  }
+
 
   //endpoint ITEM add and remove methods
   addEndpointItemHandler(projectid){

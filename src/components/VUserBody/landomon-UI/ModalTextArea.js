@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './landomon.scss';
 import classnames from "classnames";
 
-class ModalTextField extends Component {
+class ModalTextArea extends Component {
     constructor(props){
         super(props)
         this.state ={
@@ -63,28 +63,28 @@ class ModalTextField extends Component {
 
 
     render(){
-        let {label, loading, errorText, onChangeAction, labelStyle} = this.props;
+        let {label, loading, errorText, onChangeAction} = this.props;
 
         let failTextFieldClass = classnames({
-            "modalTextField": true,
-            "modalTextField--fail": this.state.showFail
+            "modalTextArea": true,
+            "modalTextArea--fail": this.state.showFail
         });
 
         let successTextFieldClass = classnames({
-            "modalTextField": true,
+            "modalTextArea": true,
             "modalTextField--success": this.state.showSuccess
         });
 
 
         let forcedFailTextFieldClass = classnames({
-            "modalTextField": true,
+            "modalTextArea": true,
             "modalTextField--forceFail": this.state.showForceFail
         });
 
         return(
             <div className={`${failTextFieldClass} ${successTextFieldClass} ${forcedFailTextFieldClass}`} >
-                <label className="modalTextFieldLabel" style={this.props.labelStyle}> {label} </label>
-                <input className="modalTextFieldInput"
+                <label className="modalTextFieldLabel"> {label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()} </label>
+                <textarea className="modalTextFieldInput"
                     defaultValue={this.props.defaultValue}
                     autoFocus
                     name={label}  
@@ -101,4 +101,4 @@ class ModalTextField extends Component {
     }
 }
 
-export default ModalTextField;
+export default ModalTextArea;

@@ -9,15 +9,19 @@ class ChangeEmail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: '',
+            email: this.props.userInfo.email,
             errorText: '',
-            fieldsFilled: false
+            hideButtonSuccess: true,
+            buttonLoading: false
         }
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
     }
 
     handleEmailSubmit(){
+        this.setState({
+            buttonLoading: true
+        })
         const userid = this.props.userInfo.id;
         const reqBody = {
             email: this.state.email
@@ -34,6 +38,9 @@ class ChangeEmail extends Component {
                 })
             }
             else{
+              this.setState({
+                  buttonLoading: false
+              })
               this.props.pullFromBackend(userid)
               this.props.onCloseBtnClick();
 
@@ -45,17 +52,24 @@ class ChangeEmail extends Component {
 
 
     handleEmailChange(e){
+        let newEmail = e.toLowerCase();
+        console.log(this.state.email)
+
         if(this.state.errorText === 'Email already in use'){
             this.setState({
                 errorText: ''
             })
         }
-
-
-        let newEmail = e.toLowerCase();
         this.setState({
             email: newEmail
           })
+
+        if(newEmail === ''){
+            this.setState({hideButtonSuccess: true})
+        }
+        else{
+            this.setState({hideButtonSuccess: false})
+        } 
       }
 
     render() {
@@ -67,7 +81,6 @@ class ChangeEmail extends Component {
                     <h2 className="modal-title">CHANGE EMAIL</h2>
                     <span className="closeBtn" onClick={this.props.onCloseBtnClick}>&times;</span>
                 </div>
-                {/* <form> */}
                 <div className="modal-body">
 
                     <label className="modal-input-tag">Current Email</label>
@@ -79,7 +92,6 @@ class ChangeEmail extends Component {
                             label="New Email"
                             errorText={this.state.errorText}
                             type="email"
-                            placeholder='BROO'
                             onChangeAction={(e) => {this.handleEmailChange(e.target.value)}} 
                             maxLength={30}
                         />
@@ -89,8 +101,9 @@ class ChangeEmail extends Component {
                     <button className="cancel-btn" onClick={ this.props.onCloseBtnClick }> Cancel </button>
                     <SubmitButton 
                         label='update' 
-                        disabled={this.state.fieldsFilled} 
+                        disabled={this.state.hideButtonSuccess} 
                         onClickAction={this.handleEmailSubmit}
+                        loading={this.state.buttonLoading}
                     />
                 </div>
             </div>

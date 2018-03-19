@@ -1,0 +1,59 @@
+.project-mobile-bar--hide{
+    height: 70px;
+    display: flex;
+    background: white;
+    label{
+        color: #595959;
+        padding-left: 15px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        height: 100%;
+    }
+
+    li{
+        display: none;
+    }
+
+    .mobile-bar-menu{
+        display: none;
+    }
+}
+
+.project-mobile-bar{
+    height: 70px;
+    display: flex;
+    background: white;
+    label{
+        color: #595959;
+        padding-left: 15px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        height: 100%;
+    }
+
+    .mobile-bar-menu{
+        margin-top: 0px;
+        display: block;
+        background: white;
+        list-style: none;
+        padding-top: 20px;
+        padding-left: 0px;
+        li{
+            padding-left: 15px;
+            text-align: left;
+            color: #8C8984;
+            height: 40px;
+        }
+    }
+}
+
+
+
+
+

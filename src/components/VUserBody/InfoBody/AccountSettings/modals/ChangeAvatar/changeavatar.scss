@@ -186,7 +186,7 @@
 
 .avatar-cancel-btn {
     text-align: center;
-    font-size: 11px;
+    font-size: 10pt;
     height: 35px;
     width: 90px;
     outline: none;
@@ -197,6 +197,7 @@
     transition: 0.2s ease-in-out;
     white-space: nowrap;
     border-radius: 3px;
+    text-transform: uppercase;
 }
 
 .avatar-submit-btn {

@@ -67,10 +67,13 @@ accountRouter.put('/update/:userid', (req, res) => {
 });
 
 accountRouter.put('/delete/user', (req, res) => {
-    let { userid } = req.body;
+    let { userid, email, password } = req.body;
     console.log(userid)
     if(userid != req.user[0].id){
         res.send('I hear you like scene kids ;)')
+    }
+    if(password != req.user[0].password){
+        res.send({ErrorText: 'Wrong account information'})
     }
     const db = getDb();
     db.delete_user([ userid ])
@@ -163,6 +166,9 @@ accountRouter.put('/info/update/email/:userid', (req, res) => {
         res.send('update email failed');
     } 
     //EMAIL VALIDATION// 
+    if (!email.includes('@') || email[email.length - 4] !== '.') {
+        res.send({emailError: 'Please enter in a valid email address'})
+    }
     getDb().find_user_by_email([ email ])
         .then( user => {
             if(email === user[0].email){

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../components/VUserBody/InfoBody/AccountSettings/modals/modals.scss';
 import { connect } from 'react-redux';
 import ModalTextField from '../components/VUserBody/landomon-UI/ModalTextField';
+import ModalTextArea from '../components/VUserBody/landomon-UI/ModalTextArea';
 class ModalTest extends Component {
     constructor(props){
         super(props);
@@ -64,6 +65,11 @@ class ModalTest extends Component {
                         type="text"
                         onChangeAction={console.log('Navi: "Hey, Listen"!!!')}
                         placeholder='BROO'
+                    />
+
+                    <ModalTextArea 
+                        label="description"
+                        style={{minHeight: "70px", "resize": "none"}}
                     />
     
                     </section>

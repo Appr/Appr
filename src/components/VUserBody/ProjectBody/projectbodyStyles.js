@@ -1,7 +1,32 @@
 import styled from 'styled-components';
 
 let ProjectBodyContainer = styled.div `
-display: flex;
+    display: flex;
+
+    .project-mobile-bar{
+        display: none;
+    }
+
+
+    @media (max-width: 640px){
+        flex-directin: column;
+        .project-mobile-bar{
+            height: 40px;
+            display: block;
+            position: absolute;
+            z-index: 5;
+            width: 100%;
+        }
+        .mobile-project-nav{
+            display: block;
+        }
+        .project-section-header{
+            margin-top: 20px;
+            label{
+                display: none;
+            }
+        }
+    }
 `
 
 let Frame = styled.div `

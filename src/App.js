@@ -8,6 +8,7 @@ import VUserBody from './components/VUserBody/VUserBody';
 import Home from './components/AuthBody/Home/Home';
 import { connect } from 'react-redux';
 import ModalTest from './UITests/ModalTest';
+import MobileProjectNavTest from './UITests/MobileProjectNavTest';
 
 class App extends Component {
   constructor(){
@@ -31,10 +32,13 @@ class App extends Component {
 
     return (
       <div className="App">
+          <div className="desktop-only">
+              <label> DESKTOP SITE ONLY </label>
+          </div>
           <Route component={ Home } path="/" exact />
           <Route component={ Register }  path="/register" />
           <Route component={ Login }  path="/login"/>
-          <Route component={ ModalTest } path="/test"/>
+          <Route component={ MobileProjectNavTest } path="/test"/>
           <PrivateRoute component={ VUserBody } path="/user/:userid"/>
       </div>
     );
