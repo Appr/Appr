@@ -98,7 +98,19 @@ class Controllers extends Component {
     const controllers = this.state.controllers;
     const displayControllers = controllers.map(controller => {
         const index = controllers.indexOf(controller);
-        return <ControllerItem key={index}  index={index} controllerid={controller.id} controllerName={controller.controller_name} whenData={controller.when_data} doData={controller.do_data} requireData={controller.require_data} handleDeleteController={this.handleDeleteController} handleChangeInput={this.handleChangeInput} handleSaveChange={this.handleSaveChange} projectid={projectid} handleControllerNameChange={this.handleControllerNameChange}/>
+        return <ControllerItem
+                    key={index}
+                    index={index}
+                    controllerid={controller.id}
+                    controllerName={controller.controller_name}
+                    whenData={controller.when_data}
+                    doData={controller.do_data}
+                    requireData={controller.require_data}
+                    handleDeleteController={this.handleDeleteController}
+                    handleChangeInput={this.handleChangeInput}
+                    handleSaveChange={this.handleSaveChange}
+                    projectid={projectid}
+                    handleControllerNameChange={this.handleControllerNameChange}/>
     });
 
     return (
@@ -131,6 +143,6 @@ class Controllers extends Component {
 }
 function mapStateToProps(state){
     return state;
-}   
+}
 
 export default connect(mapStateToProps) (Controllers);
